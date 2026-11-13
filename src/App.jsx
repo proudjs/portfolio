@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './components/Home.jsx'
 import CaseStudy from './components/CaseStudy.jsx'
 import NotFound from './components/NotFound.jsx'
+import About from './components/About.jsx'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -12,6 +13,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/work/:slug" element={<CaseStudy />} />
+      <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

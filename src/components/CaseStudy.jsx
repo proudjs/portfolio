@@ -6,64 +6,9 @@ import Footer from './Footer.jsx'
 import ProjectCards from './ProjectCards.jsx'
 import NotFound from './NotFound.jsx'
 import { getProject } from '../data/projects.js'
+import { Figure, Stats, makeComponents, splitSections } from './markdown.jsx'
 
-/*
-  How a case study file becomes a page (see src/content/work/_template.md):
-  - Each "## Label" starts a numbered section and a link in "On this page".
-  - "### Headline" is a red headline. "#### Title" is a smaller dark title.
-  - ![alt text](<url> "phone") or "wide" is an image. Two or more images in one paragraph sit side by side.
-    ![caption](<slot:What goes here> "wide") is a dashed placeholder slot.
-  - A paragraph in *italics only* is a caption.
-  - A bullet list whose items start with an image becomes a row of tiles (image, bold title, text).
-  - > quote blocks become the gold-edged note.
-  - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
-  - [[claims]] places the "What I can claim / can't claim yet" pair from the frontmatter.
-  - [[prototype]] places the "Try the prototype" button.
-*/
-function splitSections(content) {
-  return content.split(/^## /m).slice(1).map((chunk, i) => {
-    const nl = chunk.indexOf('\n')
-    const label = (nl === -1 ? chunk : chunk.slice(0, nl)).trim()
-    const body = nl === -1 ? '' : chunk.slice(nl + 1).trim()
-    const id = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-    return { label, body, id, n: String(i + 1).padStart(2, '0') }
-  })
-}
-
-function isImg(node) {
-  return node?.type === 'element' && node.tagName === 'img'
-}
-function hasImg(node) {
-  if (!node) return false
-  if (isImg(node)) return true
-  return (node.children || []).some(hasImg)
-}
-function plainText(node) {
-  if (!node) return ''
-  if (node.type === 'text') return node.value
-  return (node.children || []).map(plainText).join('')
-}
-
-function Figure({ src, alt, title }) {
-  const kind = title === 'phone' ? 'phone' : 'wide'
-  if (src?.startsWith('slot:')) {
-    return (
-      <figure>
-        <div className={`shot ${kind}`}>Image slot<br />{decodeURIComponent(src.slice(5))}</div>
-        {alt && <figcaption>{alt}</figcaption>}
-      </figure>
-    )
-  }
-  return <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
-}
-
-function Stats({ items }) {
-  return (
-    <div className="cs-stats">
-      {items.map((s) => <div className="stat" key={s.value + s.label}><b>{s.value}</b><span>{s.label}</span></div>)}
-    </div>
-  )
-}
+/* Markdown syntax for case studies is documented in markdown.jsx. */
 
 export default function CaseStudy() {
   const { slug } = useParams()
@@ -83,50 +28,7 @@ export default function CaseStudy() {
 
   if (!project || !project.ready) return <NotFound />
 
-  const components = {
-    img: Figure,
-    a: ({ href, children }) => {
-      const external = /^https?:/.test(href || '')
-      return <a href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{children}</a>
-    },
-    ul: ({ node, children }) => {
-      const tiles = node.children.some((li) => li.type === 'element' && hasImg(li))
-      return <ul className={tiles ? 'tiles' : undefined}>{children}</ul>
-    },
-    p: ({ node, children }) => {
-      const kids = node.children.filter((c) => !(c.type === 'text' && !c.value.trim()))
-      const text = kids.length === 1 && kids[0].type === 'text' ? kids[0].value.trim() : ''
-
-      if (text === '[[claims]]') {
-        return project.claims ? (
-          <div className="claims">
-            <div><span className="eyebrow">What I can claim</span><p>{project.claims.can}</p></div>
-            <div><span className="eyebrow">What I can't claim yet</span><p>{project.claims.cant}</p></div>
-          </div>
-        ) : null
-      }
-      if (text === '[[prototype]]') {
-        return project.prototypeUrl
-          ? <a className="cs-btn" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype</a>
-          : null
-      }
-      const raw = plainText(node).trim()
-      if (raw.startsWith('[[stats:') && raw.endsWith(']]')) {
-        const items = raw.slice(8, -2).split('||').map((s) => {
-          const [value, ...rest] = s.split('::')
-          return { value: value.trim(), label: rest.join('::').trim() }
-        })
-        return <Stats items={items} />
-      }
-      if (kids.length && kids.every(isImg)) {
-        return <div className="gallery" data-count={Math.min(kids.length, 4)}>{children}</div>
-      }
-      if (kids.length === 1 && kids[0].type === 'element' && kids[0].tagName === 'em') {
-        return <p className="caption">{children}</p>
-      }
-      return <p>{children}</p>
-    },
-  }
+  const components = makeComponents(project)
 
   const jump = (e, id) => {
     e.preventDefault()
