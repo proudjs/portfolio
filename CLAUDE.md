@@ -1,8 +1,8 @@
 # CLAUDE.md: rules for working on Proud's portfolio
 
 This is the personal portfolio of Jutamat (Proud) Samnakbankok, UX/UI + Visual Designer in Milwaukee, WI.
-React + Vite + Tailwind, deployed on Vercel from the `main` branch. Proud is a designer, not a developer:
-explain changes in plain words and show her a preview link before anything goes live.
+React + Vite + Tailwind, deployed on Vercel from the `main` branch.
+Explain every change in plain words and share a preview link before anything goes live.
 
 ## Before you change anything
 - Check that the change matches her actual design. If it doesn't, say what's off and how to fix it. Don't change it quietly.
@@ -15,8 +15,7 @@ explain changes in plain words and show her a preview link before anything goes 
 - Short, plain sentences. American spelling. Sounds like a person, not like AI.
 - Don't brag or compare her to other designers.
 - BMO and ParkChicago are always called unsolicited redesigns. Furcast is her UT Austin capstone, co-designed with Barbara Sherwood.
-- Never invent research, numbers, quotes or methods. Use only verified facts from her live case studies at uxfol.io/prouddesigns.
-- She hasn't done A/B testing or SEO work. Never claim them.
+- Only describe methods, results, numbers and quotes that appear in her published case studies at uxfol.io/prouddesigns.
 - Credit: "Built with Claude." Never say she coded the site herself.
 
 ## Design system (tokens live in src/styles/index.css)
