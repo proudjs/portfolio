@@ -24,13 +24,13 @@ stats:
     label: found the lock screen countdown without being told
 ---
 
-<!-- Copied from uxfol.io/prouddesigns on Nov 13, 2026. Images still load from UXfolio. -->
+<!-- Trimmed version (Nov 13, 2026) of the full case study on uxfol.io/prouddesigns. Every image kept. Only Proud's own sentences, shortened. -->
 
 ## Overview
 
 **Problem.** I asked 12 drivers in and around Chicago what gets them ticketed. Most tickets came from paying wrong: the wrong zone, the wrong car or time that ran out without a warning.
 
-**What I did.** I redesigned the app on my own, end to end. Parking starts from one screen. Nearby zones come from your location, the pay button names your car and a countdown sits on your lock screen.
+**What I did.** I redesigned the app on my own, end to end. Parking starts from one screen, nearby zones come from your location, the pay button names your car and a countdown sits on your lock screen.
 
 **Result.** A high-fidelity iOS prototype, tested with 5 drivers. All 5 finished a full parking session. 4 of 5 found the lock screen countdown on their own.
 
@@ -38,31 +38,23 @@ stats:
 
 ### People weren’t skipping payment. They paid and still got tickets.
 
-I’ve used this app for about eight years, mostly downtown. Anywhere busy between 8 a.m. and 9 p.m. is hard to park. Once I circled for an hour and still came up empty. When I asked friends and family, I heard the same stories.
+I’ve used this app for about eight years, mostly downtown. When I asked friends and family, I heard the same stories.
 
-#### No warning before time ran out
+**No warning before time ran out.** 8 of the 12 had missed it at some point.
 
-8 of the 12 had missed it at some point. They were waiting for a pop-up saying time was up, so they could move the car or extend. It didn’t come the way they expected.
+**Paid for the wrong car.** One person paid for parking but for their other car. Ticket anyway.
 
-#### Paid for the wrong car
+**Couldn’t read the zone number.** Stickers covered the sign, so they walked down the block to find another one.
 
-One person paid for parking but for their other car. Ticket anyway.
-
-#### Couldn’t read the zone number
-
-Stickers covered the sign, so they walked down the block to find another one. In January, in heavy rain or in that wind, that walk is just miserable.
-
-#### Paying today takes four screens and a pop-up
-
-Zone, car, how long, then a pop-up to confirm. Skip the pop-up and you haven’t paid.
+**Paying takes four screens and a pop-up.** Skip the pop-up and you haven’t paid.
 
 ![Current app, step 1: choose a zone](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/before-1-zone-6c387c76-e67f-4088-bcd7-3fc971eb277d.webp> "phone") ![Current app, step 2: choose a vehicle](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/before-2-vehicle-1e436c67-69b4-40c0-bf33-b045005f666e.webp> "phone") ![Current app, step 3: choose how long](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/before-3-length-fda5f769-965b-458b-8b37-c34b39ed1d3d.webp> "phone") ![Current app, step 4: the confirm pop-up](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/before-4-confirm-504d6490-fccf-47ba-906e-a36771c0841a.webp> "phone")
 
+*Zone, car, how long, then a pop-up to confirm.*
+
 ## The redesign at a glance
 
-### Each one is a way of paying wrong. So the redesign isn’t about adding features. It’s about making it hard to make a mistake.
-
-Four changes, one for each of those mistakes.
+### It’s not about adding features. It’s about making it hard to make a mistake.
 
 - ![Start Parking screen](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/02-start-parking-default-6198ec89-4052-4225-98ab-adcc42b2e787.webp> "phone")
 
@@ -88,11 +80,7 @@ Four changes, one for each of those mistakes.
 
   See time left without opening the app and extend from there.
 
-#### Why I merged two apps, not three
-
-ParkChicago is really three apps: Park to pay, Map to find parking and Fleet for business vehicles. My first plan was all three. I narrowed it to everyday drivers first and merged Park and Map. Fleet is next.
-
-One App Store reviewer asked why Map is a separate app at all.
+**Two apps, not three.** ParkChicago is really three apps: Park, Map and Fleet. I narrowed it to everyday drivers and merged Park and Map. One App Store reviewer asked why Map is a separate app at all.
 
 ![The three ParkChicago apps](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/three-apps-9f36f62c-166b-4b82-8323-a8943c202cc1.webp> "phone") ![App Store review asking why Map is a separate app](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/gallery/review-should-not-exist-03066548-f993-4bc7-8e8a-8022ded110d7.webp> "phone")
 
@@ -100,25 +88,11 @@ One App Store reviewer asked why Map is a separate app at all.
 
 ### Twelve drivers, eight years of my own use and a pile of App Store reviews.
 
-Not a formal study. I asked 12 friends and family who park in and around Chicago what goes wrong. Then I checked their stories against App Store reviews. The reviews kept hitting the same spots.
+Not a formal study. I asked 12 friends and family who park in and around Chicago what goes wrong, then checked their stories against App Store reviews. The reviews kept hitting the same spots: fees and forced top-ups, not finishing checkout and no way to extend past the time limit.
 
-#### Fees and forced top-ups
-
-Like the $20 top-up and the $10 balance you can’t use. → Wallet, plus Apple Pay and Google Pay.
-
-#### Not finishing checkout
-
-A multi-step checkout and a ticket anyway. → One screen to park.
-
-#### No way to extend past the time limit
-
-→ Extend from the lock screen.
-
-#### In reviewers’ words
-
-One reviewer put it better than I could: “I did this today and got a $50 ticket because I didn’t complete the final step.”
-
-Some complaints, like being charged twice with no refund, are out of scope for a design concept but worth naming.
+> #### “I did this today and got a $50 ticket because I didn’t complete the final step.”
+>
+> App Store reviewer
 
 *Sources: [ParkChicago® reviews on JustUseApp](https://justuseapp.com/en/app/686658594/parkchicago/reviews) and the App Store, checked October 2026.*
 
@@ -154,86 +128,56 @@ I sketched on paper before opening Figma. Two ideas didn’t make it.
 
 ### Decision 1 of 4: How much can fit on one screen before it’s too much?
 
-The old flow spreads parking over several steps. You can quit before the last one without realizing it.
-
-Now zone, time, car, payment and total sit on one Start Parking screen, with quick picks for 30 min, 1 hr, 2 hr or Max. The pay button stays at the bottom, so there’s no “final step” to miss.
+Zone, time, car, payment and total sit on one Start Parking screen, with quick picks for 30 min, 1 hr, 2 hr or Max. The pay button stays at the bottom, so there’s no “final step” to miss.
 
 ![Start Parking screen with 30 minutes picked, before paying](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/02-start-parking-default-9e5eafe8-b426-4a14-b647-b0b41b183dae.webp> "phone") ![Active parking session with 2 hours left, plus Extend, Directions and Change zone buttons](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/14-active-session-016bf426-c204-4ba4-bc6b-25915d626c0c.webp> "phone")
 
 ### Decision 2 of 4: How do you pay for a zone you can’t read?
 
-You shouldn’t have to. The map uses your location to list nearby zones, closest first. You tap yours instead of walking to the sign in the snow. It also shows spots that are open or might open up.
-
-The old app’s Zone Hop was buried in the fine print. Now it’s a Change zone button, so if you move the car, your paid time moves with you.
+You shouldn’t have to. The map uses your location to list nearby zones, closest first. The old app’s Zone Hop was buried in the fine print. Now it’s a Change zone button, so if you move the car, your paid time moves with you.
 
 ![Map listing nearby parking zones, closest first](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/01-map-parking-near-you-826a6f7e-4d1e-41f1-8549-f566ba26401c.webp> "phone") ![Zone Hop asking to move the session to the new zone](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/08-zone-hop-confirm-2bcba903-89d6-4bb3-8f83-3d65e97deb32.webp> "phone") ![Session moved to the new zone, with paid time kept](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/09-zone-hop-moved-df33bd20-3952-459c-9776-ef41f6967561.webp> "phone")
 
 ### Decision 3 of 4: How do you stop someone paying for the wrong car?
 
-Plates all look alike when you’re in a hurry. The old app lets you nickname a car but the confirm screen only shows the plate. So the pay button says which one: “Pay $9.50 for Foxy.” You’d have to really try to pay for the wrong car.
+Plates all look alike when you’re in a hurry. So the pay button says which one: “Pay $9.50 for Foxy.”
 
 ![Profile with two cars, Foxy and Pearl](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/10-profile-two-cars-a6e8ac80-b9ab-419e-ace3-da9e5d2a14ca.webp> "phone") ![Adding a nickname to a new car](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/15-adding-car-nickname-79920146-4614-4486-94d7-d6c7b300f276.webp> "phone") ![Pay button that names the car, Foxy, before paying](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/03-start-parking-ready-to-pay-bc5b61e4-7205-4396-9ce0-a0125c67e0e9.webp> "phone")
 
 ### Decision 4 of 4: How do you warn someone who isn’t looking at the app?
 
-Nobody keeps a parking app open. So the countdown lives on the lock screen and a reminder comes 15 minutes before time runs out. Tap Extend and the app opens right on your session, so adding time is one more tap.
+Nobody keeps a parking app open. So the countdown lives on the lock screen and a reminder comes 15 minutes before time runs out. Tap Extend and adding time is one more tap.
 
 ![Lock screen countdown with a 15 minute reminder](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/04-lock-screen-15-min-5d54fe92-fc43-413c-80c0-9520678675ca.webp> "phone") ![Active session with 15 minutes left](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/07-active-session-15-min-left-f4dfdc7b-53fd-4278-9fd3-63725658b5fb.webp> "phone") ![Adding more time to a parking session](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/05-extending-parking-40578edb-374b-4ed7-9101-4b3b5741bb87.webp> "phone")
 
 ![The live lock screen countdown prototype](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6ac81e959087d5718d7ff1e7/peYmOQf14n0j0Sy8.gif> "phone")
 
-#### Prototyping the countdown with AI
-
-A still frame can’t show a timer running out. So I rebuilt the lock screen in Figma Make: a live countdown, an Extend time sheet and a warning at 10 minutes left. It took about 5 versions.
-
-**Scrapped:** Make’s first clock switched to my real local time, so the demo no longer matched the session.
-
-**Kept:** A clock that starts at 9:41 and counts forward, so “Started 9:41 AM” and “Expires 11:41 AM” stay true.
-
-AI got me to something clickable in minutes. Checking every state was still my job.
-
-[Try the live countdown →](https://www.figma.com/make/fAQ83s0XzqPNQR8URbZbHd/Interactive-Parking-Session-Screen?p=f)
+**Prototyping the countdown with AI.** A still frame can’t show a timer running out, so I rebuilt the lock screen in Figma Make, in about 5 versions. AI got me to something clickable in minutes. Checking every state was still my job. [Try the live countdown →](https://www.figma.com/make/fAQ83s0XzqPNQR8URbZbHd/Interactive-Parking-Session-Screen?p=f)
 
 ## Testing and results
 
 ### All 5 testers got through a parking session start to finish, fast.
 
-I asked 5 drivers to start a parking session in the prototype. They called it simple and liked seeing which spots were open. Having almost everything on one screen made it quick. Three took about a minute. The slowest took 1 minute 20 seconds.
+Three took about a minute. The slowest took 1 minute 20 seconds.
 
-[[stats: 4 of 5 :: noticed the lock screen countdown without being told. → The warning people kept missing is now hard to miss. || 4 of 5 :: called out the Change zone button. They knew their time was still running. → Moving the car no longer means losing time. || 4 of 5 :: liked seeing the car’s nickname on the pay button, so they could check it was the right car before paying. Nobody had trouble with it. → The cheapest fix in the project did its job.]]
-
-#### Smaller things testers noticed
-
-3 of 5 were surprised they could now see where their car is. The original app never had that. 3 of 5 liked pinning favorite spots.
+[[stats: 4 of 5 :: noticed the lock screen countdown without being told || 4 of 5 :: called out the Change zone button || 4 of 5 :: liked seeing the car’s nickname on the pay button]]
 
 ![Find my car, showing where the car is parked](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6ac81e959087d5718d7ff1e7/section-media/11-find-my-car-a11e67e5-4d1f-4ccd-9361-6057d087be0e.webp> "phone")
 
-#### The one stumble
+*3 of 5 were surprised they could now see where their car is. The original app never had that.*
 
-1 of 5 paused for about 5 seconds at the start. They weren’t sure whether to tap a nearby zone or type the number into the search box. The other 4 went start to finish without a single question.
-
-> #### What I’d change next
+> #### The one stumble
 >
-> I think the search box at the top looked like the first step. I’d move it lower, so typing a zone number becomes the backup, not the first thing you see. I haven’t tested that yet.
+> 1 of 5 paused for about 5 seconds at the start, unsure whether to tap a nearby zone or type into the search box. I’d move the search box lower, so typing becomes the backup. I haven’t tested that yet.
 
 ## Reflection
 
-#### What I learned
+**Living with a problem helped me find it. Asking others told me it was worth fixing.** Every problem in this case study has happened to me. Asking 12 drivers showed me it wasn’t just me.
 
-**Living with a problem helped me find it. Asking others told me it was worth fixing.** Every problem in this case study has happened to me. For years I figured that was just my luck. Asking 12 drivers showed me it wasn’t just me.
-
-#### What’s next
-
-**Search by destination.** Type “United Center” and see parking near it before you get there.
-
-**Share where you parked.** Send your car’s spot to someone, right from the app.
-
-**Parking history as proof.** If you get a ticket anyway, show which car and zone you paid for and when.
-
-**Test with visitors.** People who don’t know Chicago zones should benefit most from location-based zones.
+**What’s next:** search by destination, sharing where you parked, parking history as proof if you get a ticket anyway and testing with visitors who don’t know Chicago zones.
 
 ## Try the prototype
 
-The main flow starts at the login screen and goes all the way through paying, Zone Hop and finding your car. A second flow starts on the lock screen reminder.
+The main flow goes from login through paying, Zone Hop and finding your car. A second flow starts on the lock screen reminder.
 
 [[prototype]]
