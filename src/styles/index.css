@@ -320,7 +320,7 @@ img { max-width: 100%; display: block; }
 /* Four phones fit in a row only when there is room, otherwise 2 by 2 */
 .cs-sec .stage[data-count="4"] { --screen: 196px; }
 /* Tiles on a stage: same size screens, label centered under each */
-.cs-sec ul.tiles.stage { list-style: none; margin: 0; max-width: none; }
+.cs-sec ul.tiles.stage { display: flex; list-style: none; margin: 0; max-width: none; }
 .cs-sec ul.tiles.stage > li { flex: 0 0 var(--screen); width: var(--screen); display: grid; gap: 10px; justify-items: center; text-align: center; }
 .cs-sec ul.tiles.stage > li .gallery { display: block; background: none; border: 0; padding: 0; margin: 0; width: 100%; }
 .cs-sec ul.tiles.stage > li .iphone, .cs-sec ul.tiles.stage > li .cs-img.sketch { width: 100%; max-width: none; margin: 0; }
