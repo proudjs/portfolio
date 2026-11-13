@@ -13,12 +13,12 @@
 
 /* Design tokens. Never hardcode these values in components. */
 :root {
-  --paper: #FDFBFB;   /* blush white */
-  --surface: #FDFBFB;
-  --red: #9C1C17;     /* Thai red: line art, headings, name */
-  --ink: #2A1412;     /* deep ink: body text */
-  --muted: #74514C;
-  --line: #EBDAD6;
+  --paper: #F9FAFD;   /* light blue white */
+  --surface: #F9FAFD;
+  --red: #1028D2;     /* blue: line art, headings, name (token name kept so components don't change) */
+  --ink: #10142E;     /* deep navy: body text */
+  --muted: #4E5778;
+  --line: #DCE2F2;
   --gold: #B08A2E;    /* Khon gold: small accents only, never body text */
   --accent: var(--gold);
   --display: 'Gambetta', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
@@ -29,8 +29,8 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #170D0C; --surface: #1F1211; --red: #E8776B; --ink: #F3E8E6;
-    --muted: #C2A29D; --line: #3A2421; --gold: #D9B45E; color-scheme: dark;
+    --paper: #0B0E1C; --surface: #121630; --red: #8C9BFF; --ink: #E8ECFA;
+    --muted: #A3ABCA; --line: #232A4A; --gold: #D9B45E; color-scheme: dark;
   }
 }
 
@@ -100,14 +100,14 @@ img { max-width: 100%; display: block; }
 
 /* Selected work: big picture cards, the whole card is the link */
 .work-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.work-card { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 2px rgba(42, 20, 18, .04), 0 8px 24px -12px rgba(42, 20, 18, .12); transition: transform .45s var(--ease-smooth), box-shadow .45s var(--ease-smooth), border-color .45s; }
+.work-card { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 2px rgba(16, 20, 46, .04), 0 8px 24px -12px rgba(16, 20, 46, .12); transition: transform .45s var(--ease-smooth), box-shadow .45s var(--ease-smooth), border-color .45s; }
 .work-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .work-card__art { position: relative; aspect-ratio: 4 / 3.3; overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); border-bottom: 1px solid var(--line); }
 .iphone.work-card__screen { position: absolute; width: 40%; max-width: none; margin: 0; transition: transform .6s var(--ease-smooth); }
 .work-card__screen.s1 { left: 9%; top: 11%; transform: rotate(-5deg); }
 .work-card__screen.s2 { right: 9%; top: 19%; transform: rotate(5deg); }
 @media (hover: hover) {
-  .work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(42, 20, 18, .05), 0 28px 48px -20px rgba(156, 28, 23, .28); }
+  .work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(16, 20, 46, .05), 0 28px 48px -20px rgba(16, 40, 210, .28); }
   .work-card:hover .work-card__screen.s1 { transform: rotate(-8deg) translate(-6px, -10px); }
   .work-card:hover .work-card__screen.s2 { transform: rotate(8deg) translate(6px, -14px); }
 }
@@ -261,7 +261,7 @@ img { max-width: 100%; display: block; }
 
 /* About: What shapes my work */
 .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.principle { display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 22px; box-shadow: 0 8px 24px -16px rgba(42, 20, 18, .18); }
+.principle { display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 22px; box-shadow: 0 8px 24px -16px rgba(16, 20, 46, .18); }
 .principle__art { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: color-mix(in srgb, var(--red) 7%, var(--surface)); display: grid; place-items: center; }
 .principle__art img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
 .principle__art.phone .iphone { width: 46%; margin: 9% 0 0; align-self: start; margin-top: 9%; transform: rotate(-4deg); }
@@ -309,8 +309,8 @@ img { max-width: 100%; display: block; }
 
 /* iPhone frame for every phone screen (drawn in CSS). .iphone is the size container, .iphone__body draws the phone. */
 .iphone { container-type: inline-size; position: relative; width: 100%; max-width: 300px; margin: 0 auto; }
-.iphone__body { position: relative; padding: 3.4cqw; border-radius: 16cqw; background: #141414; box-shadow: 0 0 0 1.2cqw #d9d4d3, 0 0 0 calc(1.2cqw + 1px) #b9b2b0, 0 26px 44px -22px rgba(42, 20, 18, .45); }
-.iphone__body::before, .iphone__body::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #c8c1bf; }
+.iphone__body { position: relative; padding: 3.4cqw; border-radius: 16cqw; background: #141414; box-shadow: 0 0 0 1.2cqw #d4d7e0, 0 0 0 calc(1.2cqw + 1px) #b0b4c0, 0 26px 44px -22px rgba(16, 20, 46, .45); }
+.iphone__body::before, .iphone__body::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #bfc3cf; }
 .iphone__body::before { right: -2.6cqw; top: 26%; height: 15%; }
 .iphone__body::after { left: -2.6cqw; top: 20%; height: 18%; }
 /* Fixed height (not aspect-ratio) and a mask so Safari clips the rounded screen and never grows it */
@@ -331,7 +331,7 @@ img { max-width: 100%; display: block; }
 .cs-sec .stage { --screen: 216px; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 32px 28px; padding: 0; }
 .cs-sec .stage > .iphone, .cs-sec .stage > .cs-img.sketch { flex: 0 0 var(--screen); width: var(--screen); max-width: 100%; margin: 0; }
 .cs-sec .stage > .cs-img.mockup { flex: 0 0 auto; width: 280px; max-width: 100%; margin: 0; }
-.cs-sec .stage > .cs-img.sketch, .cs-sec ul.tiles.stage .cs-img.sketch { border: 0; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(42, 20, 18, .4); }
+.cs-sec .stage > .cs-img.sketch, .cs-sec ul.tiles.stage .cs-img.sketch { border: 0; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(16, 20, 46, .4); }
 /* Four phones fit in a row only when there is room, otherwise 2 by 2 */
 .cs-sec .stage[data-count="4"] { --screen: 196px; }
 /* Tiles on a stage: same size screens, label centered under each */
