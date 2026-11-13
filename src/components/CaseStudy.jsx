@@ -55,14 +55,20 @@ export default function CaseStudy() {
       <Nav />
       <main style={{ display: 'grid', gap: 48 }}>
         <div className={`cs-top ${project.hero ? 'has-hero' : ''}`}>
+        {/* Reading order: what it is (title), the point (summary), the proof (results),
+            what to do (prototype or read on), then the quiet project facts. */}
         <header className="cs-head">
           <span className="tag">{project.tag}</span>
           <h1>{project.headline || project.title}</h1>
-          {project.summary && <p>{project.summary}</p>}
+          {project.summary && <p className="cs-lede">{project.summary}</p>}
           {project.note && <p className="note">{project.note}</p>}
-          {project.prototypeUrl && (
-            <a className="cs-link" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype →</a>
-          )}
+          {project.stats?.length > 0 && <Stats items={project.stats} />}
+          <div className="cs-actions">
+            {project.prototypeUrl && (
+              <a className="cs-btn" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype <span aria-hidden="true">↗</span></a>
+            )}
+            <a className="cs-link" href={`#${sections[0]?.id || ''}`} onClick={(e) => jump(e, sections[0]?.id)}>Read the case study <span aria-hidden="true">↓</span></a>
+          </div>
           <dl className="cs-meta">
             {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
             {project.scope && <div><dt>Scope</dt><dd>{project.scope}</dd></div>}
@@ -77,8 +83,6 @@ export default function CaseStudy() {
           </div>
         )}
         </div>
-
-        {project.stats?.length > 0 && <Stats items={project.stats} />}
 
         <div className="cs-body">
           <nav className="cs-toc" aria-label="On this page">
