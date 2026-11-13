@@ -1,70 +1,68 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import flower from '../assets/flowers/hero-flower.json'
 
 /*
-  Proud's phut tan flower, drawn like a pen: one stroke at a time, never overlapping.
-  `flower.center` holds the center line of every stroke, already in drawing order:
-  long outlines first (starting with the longest), then the hatching, each stroke
-  starting near where the last one ended. When the pen is done, her bold ink fades in.
+  Proud's phut tan flower appears the way she drew it: her real ink is revealed one stroke at a time.
+  A wide invisible "brush" follows the center line of each stroke (flower.center, already in drawing
+  order: long outlines first, then the hatching) and uncovers the ink underneath. When the last stroke
+  is done, any small dots the brush missed fade in. Reduced motion shows the finished drawing.
 */
-const SPEED = 1.9 // drawing units per ms
-const MIN_STROKE = 70 // ms
-const PEN_LIFT = 30 // ms pause between strokes
+const SPEED = 2.6 // drawing units per ms
+const MIN_STROKE = 60 // ms
+const PEN_LIFT = 15 // ms pause between strokes
+const BRUSH = 30 // brush width in drawing units, wider than her widest stroke
 const NS = 'http://www.w3.org/2000/svg'
 
-export default function HeroFlower({ replayKey, reduce }) {
-  const penRef = useRef(null)
-  const inkRef = useRef(null)
-  const silRef = useRef(null)
+export default function HeroFlower({ reduce }) {
+  const maskId = useId().replace(/:/g, '')
+  const brushRef = useRef(null)
+  const fullRef = useRef(null)
 
   useEffect(() => {
-    const pen = penRef.current, ink = inkRef.current, sil = silRef.current
+    const brush = brushRef.current
+    const full = fullRef.current
     const timers = []
-    pen.innerHTML = ''
-    pen.style.opacity = 1
+    brush.innerHTML = ''
 
     if (reduce) {
-      ink.style.opacity = 1
-      sil.style.opacity = 1
+      full.style.opacity = 1
       return undefined
     }
+    full.style.transition = 'none'
+    full.style.opacity = 0
 
-    ink.style.transition = 'none'
-    ink.style.opacity = 0
-    sil.style.opacity = 0
-    void ink.getBoundingClientRect()
-    ink.style.transition = ''
-
-    let t = 400
+    let t = 300
     flower.center.split(/(?=M)/).forEach((d) => {
       const p = document.createElementNS(NS, 'path')
       p.setAttribute('d', d)
-      pen.appendChild(p)
+      brush.appendChild(p)
       const len = p.getTotalLength()
       const dur = Math.max(MIN_STROKE, len / SPEED)
-      p.style.strokeDasharray = len
+      p.style.strokeDasharray = `${len} ${len}`
       p.style.strokeDashoffset = len
-      p.style.opacity = 0
       timers.push(setTimeout(() => {
-        p.style.opacity = 1
         p.style.transition = `stroke-dashoffset ${dur}ms cubic-bezier(.35,0,.65,1)`
         p.style.strokeDashoffset = 0
       }, t))
       t += dur + PEN_LIFT
     })
-
-    timers.push(setTimeout(() => { sil.style.opacity = 1; ink.style.opacity = 1 }, t + 600))
-    timers.push(setTimeout(() => { pen.style.transition = 'opacity 1s'; pen.style.opacity = 0 }, t + 1400))
-    timers.push(setTimeout(() => { pen.innerHTML = ''; pen.style.transition = ''; pen.style.opacity = 1 }, t + 2600))
-
+    timers.push(setTimeout(() => {
+      full.style.transition = 'opacity 700ms ease'
+      full.style.opacity = 1
+    }, t + 100))
     return () => timers.forEach(clearTimeout)
-  }, [replayKey, reduce])
+  }, [reduce])
 
   return (
     <svg className="motif" viewBox={flower.viewBox} role="img" aria-label="Phut tan flower, hand drawn by Proud">
-      <path ref={silRef} className="sil" fillRule="evenodd" d={flower.sil} />
-      <g ref={penRef} className="pen" />
-      <path ref={inkRef} className="ink" fillRule="evenodd" d={flower.ink} />
+      <defs>
+        <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="1176" height="1248">
+          <g ref={brushRef} fill="none" stroke="#fff" strokeWidth={BRUSH} strokeLinecap="round" strokeLinejoin="round" />
+        </mask>
+      </defs>
+      <path className="sil" fillRule="evenodd" d={flower.sil} />
+      <path className="ink" fillRule="evenodd" d={flower.ink} mask={`url(#${maskId})`} />
+      <path ref={fullRef} className="ink" fillRule="evenodd" d={flower.ink} />
     </svg>
   )
 }

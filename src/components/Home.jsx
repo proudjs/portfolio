@@ -10,7 +10,6 @@ import useReducedMotion from '../hooks/useReducedMotion.js'
 export default function Home() {
   const pageRef = useRef(null)
   const reduce = useReducedMotion()
-  const [replay, setReplay] = useState(0)
   const [paused, setPaused] = useState(false)
 
   return (
@@ -18,30 +17,37 @@ export default function Home() {
       <FallingFlowers containerRef={pageRef} paused={paused} reduce={reduce} />
       <div className="wrap">
         <Nav fullName />
-        <main style={{ display: 'grid', gap: 48 }}>
+        <main style={{ display: 'grid', gap: 64 }}>
           <section className="hero" aria-labelledby="headline">
             <div>
               <Greeting reduce={reduce} />
               <h1 id="headline">UX/UI + Visual Designer who makes complex things easy to follow.</h1>
               <p>Communication Design (BFA) and UX (UT Austin). Based in Milwaukee, WI. Open to Chicago and remote.</p>
             </div>
-            <HeroFlower replayKey={replay} reduce={reduce} />
+            <HeroFlower reduce={reduce} />
           </section>
-          {!reduce && (
-            <div className="controls">
-              <button type="button" className="textbtn" onClick={() => setReplay((n) => n + 1)}>Replay the drawing</button>
-              <button type="button" className="textbtn" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
-                {paused ? 'Play the flowers' : 'Pause the flowers'}
-              </button>
-            </div>
-          )}
-          <section id="work" aria-labelledby="work-title" style={{ display: 'grid', gap: 18, scrollMarginTop: 24 }}>
+          <section id="work" aria-labelledby="work-title" style={{ display: 'grid', gap: 22, scrollMarginTop: 24 }}>
             <h2 id="work-title" className="eyebrow" style={{ margin: 0, fontWeight: 400 }}>Selected work</h2>
             <ProjectCards />
           </section>
         </main>
         <Footer />
       </div>
+      {!reduce && (
+        // Moving content needs a way to pause it (accessibility). Kept as a small, quiet icon.
+        <button
+          type="button"
+          className="pause-btn"
+          aria-pressed={paused}
+          aria-label={paused ? 'Play the falling flowers' : 'Pause the falling flowers'}
+          title={paused ? 'Play the falling flowers' : 'Pause the falling flowers'}
+          onClick={() => setPaused((p) => !p)}
+        >
+          {paused
+            ? <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" /></svg>
+            : <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5h2v9H5zM9 3.5h2v9H9z" /></svg>}
+        </button>
+      )}
     </div>
   )
 }

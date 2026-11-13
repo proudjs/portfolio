@@ -9,7 +9,7 @@ export default function Nav({ fullName = false }) {
         <li><Link to="/#work">Work</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><a href={site.resumeUrl} target="_blank" rel="noreferrer">Résumé</a></li>
-        <li><a href={`mailto:${site.email}`}>Email</a></li>
+        <li><a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>Contact</a></li>
       </ul>
     </nav>
   )

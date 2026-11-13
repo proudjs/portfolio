@@ -4,6 +4,33 @@ headline: Show me what’s broken.
 portrait:
   src: /about/about-portrait-rainier-774f0cce-274a-47fd-983c-c1b2364adc86.webp
   alt: Proud smiling at the Mount Rainier National Park entrance sign
+principles:
+  - title: Visual design roots
+    text: Communication Design came first, so how things look is part of how I think. I work in Figma, Photoshop and Illustrator.
+    image: /about/poster-24-navy-portrait-8a29b5ff-1916-4a25-8b62-6dc4f5012eef.webp
+    alt: Line illustration poster on navy, from Proud's 2017 series
+  - title: Designed for real life
+    text: People use products with half their attention and no time to spare. So I put what matters first, cut the steps nobody needs and make the next move obvious.
+    image: /work/parkchicago/02-start-parking-default-6198ec89-4052-4225-98ab-adcc42b2e787.webp
+    alt: ParkChicago Start Parking screen with everything on one screen
+    kind: phone
+  - title: Three languages, two homes
+    text: I speak English, Thai and Lao and have made a home in two very different places. What feels obvious to me might not be obvious to someone else, so I ask instead of assuming.
+    greeting: true
+experience:
+  - when: 2020 - Present
+    title: Freelance Visual Designer
+    where: Independent clients, including a stone company
+  - when: May - Sep 2016
+    title: Project Coordinator and Design Intern
+    where: Apostrophys Group, Bangkok
+education:
+  - when: "2026"
+    title: Post Graduate Program in User Experience Design
+    where: The University of Texas at Austin
+  - when: "2017"
+    title: Bachelor of Fine Arts, Communication Design
+    where: Srinakharinwirot University, Thailand
 ---
 
 <!-- Copied from the About Me page on uxfol.io/prouddesigns on Nov 13, 2026. -->
@@ -15,14 +42,6 @@ Design turned that habit into a job. Communication Design taught me to care how 
 Before UX, I worked at a design studio in Bangkok on exhibitions and a café launch with Epson. You can see that work below.
 
 Right now I'm leading a rebrand and website redesign for a stone company. My latest case study is an unsolicited redesign of BMO's transfer and bill-pay flows, tested with 15 people. I'm based in the Milwaukee area and looking for my next UX/UI role in Milwaukee, Chicago or remote.
-
-## What shapes my work
-
-- **Visual design roots** Communication Design came first, so how things look is part of how I think. I work in Figma, Photoshop and Illustrator.
-- **Designed for real life** People use products with half their attention and no time to spare. So I put what matters first, cut the steps nobody needs and make the next move obvious.
-- **Three languages, two homes** I speak English, Thai and Lao and have made a home in two very different places. What feels obvious to me might not be obvious to someone else, so I ask instead of assuming.
-
-[[chips: UI design || visual design || design systems || accessibility || prototyping || AI-assisted prototyping || wireframing || UX research || usability testing || content design || branding]]
 
 ## Where I started
 
@@ -54,17 +73,9 @@ During my degree I interned at Apostrophys Group as a Project Coordinator and De
 
 ## Experience and education
 
-#### Experience
+## What shapes my work
 
-**2020 - Present** · Freelance Visual Designer · Independent clients, including a stone company
-
-**May - Sep 2016** · Project Coordinator and Design Intern · Apostrophys Group, Bangkok
-
-#### Education
-
-**2026** · Post Graduate Program in User Experience Design · The University of Texas at Austin
-
-**2017** · Bachelor of Fine Arts, Communication Design · Srinakharinwirot University, Thailand
+[[chips: UI design || visual design || design systems || accessibility || prototyping || AI-assisted prototyping || wireframing || UX research || usability testing || content design || branding]]
 
 ## Personal project
 

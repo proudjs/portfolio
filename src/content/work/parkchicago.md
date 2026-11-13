@@ -1,6 +1,9 @@
 ---
 order: 3
 ready: true
+covers:
+  - /work/parkchicago/02-start-parking-default-6198ec89-4052-4225-98ab-adcc42b2e787.webp
+  - /work/parkchicago/04-lock-screen-15-min-de70ed1e-af36-4b84-9cc2-a4a75e1ace18.webp
 title: ParkChicago
 headline: ParkChicago, redesigned
 tag: Unsolicited redesign · iOS · Civic Tech

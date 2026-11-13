@@ -1,6 +1,9 @@
 ---
 order: 2
 ready: true
+covers:
+  - /work/furcast/08-home-5a09ba32-d2a2-47ef-a8b9-2c7b53f15c7f.webp
+  - /work/furcast/31-ai-health-insights-nav-v8-d52955c9-02df-4d81-8a10-79fa37520883.webp
 title: Furcast
 headline: Furcast
 tag: Capstone · AI · Health Tech
