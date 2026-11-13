@@ -17,6 +17,9 @@ hero:
   src: /work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp
   alt: Redesigned Home with Coming up, showing what's about to leave
   kind: phone 108 86
+  also:
+    src: /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
+    alt: Redesigned transfer record, Scheduled, showing when the money leaves and arrives
 stats:
   - value: "98"
     label: numbered findings from a one-week audit of the live app
