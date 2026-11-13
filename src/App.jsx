@@ -6,8 +6,17 @@ import NotFound from './components/NotFound.jsx'
 import About from './components/About.jsx'
 
 export default function App() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  const { pathname, hash, key } = useLocation()
+  // New page: start at the top, unless the link points to a spot on the page (like /#work)
+  useEffect(() => {
+    if (!hash) { window.scrollTo(0, 0); return undefined }
+    const id = decodeURIComponent(hash.slice(1))
+    const t = setTimeout(() => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      document.getElementById(id)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+    }, 60)
+    return () => clearTimeout(t)
+  }, [pathname, hash, key])
 
   return (
     <Routes>
