@@ -97,7 +97,7 @@ img { max-width: 100%; display: block; }
 .work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(42, 20, 18, .05), 0 28px 48px -20px rgba(156, 28, 23, .28); }
 .work-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .work-card__art { position: relative; aspect-ratio: 4 / 3.3; overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); border-bottom: 1px solid var(--line); }
-.work-card__screen { position: absolute; width: 40%; max-width: none; transition: transform .6s var(--ease-smooth); }
+.iphone.work-card__screen { position: absolute; width: 40%; max-width: none; margin: 0; transition: transform .6s var(--ease-smooth); }
 .work-card__screen.s1 { left: 9%; top: 11%; transform: rotate(-5deg); }
 .work-card__screen.s2 { right: 9%; top: 19%; transform: rotate(5deg); }
 .work-card:hover .work-card__screen.s1 { transform: rotate(-8deg) translate(-6px, -10px); }
@@ -243,7 +243,7 @@ img { max-width: 100%; display: block; }
 .principle { display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 22px; box-shadow: 0 8px 24px -16px rgba(42, 20, 18, .18); }
 .principle__art { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: color-mix(in srgb, var(--red) 7%, var(--surface)); display: grid; place-items: center; }
 .principle__art img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-.principle__art.phone .iphone { width: 46%; align-self: start; margin-top: 9%; transform: rotate(-4deg); }
+.principle__art.phone .iphone { width: 46%; margin: 9% 0 0; align-self: start; margin-top: 9%; transform: rotate(-4deg); }
 .principle__greet { display: grid; gap: 2px; text-align: center; }
 .principle__greet span { font: 400 clamp(26px, 3vw, 36px)/1.25 var(--display); color: var(--red); }
 .principle__greet span:nth-child(2) { color: var(--gold); }
