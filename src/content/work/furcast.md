@@ -12,7 +12,7 @@ team: 2 UX Designers
 timeline: 8 weeks · UT Austin capstone
 prototypeUrl: https://www.figma.com/proto/YIwKKXKpf2L5lfJoFplvYG/Furcast_April-2026?node-id=1-706&starting-point-node-id=1-706&scaling=scale-down
 hero:
-  src: https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/08-home-5a09ba32-d2a2-47ef-a8b9-2c7b53f15c7f.webp
+  src: /work/furcast/08-home-5a09ba32-d2a2-47ef-a8b9-2c7b53f15c7f.webp
   alt: Furcast Home screen
   kind: phone
 stats:
@@ -46,25 +46,25 @@ Between vet visits, most owners rely on receipts, scattered notes or memory. Thi
 
 ## The solution at a glance
 
-- ![Daily Log screen](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/furcast-dailylog-nav-4c91eb25-d0b8-42ab-a5a9-3ac53bbbbd0a.webp> "phone")
+- ![Daily Log screen](</work/furcast/furcast-dailylog-nav-4c91eb25-d0b8-42ab-a5a9-3ac53bbbbd0a.webp> "phone")
 
   **Daily Log**
 
   Log food, water, energy and more in a few taps.
 
-- ![AI Health Insights screen](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/31-ai-health-insights-nav-v8-d52955c9-02df-4d81-8a10-79fa37520883.webp> "phone")
+- ![AI Health Insights screen](</work/furcast/31-ai-health-insights-nav-v8-d52955c9-02df-4d81-8a10-79fa37520883.webp> "phone")
 
   **AI Health Insights**
 
   Patterns from your logs, explained in plain language.
 
-- ![Reminders screen](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6a2d93451353f46e0d17be65/u2DYDLvJoRod5Xca.webp> "phone")
+- ![Reminders screen](</work/furcast/u2DYDLvJoRod5Xca.webp> "phone")
 
   **Reminders**
 
   Meds, vet visits and orders. Built by my teammate.
 
-- ![Medical Records screen](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/24-records-home-7dba33f3-2d81-4027-b959-d50c06ffa78c.webp> "phone")
+- ![Medical Records screen](</work/furcast/24-records-home-7dba33f3-2d81-4027-b959-d50c06ffa78c.webp> "phone")
 
   **Medical Records**
 
@@ -84,7 +84,7 @@ We surveyed 24 owners and reviewed three pet health apps (11pets, Digitail and P
 
 **Two kinds of owners.** Penny only worries when something seems off. Camila worries daily and fears missing small changes.
 
-![Persona cards for Penny and Camila side by side, with what each needs, her behaviors, pain points and priority tools](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/personas-side-by-side-af71bc50-13de-4531-ab18-5d040104e076.webp> "wide")
+![Persona cards for Penny and Camila side by side, with what each needs, her behaviors, pain points and priority tools](</work/furcast/personas-side-by-side-af71bc50-13de-4531-ab18-5d040104e076.webp> "wide")
 
 > #### How might we help owners keep track of the small signs, without making pet care feel like homework?
 
@@ -94,19 +94,19 @@ We surveyed 24 owners and reviewed three pet health apps (11pets, Digitail and P
 
 The most-requested features became the MVP. We cut community discussion: only 29.2% of owners wanted it. We built a web app because vets often ask owners to watch something for a few days, and nobody downloads an app for that.
 
-![Bar chart of survey answers, with medical records and reminders at the top at 92%](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6a2d93451353f46e0d17be65/kq4yxx179LUBo4Ng.webp> "wide")
+![Bar chart of survey answers, with medical records and reminders at the top at 92%](</work/furcast/kq4yxx179LUBo4Ng.webp> "wide")
 
 ## From structure to screens
 
 ### Site map first, then flows, then wireframes.
 
-![Furcast site map with Home, Daily Log, Reminders, Medical Records, AI Health Insights and Profile](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/site-map-top-levels-ca87c03a-f972-4f53-9e19-2227c8056f0f.webp> "wide")
+![Furcast site map with Home, Daily Log, Reminders, Medical Records, AI Health Insights and Profile](</work/furcast/site-map-top-levels-ca87c03a-f972-4f53-9e19-2227c8056f0f.webp> "wide")
 
-![Daily Log user flow from the dashboard to saving a log and logging the next pet](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6a2d93451353f46e0d17be65/PamKzzmENkaU00A6.webp> "wide")
+![Daily Log user flow from the dashboard to saving a log and logging the next pet](</work/furcast/PamKzzmENkaU00A6.webp> "wide")
 
-![Lo-fi wireframes of Home, Log history, Log confirmation, New appointment and Medical Records](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6a2d93451353f46e0d17be65/wFmRYsXTgkJlAO8m.webp> "wide")
+![Lo-fi wireframes of Home, Log history, Log confirmation, New appointment and Medical Records](</work/furcast/wFmRYsXTgkJlAO8m.webp> "wide")
 
-![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af.webp> "wide")
+![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](</work/furcast/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af.webp> "wide")
 
 *In hi-fi, each Daily Log question got its own card with bigger buttons.*
 
@@ -120,23 +120,23 @@ Each question takes one tap, in plain words like “Less” or “Didn’t eat.�
 
 If a health app tells a worried owner their dog is fine and it isn’t, that’s a real problem. So the AI only suggests and leaves the diagnosis to the vet. **Symptom Check** rates each result Monitor, Watch or Act now, and shows why. **Vet Visit Prep** turns a week of logs into questions for the vet.
 
-![AI Health Insights](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/gallery/31-ai-health-insights-v8-18370c74-f773-45bf-9539-ec535b3950a6.webp> "phone") ![Vet Visit Prep](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/gallery/32-vet-visit-prep-6392ae2f-ac1d-4627-a467-c67557030a9c.webp> "phone") ![Symptom Check](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/gallery/33-symptom-check-072031a3-e99f-4c4a-9736-cad11d521908.webp> "phone")
+![AI Health Insights](</work/furcast/31-ai-health-insights-v8-18370c74-f773-45bf-9539-ec535b3950a6.webp> "phone") ![Vet Visit Prep](</work/furcast/32-vet-visit-prep-6392ae2f-ac1d-4627-a467-c67557030a9c.webp> "phone") ![Symptom Check](</work/furcast/33-symptom-check-072031a3-e99f-4c4a-9736-cad11d521908.webp> "phone")
 
 ### Decision 3 of 3: How warm can a health app look?
 
 We wanted a pet journal, not a medical chart. So we chose Chestnut with warm neutrals. Crimson, Amber and Olive show up only when something needs attention. I built the color system and components.
 
-![Furcast color roles, from Chestnut brand and button colors to Crimson, Amber and Olive status colors](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/ds-colors-preview-67cae82f-6cca-4b30-a472-03873f63c611.webp> "wide")
+![Furcast color roles, from Chestnut brand and button colors to Crimson, Amber and Olive status colors](</work/furcast/ds-colors-preview-67cae82f-6cca-4b30-a472-03873f63c611.webp> "wide")
 
-![Furcast buttons and input fields in every state, from default and hover to pressed, disabled and error](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/6a2d92a81353f46e0d17916a/6a2d93451353f46e0d17be65/OykMOo5gtMZAox1O.webp> "wide")
+![Furcast buttons and input fields in every state, from default and hover to pressed, disabled and error](</work/furcast/OykMOo5gtMZAox1O.webp> "wide")
 
 #### The brown exploration
 
 Later, on my own, I tried brown. Chestnut sits too close to Crimson, the error red. Brown keeps the main action and the error badge apart. I’d test it with users next.
 
-![Furcast in the brown exploration](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/furcast-brown-nav-7c5304ba-e7cd-4cb7-b6a6-c03887100db9.webp> "phone")
+![Furcast in the brown exploration](</work/furcast/furcast-brown-nav-7c5304ba-e7cd-4cb7-b6a6-c03887100db9.webp> "phone")
 
-![Vet Visit Prep in Chestnut and in brown, side by side](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596.webp> "wide")
+![Vet Visit Prep in Chestnut and in brown, side by side](</work/furcast/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596.webp> "wide")
 
 ## Testing and what I changed
 
@@ -146,7 +146,7 @@ The course ended at the prototype. I wanted to know if it actually worked, so I 
 
 [[stats: 5 of 5 :: finished their first log in under 2 minutes. The second time, about 30 seconds. || 2 of 5 :: took longer on the AI screens and asked how it worked. || 1 of 5 :: asked for text reminders (they already exist) and wanted to ask the AI questions.]]
 
-![The sheet that explains how the health score works](<https://uxfolio-prod.s3.us-east-1.amazonaws.com/uploads/processed/6a2d92a81353f46e0d17916a/project/6a2d93451353f46e0d17be65/section-media/34-how-score-works-v3-84bd519d-7a7b-48a0-87f8-240096c54523.webp> "phone")
+![The sheet that explains how the health score works](</work/furcast/34-how-score-works-v3-84bd519d-7a7b-48a0-87f8-240096c54523.webp> "phone")
 
 **The fix for the AI screens.** The “How is this calculated?” link was tiny and led nowhere. I made it bigger and designed the sheet it opens. It lists each sign logged this week and says plainly that the score is a quick glance, not a diagnosis.
 
