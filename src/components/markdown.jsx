@@ -13,7 +13,7 @@
   - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 export function isImg(node) {
   return node?.type === 'element' && node.tagName === 'img'
@@ -182,7 +182,7 @@ export function makeComponents(page = {}) {
               const [label, list = ''] = g.split('::').map((x) => x.trim())
               const items = list.split(',').map((x) => x.trim())
               // Each skill stays on one line, so lines only break between skills
-              return <div key={label}><dt>{label}</dt><dd>{items.map((x, i) => <span key={x}>{x}{i < items.length - 1 ? ' · ' : ''}</span>)}</dd></div>
+              return <div key={label}><dt>{label}</dt><dd>{items.map((x, i) => <Fragment key={x}><span>{x}</span>{i < items.length - 1 ? ' · ' : ''}</Fragment>)}</dd></div>
             })}
           </dl>
         )
