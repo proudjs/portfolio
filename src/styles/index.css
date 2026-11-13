@@ -312,7 +312,7 @@ img { max-width: 100%; display: block; }
 
 
 /* Stage: every group of screens (phones, sketches, mockups) is centered at one shared size, no panel behind it, so groups of 1, 2, 3 or 4 look like one family. */
-.cs-sec .stage { --screen: 216px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 32px 28px; padding: 8px 0; }
+.cs-sec .stage { --screen: 216px; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 32px 28px; padding: 0; }
 .cs-sec .stage > .iphone, .cs-sec .stage > .cs-img.sketch { flex: 0 0 var(--screen); width: var(--screen); max-width: 100%; margin: 0; }
 .cs-sec .stage > .cs-img.mockup { flex: 0 0 auto; width: 280px; max-width: 100%; margin: 0; }
 .cs-sec .stage > .cs-img.sketch, .cs-sec ul.tiles.stage .cs-img.sketch { border: 0; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(42, 20, 18, .4); }
