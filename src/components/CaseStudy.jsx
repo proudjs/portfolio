@@ -10,10 +10,13 @@ import { getProject } from '../data/projects.js'
 /*
   How a case study file becomes a page (see src/content/work/_template.md):
   - Each "## Label" starts a numbered section and a link in "On this page".
-  - The first "### Headline" in a section is the red headline.
-  - ![caption](slot:What goes here "wide") is a dashed image slot. Use "phone" for a phone screen.
-    Real images: ![caption](/work/bmo/home-after.webp "phone"). Two images in one paragraph sit side by side.
-  - > quote blocks become the gold-edged "changed my mind" note.
+  - "### Headline" is a red headline. "#### Title" is a smaller dark title.
+  - ![alt text](<url> "phone") or "wide" is an image. Two or more images in one paragraph sit side by side.
+    ![caption](<slot:What goes here> "wide") is a dashed placeholder slot.
+  - A paragraph in *italics only* is a caption.
+  - A bullet list whose items start with an image becomes a row of tiles (image, bold title, text).
+  - > quote blocks become the gold-edged note.
+  - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[claims]] places the "What I can claim / can't claim yet" pair from the frontmatter.
   - [[prototype]] places the "Try the prototype" button.
 */
@@ -27,16 +30,38 @@ function splitSections(content) {
   })
 }
 
+function isImg(node) {
+  return node?.type === 'element' && node.tagName === 'img'
+}
+function hasImg(node) {
+  if (!node) return false
+  if (isImg(node)) return true
+  return (node.children || []).some(hasImg)
+}
+function plainText(node) {
+  if (!node) return ''
+  if (node.type === 'text') return node.value
+  return (node.children || []).map(plainText).join('')
+}
+
 function Figure({ src, alt, title }) {
   const kind = title === 'phone' ? 'phone' : 'wide'
-  const isSlot = src?.startsWith('slot:')
+  if (src?.startsWith('slot:')) {
+    return (
+      <figure>
+        <div className={`shot ${kind}`}>Image slot<br />{decodeURIComponent(src.slice(5))}</div>
+        {alt && <figcaption>{alt}</figcaption>}
+      </figure>
+    )
+  }
+  return <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
+}
+
+function Stats({ items }) {
   return (
-    <figure>
-      {isSlot
-        ? <div className={`shot ${kind}`}>Image slot<br />{decodeURIComponent(src.slice(5))}</div>
-        : <img src={src} alt={alt} loading="lazy" className={kind === 'phone' ? 'shot phone' : undefined} style={{ border: 0, padding: 0 }} />}
-      {alt && <figcaption>{alt}</figcaption>}
-    </figure>
+    <div className="cs-stats">
+      {items.map((s) => <div className="stat" key={s.value + s.label}><b>{s.value}</b><span>{s.label}</span></div>)}
+    </div>
   )
 }
 
@@ -59,26 +84,45 @@ export default function CaseStudy() {
   if (!project || !project.ready) return <NotFound />
 
   const components = {
-    h3: ({ children }) => <h3>{children}</h3>,
     img: Figure,
+    a: ({ href, children }) => {
+      const external = /^https?:/.test(href || '')
+      return <a href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{children}</a>
+    },
+    ul: ({ node, children }) => {
+      const tiles = node.children.some((li) => li.type === 'element' && hasImg(li))
+      return <ul className={tiles ? 'tiles' : undefined}>{children}</ul>
+    },
     p: ({ node, children }) => {
-      const text = node.children.length === 1 && node.children[0].type === 'text' ? node.children[0].value.trim() : ''
-      if (text === '[[claims]]' && project.claims) {
-        return (
+      const kids = node.children.filter((c) => !(c.type === 'text' && !c.value.trim()))
+      const text = kids.length === 1 && kids[0].type === 'text' ? kids[0].value.trim() : ''
+
+      if (text === '[[claims]]') {
+        return project.claims ? (
           <div className="claims">
             <div><span className="eyebrow">What I can claim</span><p>{project.claims.can}</p></div>
             <div><span className="eyebrow">What I can't claim yet</span><p>{project.claims.cant}</p></div>
           </div>
-        )
+        ) : null
       }
       if (text === '[[prototype]]') {
         return project.prototypeUrl
           ? <a className="cs-btn" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype</a>
           : null
       }
-      const kids = node.children.filter((c) => !(c.type === 'text' && !c.value.trim()))
-      if (kids.length && kids.every((c) => c.tagName === 'img')) {
-        return <div className={kids.length > 1 ? 'pair' : undefined}>{children}</div>
+      const raw = plainText(node).trim()
+      if (raw.startsWith('[[stats:') && raw.endsWith(']]')) {
+        const items = raw.slice(8, -2).split('||').map((s) => {
+          const [value, ...rest] = s.split('::')
+          return { value: value.trim(), label: rest.join('::').trim() }
+        })
+        return <Stats items={items} />
+      }
+      if (kids.length && kids.every(isImg)) {
+        return <div className="gallery" data-count={Math.min(kids.length, 4)}>{children}</div>
+      }
+      if (kids.length === 1 && kids[0].type === 'element' && kids[0].tagName === 'em') {
+        return <p className="caption">{children}</p>
       }
       return <p>{children}</p>
     },
@@ -98,20 +142,25 @@ export default function CaseStudy() {
           <span className="tag">{project.tag}</span>
           <h1>{project.headline || project.title}</h1>
           {project.summary && <p>{project.summary}</p>}
+          {project.note && <p className="note">{project.note}</p>}
+          {project.prototypeUrl && (
+            <a className="cs-link" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype →</a>
+          )}
           <dl className="cs-meta">
             {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
             {project.scope && <div><dt>Scope</dt><dd>{project.scope}</dd></div>}
+            {project.team && <div><dt>Team</dt><dd>{project.team}</dd></div>}
             {project.timeline && <div><dt>Timeline</dt><dd>{project.timeline}</dd></div>}
           </dl>
         </header>
 
-        {project.hero && <Figure src={project.hero.src} alt={project.hero.caption} title="wide" />}
-
-        {project.stats?.length > 0 && (
-          <div className="cs-stats">
-            {project.stats.map((s) => <div className="stat" key={s.value}><b>{s.value}</b><span>{s.label}</span></div>)}
+        {project.hero && (
+          <div className={`cs-hero ${project.hero.kind === 'phone' ? 'phone' : ''}`}>
+            <Figure src={project.hero.src} alt={project.hero.alt || project.hero.caption} title={project.hero.kind || 'wide'} />
           </div>
         )}
+
+        {project.stats?.length > 0 && <Stats items={project.stats} />}
 
         <div className="cs-body">
           <nav className="cs-toc" aria-label="On this page">
