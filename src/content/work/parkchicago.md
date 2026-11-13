@@ -153,7 +153,7 @@ Nobody keeps a parking app open. So the countdown lives on the lock screen and a
 
 ![Lock screen countdown with a 15 minute reminder](</work/parkchicago/04-lock-screen-15-min-5d54fe92-fc43-413c-80c0-9520678675ca.webp> "phone") ![Active session with 15 minutes left](</work/parkchicago/07-active-session-15-min-left-f4dfdc7b-53fd-4278-9fd3-63725658b5fb.webp> "phone") ![Adding more time to a parking session](</work/parkchicago/05-extending-parking-40578edb-374b-4ed7-9101-4b3b5741bb87.webp> "phone")
 
-![The live lock screen countdown prototype](</work/parkchicago/peYmOQf14n0j0Sy8.gif> "phone")
+![The live lock screen countdown prototype](</work/parkchicago/peYmOQf14n0j0Sy8.gif> "mockup")
 
 **Prototyping the countdown with AI.** A still frame can’t show a timer running out, so I rebuilt the lock screen in Figma Make, in about 5 versions. AI got me to something clickable in minutes. Checking every state was still my job. [Try the live countdown →](https://www.figma.com/make/fAQ83s0XzqPNQR8URbZbHd/Interactive-Parking-Session-Screen?p=f)
 

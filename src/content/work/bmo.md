@@ -54,7 +54,7 @@ So I set a narrow brief: make transfers and bill pay answer two questions at eve
 
 ## The redesign at a glance
 
-![Redesigned Home showing what's about to leave](</work/bmo/03-at-a-glance-home-3d90e4aa-6f48-4025-a80d-8a8792753ef9.webp> "phone") ![Redesigned transfer record](</work/bmo/04-at-a-glance-transfer-record-e7e8ede1-bac9-4370-a139-af61e9c0f419.webp> "phone") ![Pay and transfer, Scheduled tab](</work/bmo/pay-and-transfer-scheduled-253bb0a2-e6b0-4e1b-9ac5-dfe77183a65d.webp> "phone")
+![Redesigned Home showing what's about to leave](</work/bmo/03-at-a-glance-home-3d90e4aa-6f48-4025-a80d-8a8792753ef9.webp> "phone 108 86") ![Redesigned transfer record](</work/bmo/04-at-a-glance-transfer-record-e7e8ede1-bac9-4370-a139-af61e9c0f419.webp> "phone") ![Pay and transfer, Scheduled tab](</work/bmo/pay-and-transfer-scheduled-253bb0a2-e6b0-4e1b-9ac5-dfe77183a65d.webp> "phone")
 
 *Left: Home shows what's about to leave, with the day. Middle: every row opens one record, with one status word and one date story. Right: Pay & transfer keeps everything scheduled and everything that happened in one place.*
 
@@ -114,7 +114,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 BMO's Home shows balances and a promo. Nothing about the $350 leaving tomorrow. I added “Coming up” under the accounts: the next three things to leave, with the day.
 
-![BMO's Home before, with balances and a promo](</work/bmo/11-before-home-babcdbfc-14b3-4fdc-aa39-535316c0934f.webp> "phone") ![Redesigned Home with Coming up](</work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp> "phone")
+![BMO's Home before, with balances and a promo](</work/bmo/11-before-home-babcdbfc-14b3-4fdc-aa39-535316c0934f.webp> "phone") ![Redesigned Home with Coming up](</work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp> "phone 108 86")
 
 *Before, balances and a promo. After, coming up, each row opening its record.*
 
@@ -126,7 +126,7 @@ Every row opens the same record sheet. Instead of three histories, Pay & transfe
 
 *Five taps through a menu became one.*
 
-![Redesigned account activity: Scheduled items on top, then one list by date, each row named in plain words with a chevron that opens its record.](</work/bmo/activity-after-3a13c036-51ea-44ba-97f5-a998abb8300c.webp> "phone") ![Pay and transfer, Scheduled tab](</work/bmo/H7tE4rPj95k6ZR0n.webp> "phone") ![Pay and transfer, History tab](</work/bmo/lu3mvBwPSOKgYDbk.webp> "phone")
+![Redesigned account activity: Scheduled items on top, then one list by date, each row named in plain words with a chevron that opens its record.](</work/bmo/activity-after-3a13c036-51ea-44ba-97f5-a998abb8300c.webp> "phone 114 86") ![Pay and transfer, Scheduled tab](</work/bmo/H7tE4rPj95k6ZR0n.webp> "phone") ![Pay and transfer, History tab](</work/bmo/lu3mvBwPSOKgYDbk.webp> "phone")
 
 *The same activity, redesigned. Scheduled answers what's about to happen. History answers what happened.*
 
@@ -142,7 +142,7 @@ Each is a tint, an icon and the word. Failure says what happened, where the mone
 
 Amount, the day it leaves, the fee, and what's available after. The cancel window is stated before you pay, not after.
 
-![BMO's bill pay review before](</work/bmo/09-before-review-and-pay-e8114bb5-8556-4ca6-aed5-105ff63e7108.webp> "phone") ![Redesigned bill pay review](</work/bmo/20-after-bill-pay-review-35941605-c82b-40fa-89c0-cea2f287a95e.webp> "phone")
+![BMO's bill pay review before](</work/bmo/09-before-review-and-pay-e8114bb5-8556-4ca6-aed5-105ff63e7108.webp> "phone") ![Redesigned bill pay review](</work/bmo/20-after-bill-pay-review-35941605-c82b-40fa-89c0-cea2f287a95e.webp> "phone 114 86")
 
 *Before, and after: the day it leaves, the fee, and what's left.*
 
@@ -180,7 +180,7 @@ Some were BMO customers. More than half were 40 or older.
 >
 > I first warned about a short balance at Review. Then I moved the check to the moment you pick the account, so you find out sooner.
 
-![First version, a short-balance warning at Review](</work/bmo/23-first-version-not-enough-money-f6b1873c-5756-406e-8c8a-4af147a13c39.webp> "phone") ![Final version, the check at the moment you pick the account](</work/bmo/24-final-not-enough-money-at-from-941250c4-35bc-4fd7-b1b1-69c4552e92ae.webp> "phone")
+![First version, a short-balance warning at Review](</work/bmo/23-first-version-not-enough-money-f6b1873c-5756-406e-8c8a-4af147a13c39.webp> "phone 114 86") ![Final version, the check at the moment you pick the account](</work/bmo/24-final-not-enough-money-at-from-941250c4-35bc-4fd7-b1b1-69c4552e92ae.webp> "phone")
 
 *First version, a warning at Review. Final, the check moved to the moment you pick the account.*
 
