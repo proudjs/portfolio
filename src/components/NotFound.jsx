@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav.jsx'
 
 export default function NotFound() {
+  useEffect(() => { document.title = 'Page not found · Proud Samnakbankok' }, [])
   return (
     <div className="wrap">
       <Nav />

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import Greeting from './Greeting.jsx'
@@ -11,6 +11,7 @@ export default function Home() {
   const pageRef = useRef(null)
   const reduce = useReducedMotion()
   const [paused, setPaused] = useState(false)
+  useEffect(() => { document.title = 'Jutamat (Proud) Samnakbankok · UX/UI + Visual Designer' }, [])
 
   return (
     <div className="page" ref={pageRef}>
