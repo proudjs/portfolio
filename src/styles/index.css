@@ -361,7 +361,7 @@ img { max-width: 100%; display: block; }
 /* Case study top, simplified: hero = tag, title, one sentence, two actions, one phone.
    Below it, one "at a glance" band: three results, then Role, Team, Timeline and Scope in a row. */
 .cs-head { gap: 20px; }
-.cs-glance { display: grid; gap: 28px; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cs-glance { display: grid; gap: 28px; padding: 32px 0 0; border-top: 1px solid var(--line); }
 .cs-glance .cs-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .cs-glance .stat b { font-size: clamp(30px, 3vw, 42px); }
 .cs-glance .stat span { font-size: 14px; line-height: 1.5; max-width: 30ch; }
