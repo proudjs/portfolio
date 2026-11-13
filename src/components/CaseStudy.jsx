@@ -30,7 +30,7 @@ export default function CaseStudy() {
       let id = secs[0]?.id
       for (const s of secs) if (s.getBoundingClientRect().top <= line) id = s.id
       const last = secs[secs.length - 1]
-      if (atEnd || (last && last.getBoundingClientRect().bottom < window.innerHeight * 0.9)) id = last?.id
+      if (atEnd) id = last?.id
       setActive((prev) => (prev === id ? prev : id))
     }
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
