@@ -24,7 +24,7 @@
   --display: 'Gambetta', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
   --body: 'Geist', 'Noto Sans Thai', 'Noto Sans Lao', system-ui, -apple-system, sans-serif;
   --ease-smooth: cubic-bezier(.4, 0, .2, 1);
-  --page: 1120px;
+  --page: 1440px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -53,7 +53,7 @@ img { max-width: 100%; display: block; }
 .page > canvas.petals { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .wrap {
   position: relative; z-index: 1; max-width: var(--page); margin: 0 auto;
-  padding: 28px max(20px, env(safe-area-inset-right)) 120px max(20px, env(safe-area-inset-left));
+  padding: 28px max(clamp(20px, 4vw, 64px), env(safe-area-inset-right)) 120px max(clamp(20px, 4vw, 64px), env(safe-area-inset-left));
   display: grid; gap: 48px;
 }
 
@@ -195,8 +195,8 @@ img { max-width: 100%; display: block; }
 .cs-sec blockquote { margin: 0; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--surface)); border-radius: 0 10px 10px 0; padding: 16px 18px; display: grid; gap: 8px; }
 .claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .claims div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; }
-.cs-btn { justify-self: start; display: inline-block; font: 500 15px var(--body); color: #fff; background: var(--red); border-radius: 999px; padding: 10px 20px; text-decoration: none; }
-@media (prefers-color-scheme: dark) { .cs-btn { color: var(--paper); } }
+.cs-btn, .cs-sec a.cs-btn { justify-self: start; display: inline-block; font: 500 15px var(--body); color: #fff; background: var(--red); border-radius: 999px; padding: 10px 20px; text-decoration: none; }
+@media (prefers-color-scheme: dark) { .cs-btn, .cs-sec a.cs-btn { color: var(--paper); } }
 
 /* Real case study images */
 .cs-head .note { font-size: 14px; font-style: italic; }
