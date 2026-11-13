@@ -37,7 +37,7 @@ education:
 
 I'm detail-oriented and always have been. I notice the crooked line, the extra step and the button nobody can find. Some people get excited about a new purse. I get excited when something finally works.
 
-My UX training at UT Austin taught me to care about how things work, not just how they look. I look for the small thing that's getting in someone's way and fix it. I use AI to move faster, not to make design decisions. Right now I'm leading a rebrand and website redesign for a stone company.
+My UX training at UT Austin taught me to care about how things work, not just how they look. I look for the small thing that's getting in someone's way and fix it. I use AI to move faster, not to make design decisions.
 
 ## Where I started
 
