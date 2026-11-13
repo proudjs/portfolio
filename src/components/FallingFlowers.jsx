@@ -14,7 +14,7 @@ import dFill from '../assets/flowers/phut-tan-d-fill.png'
   Mouse wind: flowers within 180 px drift the way the mouse moves. A quick sweep near
   the ground lifts resting flowers back up. Everything eases, and motion is time-based
   so it looks the same on 60 Hz and 120 Hz screens.
-  Pauses when off-screen, in hidden tabs, or when paused. Reduced motion shows a still row.
+  Pauses when off-screen, in hidden tabs, or when paused. With reduced motion they don't appear at all.
 */
 const SOURCES = [[aLine, aFill], [bLine, bFill], [cLine, cFill], [dLine, dFill]]
 const WIND_REACH = 180
@@ -53,6 +53,7 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
   }, [paused])
 
   useEffect(() => {
+    if (reduce) return undefined // reduced motion: no falling flowers at all
     const host = containerRef.current
     const cv = canvasRef.current
     const ctx = cv.getContext('2d')
@@ -222,5 +223,6 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
     }
   }, [containerRef, reduce])
 
+  if (reduce) return null
   return <canvas ref={canvasRef} className="petals" aria-hidden="true" />
 }

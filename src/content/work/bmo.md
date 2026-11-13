@@ -1,6 +1,9 @@
 ---
 order: 1
 ready: true
+covers:
+  - /work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp
+  - /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
 title: BMO mobile application
 headline: BMO mobile app, concept redesign
 tag: Unsolicited redesign · iOS · Fintech
