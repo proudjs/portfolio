@@ -6,13 +6,14 @@
   - A bullet list whose items start with an image becomes a row of tiles (image, bold title, text).
   - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[chips: UI design || visual design]] is a row of small skill tags.
+  - [[skills: Design :: UI design, visual design || Research :: UX research]] is a list of skills in labeled columns.
   - [[claims]] and [[prototype]] use fields from the page's frontmatter.
   - "phone 114 86" keeps the top 114 and bottom 86 points (402-wide frame) still while a tall screen scrolls.
   - "mockup" is an image that already has its own phone mockup: shown as is, no extra frame.
   - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 export function isImg(node) {
   return node?.type === 'element' && node.tagName === 'img'
@@ -88,6 +89,27 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
     window.addEventListener('resize', placeBar)
     return () => window.removeEventListener('resize', placeBar)
   })
+  // With a mouse, the screen pans by itself while the pointer rests on it and glides back when it leaves.
+  // The mouse wheel always scrolls the page, so the page can never get stuck on a phone.
+  // On touch screens it scrolls with a finger instead.
+  const panRef = useRef(0)
+  const pan = (toEnd) => {
+    const sc = scrollRef.current
+    if (!sc) return
+    cancelAnimationFrame(panRef.current)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { sc.scrollTop = toEnd ? sc.scrollHeight : 0; return }
+    const from = sc.scrollTop, to = toEnd ? sc.scrollHeight - sc.clientHeight : 0
+    const dur = Math.max(400, Math.abs(to - from) * (toEnd ? 9 : 2.5))
+    const t0 = performance.now()
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2
+      sc.scrollTop = from + (to - from) * e
+      if (k < 1) panRef.current = requestAnimationFrame(step)
+    }
+    panRef.current = requestAnimationFrame(step)
+  }
+  useEffect(() => () => cancelAnimationFrame(panRef.current), [])
+  const mouseOnly = (fn) => (e) => { if (e.pointerType === 'mouse') fn() }
   const onLoad = (e) => {
     const { naturalWidth: w, naturalHeight: h } = e.currentTarget
     if (w && h / w > SCREEN_RATIO + 0.04) setTall(true)
@@ -108,7 +130,11 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
             className="iphone__scroll"
             ref={scrollRef}
             onScroll={scroll ? placeBar : undefined}
-            {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
+            onPointerEnter={scroll ? mouseOnly(() => pan(true)) : undefined}
+            onPointerLeave={scroll ? mouseOnly(() => pan(false)) : undefined}
+            onFocus={scroll ? () => pan(true) : undefined}
+            onBlur={scroll ? () => pan(false) : undefined}
+            {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Shows the full screen when you point at it or focus it.` } : {})}
           >
             <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
           </div>
@@ -172,6 +198,20 @@ export function makeComponents(page = {}) {
       }
       const chips = token(raw, 'chips')
       if (chips) return <ul className="chips">{chips.map((c) => <li key={c}>{c}</li>)}</ul>
+      // [[skills: Group :: a, b || Group :: c]] is a quiet list of skills in labeled columns
+      const skills = token(raw, 'skills')
+      if (skills) {
+        return (
+          <dl className="skills">
+            {skills.map((g) => {
+              const [label, list = ''] = g.split('::').map((x) => x.trim())
+              const items = list.split(',').map((x) => x.trim())
+              // Each skill stays on one line, so lines only break between skills
+              return <div key={label}><dt>{label}</dt><dd>{items.map((x, i) => <Fragment key={x}><span>{x}</span>{i < items.length - 1 ? ' · ' : ''}</Fragment>)}</dd></div>
+            })}
+          </dl>
+        )
+      }
 
       if (kids.length && kids.every(isImg)) {
         const stage = kids.every((k) => SCREEN_KINDS.includes(kindOf(k)))

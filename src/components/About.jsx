@@ -69,7 +69,12 @@ export default function About() {
             <h1>{data.headline}</h1>
             <ReactMarkdown components={components}>{intro}</ReactMarkdown>
           </div>
-          {data.portrait && <Figure src={data.portrait.src} alt={data.portrait.alt} title="square" />}
+          {/* The photo fills the height of the intro text beside it, cropped to keep her face in view */}
+          {data.portrait && (
+            <div className="ab-photo">
+              <img src={data.portrait.src} alt={data.portrait.alt} decoding="async" />
+            </div>
+          )}
         </header>
 
         {sections.map((s) => (

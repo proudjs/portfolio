@@ -59,16 +59,14 @@ export default function CaseStudy() {
   return (
     <div className="wrap">
       <Nav />
-      <main style={{ display: 'grid', gap: 48 }}>
+      <main style={{ display: 'grid', gap: 'clamp(64px, 8vw, 112px)' }}>
         <div className={`cs-top ${project.hero ? 'has-hero' : ''}`}>
-        {/* Reading order: what it is (title), the point (summary), the proof (results),
-            what to do (prototype or read on), then the quiet project facts. */}
+        {/* Top: what it is, the point, where to go, then the quiet project facts. The results get their own band below. */}
         <header className="cs-head">
           <span className="tag">{project.tag}</span>
           <h1>{project.headline || project.title}</h1>
           {project.summary && <p className="cs-lede">{project.summary}</p>}
           {project.note && <p className="note">{project.note}</p>}
-          {project.stats?.length > 0 && <Stats items={project.stats} />}
           <div className="cs-actions">
             {project.prototypeUrl && (
               <a className="cs-btn" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype <span aria-hidden="true">↗</span></a>
@@ -91,6 +89,13 @@ export default function CaseStudy() {
           </div>
         )}
         </div>
+
+        {/* The three results, grouped in one band under the top */}
+        {project.stats?.length > 0 && (
+          <section className="cs-results" aria-label="Results">
+            <Stats items={project.stats} />
+          </section>
+        )}
 
         <div className="cs-body">
           <nav className="cs-toc" aria-label="On this page">
