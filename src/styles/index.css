@@ -89,9 +89,6 @@ img { max-width: 100%; display: block; }
 .card a, .card .soon { font-size: 14px; font-weight: 500; margin-top: 4px; }
 .card a { color: var(--ink); text-underline-offset: 3px; }
 .card .soon { color: var(--muted); }
-.card .bud { position: absolute; right: 0; top: 12px; width: 22px; height: 22px; transform: scale(.6); opacity: 0; transition: .35s var(--ease-smooth); }
-.card:hover .bud, .card:focus-within .bud { transform: scale(1); opacity: 1; }
-.bud path { fill: none; stroke: var(--accent); stroke-width: 1.6; }
 
 /* Selected work: big picture cards, the whole card is the link */
 .work-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -136,7 +133,7 @@ img { max-width: 100%; display: block; }
 .contact__link { font-size: 15px; font-weight: 500; color: var(--red); text-underline-offset: 3px; }
 .contact__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--red) 14%, var(--line)); font-size: 13px; color: var(--muted); }
 .contact__bottom span { display: inline-flex; align-items: center; gap: 8px; }
-.contact__bud { width: 14px; height: 14px; fill: none; stroke: var(--gold); stroke-width: 1.8; }
+.contact__flower { width: 22px; height: 22px; fill: var(--gold); stroke: var(--gold); stroke-width: 10; flex: none; }
 
 /* Case study */
 .cs-head { display: grid; gap: 12px; max-width: 780px; }
@@ -278,5 +275,5 @@ img { max-width: 100%; display: block; }
   .nav ul { gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .card .bud, .motif .ink, .motif .sil { transition: none; }
+  .motif .ink, .motif .sil { transition: none; }
 }
