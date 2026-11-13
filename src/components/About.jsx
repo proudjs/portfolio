@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import yaml from 'js-yaml'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
-import { Figure, makeComponents, splitSections } from './markdown.jsx'
+import { Figure, Phone, makeComponents, splitSections } from './markdown.jsx'
 import raw from '../content/about.md?raw'
 
 function parse(text) {
@@ -26,7 +26,9 @@ function Principles({ items = [] }) {
           <div className={`principle__art ${p.kind === 'phone' ? 'phone' : ''}`}>
             {p.greeting
               ? <div className="principle__greet" aria-hidden="true"><span lang="th">สวัสดี</span><span lang="lo">ສະບາຍດີ</span><span lang="en">Hello</span></div>
-              : <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />}
+              : p.kind === 'phone'
+                ? <Phone src={p.image} alt={p.alt} still />
+                : <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />}
           </div>
           <h3>{p.title}</h3>
           <p>{p.text}</p>

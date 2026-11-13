@@ -59,7 +59,8 @@ img { max-width: 100%; display: block; }
 
 /* Nav */
 .nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 15px; }
-.nav .name { font-family: var(--display); font-size: 20px; color: var(--red); text-decoration: none; }
+.nav .name { font-family: var(--display); font-size: 20px; color: var(--red); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.name__logo { width: 30px; height: 30px; flex: none; }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
 .nav ul a { color: var(--muted); text-decoration: none; }
 .nav ul a:hover { color: var(--ink); }
@@ -96,7 +97,7 @@ img { max-width: 100%; display: block; }
 .work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(42, 20, 18, .05), 0 28px 48px -20px rgba(156, 28, 23, .28); }
 .work-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .work-card__art { position: relative; aspect-ratio: 4 / 3.3; overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); border-bottom: 1px solid var(--line); }
-.work-card__screen { position: absolute; width: 44%; border-radius: 18px; box-shadow: 0 18px 30px -14px rgba(42, 20, 18, .35); transition: transform .6s var(--ease-smooth); }
+.iphone.work-card__screen { position: absolute; width: 40%; max-width: none; margin: 0; transition: transform .6s var(--ease-smooth); }
 .work-card__screen.s1 { left: 9%; top: 11%; transform: rotate(-5deg); }
 .work-card__screen.s2 { right: 9%; top: 19%; transform: rotate(5deg); }
 .work-card:hover .work-card__screen.s1 { transform: rotate(-8deg) translate(-6px, -10px); }
@@ -140,7 +141,7 @@ img { max-width: 100%; display: block; }
 .cs-top { display: grid; gap: 32px; }
 .cs-top.has-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: stretch; }
 .cs-top .cs-hero.phone { display: grid; place-items: center; padding: 32px 24px; border-radius: 24px; border: 1px solid var(--line); background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); }
-.cs-top .cs-hero.phone .cs-img.phone { max-width: 260px; box-shadow: 0 18px 40px -18px color-mix(in srgb, var(--ink) 35%, transparent); }
+.cs-top .cs-hero.phone .iphone { max-width: 270px; }
 .cs-head h1 { font: 400 clamp(30px, 4.6vw, 46px)/1.12 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
 .cs-head p { color: var(--muted); margin: 0; font-size: 17px; }
 /* Project facts: one vertical stack, label in Gambetta, value in Geist */
@@ -175,7 +176,7 @@ img { max-width: 100%; display: block; }
 .cs-sec > :not(.cs-num) + h3 { margin-top: 56px; margin-bottom: 4px; }
 .cs-sec > :not(.cs-num) + h4 { margin-top: 32px; }
 .cs-sec > p:has(> strong:first-child) { margin-top: 10px; }
-.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 20px 12px; }
+.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > .iphone, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 20px 12px; }
 .cs-sec > blockquote + blockquote { margin-top: 0; }
 .cs-sec > .gallery + p.caption, .cs-sec > .cs-img + p.caption, .cs-sec > figure + p.caption { margin-top: -20px; margin-bottom: 12px; }
 
@@ -242,7 +243,7 @@ img { max-width: 100%; display: block; }
 .principle { display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 22px; box-shadow: 0 8px 24px -16px rgba(42, 20, 18, .18); }
 .principle__art { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: color-mix(in srgb, var(--red) 7%, var(--surface)); display: grid; place-items: center; }
 .principle__art img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-.principle__art.phone img { width: 52%; height: auto; object-fit: contain; align-self: start; margin-top: 10%; border-radius: 14px; box-shadow: 0 16px 28px -14px rgba(42, 20, 18, .35); transform: rotate(-4deg); }
+.principle__art.phone .iphone { width: 46%; margin: 9% 0 0; align-self: start; margin-top: 9%; transform: rotate(-4deg); }
 .principle__greet { display: grid; gap: 2px; text-align: center; }
 .principle__greet span { font: 400 clamp(26px, 3vw, 36px)/1.25 var(--display); color: var(--red); }
 .principle__greet span:nth-child(2) { color: var(--gold); }
@@ -283,3 +284,20 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .motif .ink, .motif .sil { transition: none; }
 }
+
+/* iPhone frame for every phone screen (drawn in CSS). .iphone is the size container, .iphone__body draws the phone. */
+.iphone { container-type: inline-size; position: relative; width: 100%; max-width: 300px; margin: 0 auto; }
+.iphone__body { position: relative; padding: 3.4cqw; border-radius: 16cqw; background: #141414; box-shadow: 0 0 0 1.2cqw #d9d4d3, 0 0 0 calc(1.2cqw + 1px) #b9b2b0, 0 26px 44px -22px rgba(42, 20, 18, .45); }
+.iphone__body::before, .iphone__body::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #c8c1bf; }
+.iphone__body::before { right: -2.6cqw; top: 26%; height: 15%; }
+.iphone__body::after { left: -2.6cqw; top: 20%; height: 18%; }
+.iphone__screen { position: relative; aspect-ratio: 393 / 852; overflow: hidden; border-radius: 12.6cqw; background: #fff; }
+.iphone__screen img { display: block; width: 100%; height: auto; max-width: none; }
+.iphone__island { position: absolute; top: 6.6cqw; left: 50%; width: 29cqw; height: 8.4cqw; transform: translateX(-50%); border-radius: 999px; background: #0b0b0b; pointer-events: none; }
+.iphone.is-scroll .iphone__screen { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; cursor: ns-resize; }
+.iphone.is-scroll .iphone__screen::-webkit-scrollbar { display: none; }
+.iphone.is-scroll .iphone__screen:focus-visible { outline: 2px solid var(--red); outline-offset: 3cqw; }
+.iphone__hint { position: absolute; left: 50%; bottom: -28px; transform: translateX(-50%); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.iphone__hint::after { content: " ↕"; }
+.gallery:has(.iphone.is-scroll) { padding-bottom: 28px; }
+.cs-sec > .iphone.is-scroll { margin-bottom: 40px; }

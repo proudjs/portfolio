@@ -11,13 +11,13 @@ import dFill from '../assets/flowers/phut-tan-d-fill.png'
 /*
   Proud's four phut tan flowers fall, rest on the ground for 3 s, then fade over 7 s.
   About 20% are gold. Falling flowers are drawn at 35% so text stays readable.
-  Mouse wind: flowers within 180 px drift the way the mouse moves. A quick sweep near
+  Mouse wind: flowers within 280 px drift the way the mouse moves. A quick sweep near
   the ground lifts resting flowers back up. Everything eases, and motion is time-based
   so it looks the same on 60 Hz and 120 Hz screens.
   Pauses when off-screen, in hidden tabs, or when paused. With reduced motion they don't appear at all.
 */
 const SOURCES = [[aLine, aFill], [bLine, bFill], [cLine, cFill], [dLine, dFill]]
-const WIND_REACH = 180
+const WIND_REACH = 280
 
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
@@ -126,16 +126,17 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
       if (live.length < maxLive && t - lastSpawn > 350) { live.push(newF(true)); lastSpawn = t }
       ctx.clearRect(0, 0, W, H)
 
-      wvx += (mvx - wvx) * ease(0.12); wvy += (mvy - wvy) * ease(0.12)
-      const decay = Math.pow(0.9, dt); mvx *= decay; mvy *= decay
+      wvx += (mvx - wvx) * ease(0.09); wvy += (mvy - wvy) * ease(0.09)
+      const decay = Math.pow(0.93, dt); mvx *= decay; mvy *= decay
+      const cap = 26, wl = Math.hypot(wvx, wvy); if (wl > cap) { wvx *= cap / wl; wvy *= cap / wl }
       const wsp = Math.sqrt(wvx * wvx + wvy * wvy)
 
       for (let j = rest.length - 1; j >= 0; j--) {
         const s = rest[j]
         const k = wsp > 4 ? reach(s) : 0
         if (k > 0.05) {
-          s.wx = wvx * 0.08 * k
-          s.wy = -(0.4 + Math.min(1.6, wsp * 0.12) * k)
+          s.wx = wvx * 0.14 * k
+          s.wy = -(0.5 + Math.min(2.4, wsp * 0.16) * k)
           rest.splice(j, 1); live.push(s); continue
         }
         s.age += 16.667 * dt
@@ -149,12 +150,12 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
         const f = live[i]
         const k = wsp > 0.3 ? reach(f) : 0
         const r = k ? 0.035 * k + 0.012 : 0.018
-        f.wx += (wvx * 0.45 * k - f.wx) * ease(r)
-        f.wy += (wvy * 0.25 * k - f.wy) * ease(r)
+        f.wx += (wvx * 0.8 * k - f.wx) * ease(r)
+        f.wy += (wvy * 0.45 * k - f.wy) * ease(r)
         f.ph += 0.02 * dt
         f.y += (f.vy + f.wy) * dt
         f.x += (Math.sin(f.ph) * f.sw * 0.5 + f.wx) * dt
-        f.rot += (f.vr + f.wx * 0.004) * dt
+        f.rot += (f.vr + f.wx * 0.003) * dt
         f.x = Math.max(f.r, Math.min(W - f.r, f.x))
         f.al += (0.35 - f.al) * ease(0.04)
         if (f.y >= f.floor && f.vy + f.wy > 0) { f.y = f.floor; f.age = 0; rest.push(f); live.splice(i, 1) }
