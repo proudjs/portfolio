@@ -4,19 +4,22 @@ ready: true
 covers:
   - /work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp
   - /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
-title: BMO mobile application
+title: BMO mobile app
 headline: BMO mobile app, concept redesign
 tag: Unsolicited redesign · iOS · Fintech
 card: "Checking a transfer: 5 taps down to 1"
 summary: An unsolicited redesign of the transfer and bill-pay flows in BMO's US mobile app. I'm not affiliated with BMO.
 role: Solo UX/UI Designer
 scope: Audit · Information Architecture · Content Design · Visual System · Prototyping
-timeline: August to October 2026 · Unsolicited redesign
+timeline: August to October 2026
 prototypeUrl: https://www.figma.com/proto/T4VsNxz3dIZ8VGtUzaVIYl/BMO_10-26_Proud?page-id=916%3A24877&node-id=916-27873&starting-point-node-id=916%3A27873&scaling=scale-down&content-scaling=fixed
 hero:
-  src: /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
-  alt: Redesigned transfer record, Scheduled, showing when the money leaves and arrives
-  kind: phone
+  src: /work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp
+  alt: Redesigned Home with Coming up, showing what's about to leave
+  kind: phone 108 86
+  also:
+    src: /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
+    alt: Redesigned transfer record, Scheduled, showing when the money leaves and arrives
 stats:
   - value: "98"
     label: numbered findings from a one-week audit of the live app
@@ -220,6 +223,8 @@ Some were BMO customers. More than half were 40 or older.
 
 ## Reflection
 
+### Two things I’d do differently.
+
 **I’d watch a few people use the live app before designing.** The audit told me what was wrong. Watching people would have told me which of the 98 things they actually feel.
 
 **I’d write the system rules on day one.** I wrote them after the first screens, so every rule change meant reworking screens.
@@ -227,6 +232,8 @@ Some were BMO customers. More than half were 40 or older.
 **Next, text size.** The screens where money moves can’t be enlarged at all (L83). It’s the first thing I’d design next.
 
 ## Try the prototype
+
+### Clickable prototype of the transfer and bill-pay flows.
 
 Sign in, tap Transfer, and send $350 to Lakeside Credit Union. Once it's scheduled, try canceling it. [Open the full prototype](https://www.figma.com/proto/T4VsNxz3dIZ8VGtUzaVIYl/BMO_10-26_Proud?page-id=916%3A24877&node-id=916-27873&starting-point-node-id=916%3A27873&scaling=scale-down&content-scaling=fixed)
 

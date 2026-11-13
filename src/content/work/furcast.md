@@ -49,6 +49,8 @@ Between vet visits, most owners rely on receipts, scattered notes or memory. Thi
 
 ## The solution at a glance
 
+### Four tools in one app, built around what owners told us they wanted.
+
 - ![Daily Log screen](</work/furcast/furcast-dailylog-nav-4c91eb25-d0b8-42ab-a5a9-3ac53bbbbd0a.webp> "phone")
 
   **Daily Log**
@@ -160,6 +162,8 @@ The course ended at the prototype. I wanted to know if it actually worked, so I 
 > Usability test participant
 
 ## Reflection
+
+### What I learned
 
 **Words make promises.** “Symptoms Detected” promised a diagnosis the app couldn’t give. Now I check every label against what the product can back up.
 
