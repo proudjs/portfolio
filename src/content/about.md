@@ -71,7 +71,7 @@ During my degree I interned at Apostrophys Group as a Project Coordinator and De
 
 ## What shapes my work
 
-[[skills: Design :: UI design, visual design, design systems, content design, branding || Research :: UX research, usability testing, accessibility || Prototyping :: wireframing, prototyping, AI-assisted prototyping]]
+[[skills: Design :: UI design, visual design, design systems, content design, branding || Research :: UX research, usability testing, accessibility || Build :: wireframing, prototyping, AI-assisted prototyping]]
 
 ## Personal project
 

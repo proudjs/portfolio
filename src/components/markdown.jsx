@@ -180,7 +180,9 @@ export function makeComponents(page = {}) {
           <dl className="skills">
             {skills.map((g) => {
               const [label, list = ''] = g.split('::').map((x) => x.trim())
-              return <div key={label}><dt>{label}</dt><dd>{list.split(',').map((x) => x.trim()).join(' · ')}</dd></div>
+              const items = list.split(',').map((x) => x.trim())
+              // Each skill stays on one line, so lines only break between skills
+              return <div key={label}><dt>{label}</dt><dd>{items.map((x, i) => <span key={x}>{x}{i < items.length - 1 ? ' · ' : ''}</span>)}</dd></div>
             })}
           </dl>
         )
