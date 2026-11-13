@@ -171,7 +171,7 @@ export default function CaseStudy() {
           </nav>
           <div className="cs-main">
             {sections.map((s) => (
-              <section className="cs-sec" id={s.id} key={s.id} aria-label={s.label}>
+              <section className={`cs-sec${s.id === 'overview' ? ' overview' : ''}`} id={s.id} key={s.id} aria-label={s.label}>
                 <div className="cs-num eyebrow"><i>{s.n}</i>{s.label}</div>
                 <ReactMarkdown components={components} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
               </section>

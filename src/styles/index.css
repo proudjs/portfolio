@@ -119,13 +119,28 @@ img { max-width: 100%; display: block; }
 .cs-toc a:hover { color: var(--ink); }
 .cs-toc a.on { color: var(--red); font-weight: 500; }
 .cs-toc a.on::before { content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--gold); }
-.cs-main { display: grid; gap: 56px; min-width: 0; }
-.cs-sec { display: grid; gap: 16px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 28px; }
+.cs-main { display: grid; gap: 112px; min-width: 0; }
+.cs-sec { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 28px; }
 .cs-num { display: flex; gap: 10px; align-items: baseline; }
 .cs-num i { font: 400 20px var(--display); font-style: normal; letter-spacing: 0; color: var(--gold); }
 .cs-sec h3 { font: 400 clamp(24px, 3vw, 30px)/1.2 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
 .cs-sec h4 { font: 600 17px var(--body); margin: 0; color: var(--ink); }
-.cs-sec p { margin: 0; line-height: 1.7; max-width: 68ch; }
+.cs-sec p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 64ch; }
+
+/* Rhythm: small gaps between paragraphs, big gaps before new topics, images and notes */
+.cs-sec > .cs-num + h3 { margin-top: 4px; margin-bottom: 6px; }
+.cs-sec > :not(.cs-num) + h3 { margin-top: 56px; margin-bottom: 4px; }
+.cs-sec > :not(.cs-num) + h4 { margin-top: 32px; }
+.cs-sec > p:has(> strong:first-child) { margin-top: 10px; }
+.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 20px 12px; }
+.cs-sec > blockquote + blockquote { margin-top: 0; }
+.cs-sec > .gallery + p.caption, .cs-sec > .cs-img + p.caption, .cs-sec > figure + p.caption { margin-top: -20px; margin-bottom: 12px; }
+
+/* Overview: Problem, What I did, Result side by side as three cards */
+.cs-sec.overview { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cs-sec.overview > .cs-num { grid-column: 1 / -1; }
+.cs-sec.overview > p { margin: 0; font-size: 15px; line-height: 1.65; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--red) 2%, var(--surface)); }
+.cs-sec.overview > p strong:first-child { display: block; font: 400 22px/1.2 var(--display); color: var(--red); margin-bottom: 8px; }
 .cs-sec figure { margin: 0; display: grid; gap: 8px; }
 .cs-sec figcaption { font-size: 13px; color: var(--muted); max-width: 60ch; }
 .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -166,6 +181,8 @@ img { max-width: 100%; display: block; }
   .motif { max-width: 300px; }
   .cs-body { grid-template-columns: 1fr; }
   .cs-toc { display: none; }
+  .cs-sec.overview { grid-template-columns: 1fr; }
+  .cs-main { gap: 80px; }
 }
 @media (max-width: 760px) {
   .projects, .pair, .claims { grid-template-columns: 1fr; }
