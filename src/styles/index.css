@@ -141,18 +141,26 @@ img { max-width: 100%; display: block; }
 .site-foot__copied:empty { display: none; }
 
 /* Case study */
-.cs-head { display: grid; gap: 12px; max-width: 780px; align-content: center; }
+.cs-head { display: grid; gap: 16px; max-width: 640px; align-content: center; }
 /* Case study top: text and meta on the left, the hero screen on a soft panel on the right */
 .cs-top { display: grid; gap: 32px; }
 .cs-top.has-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: stretch; }
-.cs-top .cs-hero.phone { display: grid; place-items: center; padding: 32px 24px; border-radius: 24px; border: 1px solid var(--line); background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); }
-.cs-top .cs-hero.phone .iphone { max-width: 270px; }
-.cs-head h1 { font: 400 clamp(30px, 4.6vw, 46px)/1.12 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
+.cs-top .cs-hero.phone { display: grid; place-items: center; padding: 8px 0; }
+.cs-top .cs-hero.phone .iphone { max-width: 300px; }
+.cs-head h1 { font: 400 clamp(34px, 4.2vw, 58px)/1.08 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
 .cs-head p { color: var(--muted); margin: 0; font-size: 17px; }
+.cs-head .cs-lede { font-size: clamp(18px, 1.5vw, 20px); line-height: 1.55; color: var(--ink); max-width: 46ch; }
+.cs-head .cs-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 20px 0 12px; }
+.cs-head .stat b { font-size: clamp(28px, 2.6vw, 36px); }
+.cs-head .stat span { font-size: 13px; line-height: 1.45; }
+.cs-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 4px; }
+.cs-actions .cs-btn { justify-self: auto; }
 /* Project facts: one vertical stack, label in Gambetta, value in Geist */
-.cs-meta { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 8px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); }
-.cs-meta dt { font: 400 20px/1.2 var(--display); color: var(--ink); }
-.cs-meta dd { margin: 8px 0 0; font-size: 16px; color: var(--ink); }
+/* Project facts: one vertical stack, kept quiet so the title, point and results lead */
+.cs-meta { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 12px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); }
+.cs-meta div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: baseline; }
+.cs-meta dt { font: 400 16px/1.3 var(--display); color: var(--muted); }
+.cs-meta dd { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink); }
 .cs-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; }
 .stat { display: grid; gap: 6px; align-content: start; }
 .stat::before { content: ""; width: 24px; height: 2px; background: var(--gold); }
@@ -168,8 +176,8 @@ img { max-width: 100%; display: block; }
 .cs-toc a:hover { color: var(--ink); }
 .cs-toc a.on { color: var(--red); font-weight: 500; }
 .cs-toc a.on::before { content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--gold); }
-.cs-main { display: grid; gap: 112px; min-width: 0; }
-.cs-sec { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
+.cs-main { display: grid; gap: 128px; min-width: 0; }
+.cs-sec { display: grid; gap: 16px; padding-top: 32px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
 .cs-num { display: flex; gap: 10px; align-items: baseline; }
 .cs-num i { font: 400 20px var(--display); font-style: normal; letter-spacing: 0; color: var(--gold); }
 .cs-sec h3 { font: 400 clamp(24px, 3vw, 30px)/1.2 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
@@ -177,11 +185,13 @@ img { max-width: 100%; display: block; }
 .cs-sec p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 64ch; }
 
 /* Rhythm: small gaps between paragraphs, big gaps before new topics, images and notes */
-.cs-sec > .cs-num + h3 { margin-top: 4px; margin-bottom: 6px; }
-.cs-sec > :not(.cs-num) + h3 { margin-top: 56px; margin-bottom: 4px; }
+/* Hierarchy: 1 section headline (big, red), 2 sub-headline (smaller), 3 bold lead-in, 4 body, 5 caption */
+.cs-sec > .cs-num + h3 { font-size: clamp(32px, 3.6vw, 46px); line-height: 1.12; max-width: 22ch; margin-top: 6px; margin-bottom: 10px; }
+.cs-sec > :not(.cs-num) + h3 { font-size: clamp(22px, 2.2vw, 27px); line-height: 1.25; max-width: 34ch; margin-top: 64px; margin-bottom: 4px; }
 .cs-sec > :not(.cs-num) + h4 { margin-top: 32px; }
-.cs-sec > p:has(> strong:first-child) { margin-top: 10px; }
-.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > .iphone, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 20px 12px; }
+.cs-sec > p:has(> strong:first-child) { margin-top: 12px; }
+.cs-sec > p > strong:first-child { color: var(--ink); font-weight: 600; }
+.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > .iphone, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 36px 12px; }
 .cs-sec > blockquote + blockquote { margin-top: 0; }
 .cs-sec > .gallery + p.caption, .cs-sec > .cs-img + p.caption, .cs-sec > figure + p.caption { margin-top: -20px; margin-bottom: 12px; }
 
@@ -217,7 +227,7 @@ img { max-width: 100%; display: block; }
 .gallery[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .gallery[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .gallery[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.cs-sec p.caption { font-size: 13px; color: var(--muted); max-width: 64ch; margin-top: -4px; }
+.cs-sec p.caption { font-size: 14px; color: var(--muted); max-width: 64ch; margin-top: -4px; }
 .cs-sec a { color: var(--red); text-underline-offset: 3px; }
 .cs-sec ul.tiles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px 20px; max-width: none; }
 .cs-sec ul.tiles li { display: grid; gap: 6px; align-content: start; }
@@ -309,7 +319,25 @@ img { max-width: 100%; display: block; }
 .iphone.is-scroll .iphone__scroll { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; cursor: ns-resize; }
 .iphone.is-scroll .iphone__scroll::-webkit-scrollbar { display: none; }
 .iphone.is-scroll .iphone__scroll:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
-/* Hint sits on the screen, so nothing below moves when a screen turns out to be scrollable */
-.iphone__hint { position: absolute; left: 50%; bottom: 27cqw; transform: translateX(-50%); padding: 1.6cqw 4cqw; border-radius: 999px; background: rgba(20, 20, 20, .72); color: #fff; font-size: clamp(9px, 4cqw, 12px); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
-.iphone.is-scroll:hover .iphone__hint, .iphone.is-scroll:focus-within .iphone__hint { opacity: 0; }
-.iphone__hint::after { content: " ↕"; }
+
+
+/* Stage: every group of screens (phones, sketches, mockups) is centered at one shared size, no panel behind it, so groups of 1, 2, 3 or 4 look like one family. */
+.cs-sec .stage { --screen: 216px; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; gap: 32px 28px; padding: 0; }
+.cs-sec .stage > .iphone, .cs-sec .stage > .cs-img.sketch { flex: 0 0 var(--screen); width: var(--screen); max-width: 100%; margin: 0; }
+.cs-sec .stage > .cs-img.mockup { flex: 0 0 auto; width: 280px; max-width: 100%; margin: 0; }
+.cs-sec .stage > .cs-img.sketch, .cs-sec ul.tiles.stage .cs-img.sketch { border: 0; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(42, 20, 18, .4); }
+/* Four phones fit in a row only when there is room, otherwise 2 by 2 */
+.cs-sec .stage[data-count="4"] { --screen: 196px; }
+/* Tiles on a stage: same size screens, label centered under each */
+.cs-sec ul.tiles.stage { display: flex; list-style: none; margin: 0; max-width: none; }
+.cs-sec ul.tiles.stage > li { flex: 0 0 var(--screen); width: var(--screen); display: grid; gap: 10px; justify-items: center; text-align: center; }
+.cs-sec ul.tiles.stage > li .gallery { display: block; background: none; border: 0; padding: 0; margin: 0; width: 100%; }
+.cs-sec ul.tiles.stage > li .iphone, .cs-sec ul.tiles.stage > li .cs-img.sketch { width: 100%; max-width: none; margin: 0; }
+.cs-sec ul.tiles.stage li p { max-width: none; }
+.cs-sec > .stage + p.caption { margin-top: -6px; }
+@media (max-width: 760px) {
+  .cs-sec .stage, .cs-sec .stage[data-count="4"] { --screen: min(42vw, 200px); gap: 24px 16px; padding: 4px 0; }
+}
+
+/* Scroll cue: a slim bar on the right edge of the screen, like iOS. It shows how much is left and never covers content. */
+.iphone__bar { position: absolute; right: 1.6cqw; width: 1.3cqw; border-radius: 1cqw; background: rgba(20, 20, 20, .38); pointer-events: none; transition: opacity .3s; }

@@ -12,7 +12,7 @@
   - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function isImg(node) {
   return node?.type === 'element' && node.tagName === 'img'
@@ -21,6 +21,21 @@ function hasImg(node) {
   if (!node) return false
   if (isImg(node)) return true
   return (node.children || []).some(hasImg)
+}
+// Screens (phones, sketches, mockups) sit on a tinted "stage" at one shared size. Wide and square images don't.
+const SCREEN_KINDS = ['phone', 'sketch', 'mockup']
+function kindOf(img) {
+  return String(img?.properties?.title || '').split(/\s+/)[0]
+}
+function findImgs(node, out = []) {
+  if (!node) return out
+  if (isImg(node)) out.push(node)
+  ;(node.children || []).forEach((c) => findImgs(c, out))
+  return out
+}
+function allScreens(node) {
+  const imgs = findImgs(node)
+  return imgs.length > 0 && imgs.every((i) => SCREEN_KINDS.includes(kindOf(i)))
 }
 function plainText(node) {
   if (!node) return ''
@@ -51,6 +66,28 @@ export function Figure({ src, alt, title }) {
 const SCREEN_RATIO = 852 / 393
 export function Phone({ src, alt, still = false, className = '', fixedTop = 0, fixedBottom = 0 }) {
   const [tall, setTall] = useState(false)
+  const scrollRef = useRef(null)
+  const barRef = useRef(null)
+  // Slim scroll bar between the still header and tab bar, sized to how much of the screen is visible
+  const placeBar = () => {
+    const sc = scrollRef.current, bar = barRef.current
+    if (!sc || !bar) return
+    const unit = sc.clientWidth / 402
+    const top = fixedTop * unit + 6, bottom = fixedBottom * unit + 6
+    const track = sc.clientHeight - top - bottom
+    const max = sc.scrollHeight - sc.clientHeight
+    if (track <= 0 || max <= 0) { bar.style.opacity = '0'; return }
+    const h = Math.max(24, track * (sc.clientHeight / sc.scrollHeight))
+    bar.style.height = `${h}px`
+    bar.style.top = `${top + (track - h) * (sc.scrollTop / max)}px`
+    bar.style.opacity = '1'
+  }
+  useEffect(() => {
+    if (!tall || still) return undefined
+    placeBar()
+    window.addEventListener('resize', placeBar)
+    return () => window.removeEventListener('resize', placeBar)
+  })
   const onLoad = (e) => {
     const { naturalWidth: w, naturalHeight: h } = e.currentTarget
     if (w && h / w > SCREEN_RATIO + 0.04) setTall(true)
@@ -69,15 +106,17 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
         <div className="iphone__screen">
           <div
             className="iphone__scroll"
+            ref={scrollRef}
+            onScroll={scroll ? placeBar : undefined}
             {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
           >
             <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
           </div>
           {scroll && fixedTop > 0 && strip(fixedTop, 'top')}
           {scroll && fixedBottom > 0 && strip(fixedBottom, 'bottom')}
+          {scroll && <span className="iphone__bar" ref={barRef} aria-hidden="true" />}
         </div>
         <span className="iphone__island" aria-hidden="true" />
-        {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
       </div>
     </div>
   )
@@ -106,7 +145,8 @@ export function makeComponents(page = {}) {
     },
     ul: ({ node, children }) => {
       const tiles = node.children.some((li) => li.type === 'element' && hasImg(li))
-      return <ul className={tiles ? 'tiles' : undefined}>{children}</ul>
+      const stage = tiles && allScreens(node)
+      return <ul className={tiles ? `tiles${stage ? ' stage' : ''}` : undefined}>{children}</ul>
     },
     p: ({ node, children }) => {
       const kids = node.children.filter((c) => !(c.type === 'text' && !c.value.trim()))
@@ -134,7 +174,8 @@ export function makeComponents(page = {}) {
       if (chips) return <ul className="chips">{chips.map((c) => <li key={c}>{c}</li>)}</ul>
 
       if (kids.length && kids.every(isImg)) {
-        return <div className="gallery" data-count={Math.min(kids.length, 4)}>{children}</div>
+        const stage = kids.every((k) => SCREEN_KINDS.includes(kindOf(k)))
+        return <div className={`gallery${stage ? ' stage' : ''}`} data-count={Math.min(kids.length, 4)}>{children}</div>
       }
       if (kids.length === 1 && kids[0].type === 'element' && kids[0].tagName === 'em') {
         return <p className="caption">{children}</p>
