@@ -6,6 +6,7 @@
   - A bullet list whose items start with an image becomes a row of tiles (image, bold title, text).
   - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[chips: UI design || visual design]] is a row of small skill tags.
+  - [[skills: Design :: UI design, visual design || Research :: UX research]] is a list of skills in labeled columns.
   - [[claims]] and [[prototype]] use fields from the page's frontmatter.
   - "phone 114 86" keeps the top 114 and bottom 86 points (402-wide frame) still while a tall screen scrolls.
   - "mockup" is an image that already has its own phone mockup: shown as is, no extra frame.
@@ -172,6 +173,18 @@ export function makeComponents(page = {}) {
       }
       const chips = token(raw, 'chips')
       if (chips) return <ul className="chips">{chips.map((c) => <li key={c}>{c}</li>)}</ul>
+      // [[skills: Group :: a, b || Group :: c]] is a quiet list of skills in labeled columns
+      const skills = token(raw, 'skills')
+      if (skills) {
+        return (
+          <dl className="skills">
+            {skills.map((g) => {
+              const [label, list = ''] = g.split('::').map((x) => x.trim())
+              return <div key={label}><dt>{label}</dt><dd>{list.split(',').map((x) => x.trim()).join(' · ')}</dd></div>
+            })}
+          </dl>
+        )
+      }
 
       if (kids.length && kids.every(isImg)) {
         const stage = kids.every((k) => SCREEN_KINDS.includes(kindOf(k)))
