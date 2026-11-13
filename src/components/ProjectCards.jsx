@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import projects from '../data/projects.js'
+import { Phone } from './markdown.jsx'
 
 // Big picture cards. The whole card is one link.
 export default function ProjectCards({ exclude }) {
@@ -10,7 +11,7 @@ export default function ProjectCards({ exclude }) {
         <Link className="work-card" to={`/work/${p.slug}`} key={p.slug} aria-label={`${p.title}. ${p.card}. Read the case study`}>
           <div className="work-card__art" aria-hidden="true">
             {p.covers?.map((src, i) => (
-              <img key={src} src={src} alt="" loading="lazy" decoding="async" className={`work-card__screen s${i + 1}`} />
+              <Phone key={src} src={src} still className={`work-card__screen s${i + 1}`} />
             ))}
           </div>
           <div className="work-card__text">

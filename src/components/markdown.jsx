@@ -7,7 +7,10 @@
   - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[chips: UI design || visual design]] is a row of small skill tags.
   - [[claims]] and [[prototype]] use fields from the page's frontmatter.
+  - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
+import { useState } from 'react'
+
 export function isImg(node) {
   return node?.type === 'element' && node.tagName === 'img'
 }
@@ -32,7 +35,32 @@ export function Figure({ src, alt, title }) {
       </figure>
     )
   }
+  if (kind === 'phone') return <Phone src={src} alt={alt} />
   return <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
+}
+
+// iPhone frame drawn in CSS. Screens taller than the phone (full-page captures) scroll inside it.
+// Pass still to show the top of the screen only (used inside links and cards).
+const SCREEN_RATIO = 852 / 393
+export function Phone({ src, alt, still = false, className = '' }) {
+  const [tall, setTall] = useState(false)
+  const onLoad = (e) => {
+    const { naturalWidth: w, naturalHeight: h } = e.currentTarget
+    if (w && h / w > SCREEN_RATIO + 0.04) setTall(true)
+  }
+  const scroll = tall && !still
+  return (
+    <div className={`iphone ${scroll ? 'is-scroll' : ''} ${className}`}>
+      <div
+        className="iphone__screen"
+        {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
+      >
+        <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
+      </div>
+      <span className="iphone__island" aria-hidden="true" />
+      {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
+    </div>
+  )
 }
 
 export function Stats({ items }) {
