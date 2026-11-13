@@ -35,23 +35,19 @@ education:
 
 <!-- Copied from the About Me page on uxfol.io/prouddesigns on Nov 13, 2026. -->
 
-I'm detail-oriented and always have been. I notice the crooked line, the extra step and the button nobody can find. For as long as I can remember I've been the one who fixes things. Some people get excited about a new purse. I get excited when something finally works.
+I'm detail-oriented and always have been. I notice the crooked line, the extra step and the button nobody can find. Some people get excited about a new purse. I get excited when something finally works.
 
-Design turned that habit into a job. Communication Design taught me to care how things look. My UX training at UT Austin taught me to care just as much about how they work. Now I get to do both. I look for the small thing that's getting in someone's way and fix it. I use AI to move faster, not to make design decisions.
-
-Before UX, I worked at a design studio in Bangkok on exhibitions and a café launch with Epson. You can see that work below.
-
-Right now I'm leading a rebrand and website redesign for a stone company. My latest case study is an unsolicited redesign of BMO's transfer and bill-pay flows, tested with 15 people. I'm based in the Milwaukee area and looking for my next UX/UI role in Milwaukee, Chicago or remote.
+My UX training at UT Austin taught me to care about how things work, not just how they look. I look for the small thing that's getting in someone's way and fix it. I use AI to move faster, not to make design decisions. Right now I'm leading a rebrand and website redesign for a stone company.
 
 ## Where I started
 
 ### Exhibitions and events at a design studio in Bangkok
 
-During my degree I interned at Apostrophys Group as a Project Coordinator and Design Intern. Two projects stayed with me.
+During my degree I interned at Apostrophys Group as a Project Coordinator and Design Intern.
 
-**Café Tube** was a projection-mapping café made with Epson, where light played across every cup and plate. I tested the menus with the kitchen partners, shot product photos and coordinated the partners and venue. Then I worked the launch. It had to work for real guests on launch day, not just on paper. That is still how I judge a design.
+**Café Tube** was a projection-mapping café made with Epson, where light played across every cup and plate. I tested the menus with the kitchen partners and worked the launch. It had to work for real guests on launch day, not just on paper. That is still how I judge a design.
 
-**The Magnificent Five** was a vintage film camera exhibition for the Thai Film Archive, set in a busy cinema lobby. I worked with the client and designed the display graphics. People read the panels while walking past, so the camera's name had to read first and the story had to stay short. The client knew the cameras. My job was to make their story easy to read. I still work that way.
+**The Magnificent Five** was a vintage film camera exhibition for the Thai Film Archive, set in a busy cinema lobby. I designed the display graphics. People read the panels while walking past, so the camera's name had to read first and the story had to stay short.
 
 - ![Café Tube projection room](</about/cafetube-projection-room-108fcf05-d781-4334-91f6-0ffe70bce24a.webp> "square")
 
