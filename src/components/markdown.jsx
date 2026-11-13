@@ -51,6 +51,7 @@ export function Phone({ src, alt, still = false, className = '' }) {
   const scroll = tall && !still
   return (
     <div className={`iphone ${scroll ? 'is-scroll' : ''} ${className}`}>
+      <div className="iphone__body">
       <div
         className="iphone__screen"
         {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
@@ -58,6 +59,7 @@ export function Phone({ src, alt, still = false, className = '' }) {
         <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
       </div>
       <span className="iphone__island" aria-hidden="true" />
+      </div>
       {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
     </div>
   )

@@ -285,11 +285,12 @@ img { max-width: 100%; display: block; }
   .motif .ink, .motif .sil { transition: none; }
 }
 
-/* iPhone frame for every phone screen (drawn in CSS, sized from its own width) */
-.iphone { container-type: inline-size; position: relative; width: 100%; max-width: 300px; margin: 0 auto; padding: 3.4cqw; border-radius: 16cqw; background: #141414; box-shadow: 0 0 0 1.2cqw #d9d4d3, 0 0 0 calc(1.2cqw + 1px) #b9b2b0, 0 26px 44px -22px rgba(42, 20, 18, .45); }
-.iphone::before, .iphone::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #c8c1bf; }
-.iphone::before { right: -2.4cqw; top: 26%; height: 15%; }
-.iphone::after { left: -2.4cqw; top: 20%; height: 18%; box-shadow: 0 0 0 0 transparent; }
+/* iPhone frame for every phone screen (drawn in CSS). .iphone is the size container, .iphone__body draws the phone. */
+.iphone { container-type: inline-size; position: relative; width: 100%; max-width: 300px; margin: 0 auto; }
+.iphone__body { position: relative; padding: 3.4cqw; border-radius: 16cqw; background: #141414; box-shadow: 0 0 0 1.2cqw #d9d4d3, 0 0 0 calc(1.2cqw + 1px) #b9b2b0, 0 26px 44px -22px rgba(42, 20, 18, .45); }
+.iphone__body::before, .iphone__body::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #c8c1bf; }
+.iphone__body::before { right: -2.6cqw; top: 26%; height: 15%; }
+.iphone__body::after { left: -2.6cqw; top: 20%; height: 18%; }
 .iphone__screen { position: relative; aspect-ratio: 393 / 852; overflow: hidden; border-radius: 12.6cqw; background: #fff; }
 .iphone__screen img { display: block; width: 100%; height: auto; max-width: none; }
 .iphone__island { position: absolute; top: 6.6cqw; left: 50%; width: 29cqw; height: 8.4cqw; transform: translateX(-50%); border-radius: 999px; background: #0b0b0b; pointer-events: none; }
