@@ -61,26 +61,18 @@ export default function CaseStudy() {
       <Nav />
       <main style={{ display: 'grid', gap: 48 }}>
         <div className={`cs-top ${project.hero ? 'has-hero' : ''}`}>
-        {/* Reading order: what it is (title), the point (summary), the proof (results),
-            what to do (prototype or read on), then the quiet project facts. */}
+        {/* The top says one thing: what this is and where to go. Proof and facts sit in the band below. */}
         <header className="cs-head">
           <span className="tag">{project.tag}</span>
           <h1>{project.headline || project.title}</h1>
           {project.summary && <p className="cs-lede">{project.summary}</p>}
           {project.note && <p className="note">{project.note}</p>}
-          {project.stats?.length > 0 && <Stats items={project.stats} />}
           <div className="cs-actions">
             {project.prototypeUrl && (
               <a className="cs-btn" href={project.prototypeUrl} target="_blank" rel="noreferrer">Try the prototype <span aria-hidden="true">↗</span></a>
             )}
             <a className="cs-link" href={`#${sections[0]?.id || ''}`} onClick={(e) => jump(e, sections[0]?.id)}>Read the case study <span aria-hidden="true">↓</span></a>
           </div>
-          <dl className="cs-meta">
-            {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
-            {project.scope && <div><dt>Scope</dt><dd>{project.scope}</dd></div>}
-            {project.team && <div><dt>Team</dt><dd>{project.team}</dd></div>}
-            {project.timeline && <div><dt>Timeline</dt><dd>{project.timeline}</dd></div>}
-          </dl>
         </header>
 
         {project.hero && (
@@ -91,6 +83,17 @@ export default function CaseStudy() {
           </div>
         )}
         </div>
+
+        {/* At a glance: results first, then the project facts in one quiet row */}
+        <section className="cs-glance" aria-label="At a glance">
+          {project.stats?.length > 0 && <Stats items={project.stats} />}
+          <dl className="cs-meta">
+            {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
+            {project.team && <div><dt>Team</dt><dd>{project.team}</dd></div>}
+            {project.timeline && <div><dt>Timeline</dt><dd>{project.timeline}</dd></div>}
+            {project.scope && <div className="wide"><dt>Scope</dt><dd>{project.scope}</dd></div>}
+          </dl>
+        </section>
 
         <div className="cs-body">
           <nav className="cs-toc" aria-label="On this page">
