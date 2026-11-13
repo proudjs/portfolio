@@ -89,6 +89,27 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
     window.addEventListener('resize', placeBar)
     return () => window.removeEventListener('resize', placeBar)
   })
+  // With a mouse, the screen pans by itself while the pointer rests on it and glides back when it leaves.
+  // The mouse wheel always scrolls the page, so the page can never get stuck on a phone.
+  // On touch screens it scrolls with a finger instead.
+  const panRef = useRef(0)
+  const pan = (toEnd) => {
+    const sc = scrollRef.current
+    if (!sc) return
+    cancelAnimationFrame(panRef.current)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { sc.scrollTop = toEnd ? sc.scrollHeight : 0; return }
+    const from = sc.scrollTop, to = toEnd ? sc.scrollHeight - sc.clientHeight : 0
+    const dur = Math.max(400, Math.abs(to - from) * (toEnd ? 9 : 2.5))
+    const t0 = performance.now()
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2
+      sc.scrollTop = from + (to - from) * e
+      if (k < 1) panRef.current = requestAnimationFrame(step)
+    }
+    panRef.current = requestAnimationFrame(step)
+  }
+  useEffect(() => () => cancelAnimationFrame(panRef.current), [])
+  const mouseOnly = (fn) => (e) => { if (e.pointerType === 'mouse') fn() }
   const onLoad = (e) => {
     const { naturalWidth: w, naturalHeight: h } = e.currentTarget
     if (w && h / w > SCREEN_RATIO + 0.04) setTall(true)
@@ -109,7 +130,11 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
             className="iphone__scroll"
             ref={scrollRef}
             onScroll={scroll ? placeBar : undefined}
-            {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
+            onPointerEnter={scroll ? mouseOnly(() => pan(true)) : undefined}
+            onPointerLeave={scroll ? mouseOnly(() => pan(false)) : undefined}
+            onFocus={scroll ? () => pan(true) : undefined}
+            onBlur={scroll ? () => pan(false) : undefined}
+            {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Shows the full screen when you point at it or focus it.` } : {})}
           >
             <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
           </div>
