@@ -309,7 +309,26 @@ img { max-width: 100%; display: block; }
 .iphone.is-scroll .iphone__scroll { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; cursor: ns-resize; }
 .iphone.is-scroll .iphone__scroll::-webkit-scrollbar { display: none; }
 .iphone.is-scroll .iphone__scroll:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
-/* Hint sits on the screen, so nothing below moves when a screen turns out to be scrollable */
-.iphone__hint { position: absolute; left: 50%; bottom: 27cqw; transform: translateX(-50%); padding: 1.6cqw 4cqw; border-radius: 999px; background: rgba(20, 20, 20, .72); color: #fff; font-size: clamp(9px, 4cqw, 12px); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
-.iphone.is-scroll:hover .iphone__hint, .iphone.is-scroll:focus-within .iphone__hint { opacity: 0; }
-.iphone__hint::after { content: " ↕"; }
+
+
+/* Stage: every group of screens (phones, sketches, mockups) sits on one tinted panel,
+   centered, at one shared size, so groups of 1, 2, 3 or 4 look like one family. */
+.cs-sec .stage { --screen: 216px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 32px 28px; padding: 36px 24px; border-radius: 20px; border: 1px solid var(--line); background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 8%, var(--surface)) 0%, color-mix(in srgb, var(--red) 3%, var(--surface)) 70%); }
+.cs-sec .stage > .iphone, .cs-sec .stage > .cs-img.sketch { flex: 0 0 var(--screen); width: var(--screen); max-width: 100%; margin: 0; }
+.cs-sec .stage > .cs-img.mockup { flex: 0 0 auto; width: 280px; max-width: 100%; margin: 0; }
+.cs-sec .stage > .cs-img.sketch, .cs-sec ul.tiles.stage .cs-img.sketch { border: 0; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(42, 20, 18, .4); }
+/* Four phones fit in a row only when there is room, otherwise 2 by 2 */
+.cs-sec .stage[data-count="4"] { --screen: 196px; }
+/* Tiles on a stage: same size screens, label centered under each */
+.cs-sec ul.tiles.stage { list-style: none; margin: 0; max-width: none; }
+.cs-sec ul.tiles.stage > li { flex: 0 0 var(--screen); width: var(--screen); display: grid; gap: 10px; justify-items: center; text-align: center; }
+.cs-sec ul.tiles.stage > li .gallery { display: block; background: none; border: 0; padding: 0; margin: 0; width: 100%; }
+.cs-sec ul.tiles.stage > li .iphone, .cs-sec ul.tiles.stage > li .cs-img.sketch { width: 100%; max-width: none; margin: 0; }
+.cs-sec ul.tiles.stage li p { max-width: none; }
+.cs-sec > .stage + p.caption { margin-top: -6px; }
+@media (max-width: 760px) {
+  .cs-sec .stage, .cs-sec .stage[data-count="4"] { --screen: min(42vw, 200px); gap: 24px 16px; padding: 24px 12px; }
+}
+
+/* Scroll cue: a slim bar on the right edge of the screen, like iOS. It shows how much is left and never covers content. */
+.iphone__bar { position: absolute; right: 1.6cqw; width: 1.3cqw; border-radius: 1cqw; background: rgba(20, 20, 20, .38); pointer-events: none; transition: opacity .3s; }

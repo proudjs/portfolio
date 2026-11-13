@@ -114,7 +114,13 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 BMO's Home shows balances and a promo. Nothing about the $350 leaving tomorrow. I added “Coming up” under the accounts: the next three things to leave, with the day.
 
-![BMO's Home before, with balances and a promo](</work/bmo/11-before-home-babcdbfc-14b3-4fdc-aa39-535316c0934f.webp> "phone") ![Redesigned Home with Coming up](</work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp> "phone 108 86")
+- ![BMO's Home before, with balances and a promo](</work/bmo/11-before-home-babcdbfc-14b3-4fdc-aa39-535316c0934f.webp> "phone")
+
+  **Before**
+
+- ![Redesigned Home with Coming up](</work/bmo/12-after-home-62d065eb-6cd0-4312-91c5-31165f402a35.webp> "phone 108 86")
+
+  **After**
 
 *Before, balances and a promo. After, coming up, each row opening its record.*
 
@@ -142,7 +148,13 @@ Each is a tint, an icon and the word. Failure says what happened, where the mone
 
 Amount, the day it leaves, the fee, and what's available after. The cancel window is stated before you pay, not after.
 
-![BMO's bill pay review before](</work/bmo/09-before-review-and-pay-e8114bb5-8556-4ca6-aed5-105ff63e7108.webp> "phone") ![Redesigned bill pay review](</work/bmo/20-after-bill-pay-review-35941605-c82b-40fa-89c0-cea2f287a95e.webp> "phone 114 86")
+- ![BMO's bill pay review before](</work/bmo/09-before-review-and-pay-e8114bb5-8556-4ca6-aed5-105ff63e7108.webp> "phone")
+
+  **Before**
+
+- ![Redesigned bill pay review](</work/bmo/20-after-bill-pay-review-35941605-c82b-40fa-89c0-cea2f287a95e.webp> "phone 114 86")
+
+  **After**
 
 *Before, and after: the day it leaves, the fee, and what's left.*
 
@@ -180,7 +192,13 @@ Some were BMO customers. More than half were 40 or older.
 >
 > I first warned about a short balance at Review. Then I moved the check to the moment you pick the account, so you find out sooner.
 
-![First version, a short-balance warning at Review](</work/bmo/23-first-version-not-enough-money-f6b1873c-5756-406e-8c8a-4af147a13c39.webp> "phone 114 86") ![Final version, the check at the moment you pick the account](</work/bmo/24-final-not-enough-money-at-from-941250c4-35bc-4fd7-b1b1-69c4552e92ae.webp> "phone")
+- ![First version, a short-balance warning at Review](</work/bmo/23-first-version-not-enough-money-f6b1873c-5756-406e-8c8a-4af147a13c39.webp> "phone 114 86")
+
+  **First version**
+
+- ![Final version, the check at the moment you pick the account](</work/bmo/24-final-not-enough-money-at-from-941250c4-35bc-4fd7-b1b1-69c4552e92ae.webp> "phone")
+
+  **Final**
 
 *First version, a warning at Review. Final, the check moved to the moment you pick the account.*
 
