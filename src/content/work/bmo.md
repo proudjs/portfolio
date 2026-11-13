@@ -21,10 +21,10 @@ hero:
     src: /work/bmo/02-hero-after-transfer-record-scheduled-d459ab64-8ebe-4d02-b294-b282ce8ddc1f.webp
     alt: Redesigned transfer record, Scheduled, showing when the money leaves and arrives
 stats:
-  - value: "98"
-    label: numbered findings from a one-week audit of the live app
   - value: "15 of 15"
     label: testers could tell whether a bill payment worked
+  - value: "98"
+    label: numbered findings from a one-week audit of the live app
   - value: "5 → 1"
     label: taps to find out whether a transfer worked
 ---
