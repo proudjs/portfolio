@@ -58,7 +58,8 @@ img { max-width: 100%; display: block; }
 }
 
 /* Nav */
-.nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 15px; }
+.nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 15px; position: sticky; top: 0; z-index: 20; margin-top: -28px; padding: 18px 0; background: color-mix(in srgb, var(--surface) 88%, transparent); box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--surface) 88%, transparent); clip-path: inset(0 -100vmax); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: padding .3s var(--ease-smooth), border-color .3s; border-bottom: 1px solid transparent; }
+.nav.is-scrolled { padding: 12px 0; border-bottom-color: color-mix(in srgb, var(--red) 10%, var(--line)); }
 .nav .name { font-family: var(--display); font-size: 20px; color: var(--red); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
 .name__logo { width: 30px; height: 30px; flex: none; }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
@@ -123,19 +124,15 @@ img { max-width: 100%; display: block; }
 .foot b { color: var(--ink); font-weight: 500; }
 
 /* Contact footer */
-.contact { margin-top: 24px; border-radius: 24px; background: color-mix(in srgb, var(--red) 5%, var(--surface)); border: 1px solid color-mix(in srgb, var(--red) 14%, var(--line)); padding: clamp(28px, 5vw, 56px); display: grid; gap: 40px; }
-.contact__main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
-.contact__intro { display: grid; gap: 10px; }
-.contact h2 { font: 400 clamp(34px, 5vw, 56px)/1.05 var(--display); color: var(--red); margin: 0; }
-.contact__intro p { margin: 0; font-size: 17px; color: var(--muted); }
-.contact__actions { display: grid; gap: 16px; justify-items: start; }
-.contact__email { font: 400 clamp(20px, 2.4vw, 28px)/1.2 var(--display); color: var(--ink); word-break: break-all; }
-.contact__buttons { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; }
-.contact .cs-btn { border: 0; cursor: pointer; min-width: 128px; }
-.contact__link { font-size: 15px; font-weight: 500; color: var(--red); text-underline-offset: 3px; }
-.contact__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--red) 14%, var(--line)); font-size: 13px; color: var(--muted); }
-.contact__bottom span { display: inline-flex; align-items: center; gap: 8px; }
-.contact__flower { width: 22px; height: 22px; fill: var(--gold); stroke: var(--gold); stroke-width: 10; flex: none; }
+/* Footer: one simple line on every page */
+.site-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid color-mix(in srgb, var(--red) 14%, var(--line)); font-size: 13px; color: var(--muted); scroll-margin-top: 96px; }
+.site-foot__left, .site-foot__right { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.site-foot__flower { width: 22px; height: 22px; fill: var(--gold); stroke: var(--gold); stroke-width: 10; flex: none; }
+.site-foot__icon { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--red) 18%, var(--line)); background: none; color: var(--red); cursor: pointer; padding: 0; transition: background .2s, color .2s; }
+.site-foot__icon svg { width: 15px; height: 15px; fill: currentColor; }
+.site-foot__icon:hover, .site-foot__icon:focus-visible { background: var(--red); color: var(--paper, #fff); }
+.site-foot__copied { color: var(--red); min-width: 0; }
+.site-foot__copied:empty { display: none; }
 
 /* Case study */
 .cs-head { display: grid; gap: 12px; max-width: 780px; align-content: center; }
@@ -159,14 +156,14 @@ img { max-width: 100%; display: block; }
 .shot.wide { aspect-ratio: 16 / 9; }
 .shot.phone { aspect-ratio: 9 / 19.5; max-width: 260px; width: 100%; justify-self: center; border-radius: 28px; }
 .cs-body { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 56px; align-items: start; }
-.cs-toc { position: sticky; top: 28px; display: grid; gap: 2px; font-size: 14px; }
+.cs-toc { position: sticky; top: 96px; display: grid; gap: 2px; font-size: 14px; }
 .cs-toc span { margin-bottom: 8px; }
 .cs-toc a { color: var(--muted); text-decoration: none; padding: 5px 0 5px 14px; position: relative; }
 .cs-toc a:hover { color: var(--ink); }
 .cs-toc a.on { color: var(--red); font-weight: 500; }
 .cs-toc a.on::before { content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--gold); }
 .cs-main { display: grid; gap: 112px; min-width: 0; }
-.cs-sec { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 28px; }
+.cs-sec { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
 .cs-num { display: flex; gap: 10px; align-items: baseline; }
 .cs-num i { font: 400 20px var(--display); font-style: normal; letter-spacing: 0; color: var(--gold); }
 .cs-sec h3 { font: 400 clamp(24px, 3vw, 30px)/1.2 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
@@ -208,7 +205,7 @@ img { max-width: 100%; display: block; }
 .cs-hero .cs-img.wide { width: 100%; }
 .cs-img { display: block; height: auto; }
 .cs-img.wide { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
-.cs-img.phone { width: 100%; max-width: 300px; justify-self: center; margin: 0 auto; border-radius: 22px; }
+.cs-img.sketch { width: 100%; max-width: 300px; justify-self: center; margin: 0 auto; border-radius: 12px; border: 1px solid var(--line); }
 .gallery { display: grid; gap: 20px; align-items: start; }
 .gallery[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .gallery[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -279,7 +276,7 @@ img { max-width: 100%; display: block; }
   .cs-main { gap: 80px; }
 }
 @media (max-width: 760px) {
-  .projects, .pair, .claims, .work-cards, .contact__main, .principles, .timeline__wrap { grid-template-columns: 1fr; }
+  .projects, .pair, .claims, .work-cards, .principles, .timeline__wrap { grid-template-columns: 1fr; }
   .gallery[data-count="3"], .gallery[data-count="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav ul { gap: 16px; }
 }

@@ -7,6 +7,7 @@
   - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[chips: UI design || visual design]] is a row of small skill tags.
   - [[claims]] and [[prototype]] use fields from the page's frontmatter.
+  - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
 import { useState } from 'react'
@@ -26,7 +27,7 @@ function plainText(node) {
 }
 
 export function Figure({ src, alt, title }) {
-  const kind = title === 'phone' ? 'phone' : title === 'square' ? 'square' : 'wide'
+  const kind = ['phone', 'sketch', 'square'].includes(title) ? title : 'wide'
   if (src?.startsWith('slot:')) {
     return (
       <figure>

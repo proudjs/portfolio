@@ -188,7 +188,7 @@ Some were BMO customers. More than half were 40 or older.
 >
 > An account's Activity had All, Transfers and Payments tabs. That split things into yet another place. I took the tabs out. Activity is now one list, newest first.
 
-![Paper sketch of the Recent Activity screen with All, Transfer and Payment tabs at the top and a list grouped by date.](</work/bmo/hRIvKfP39TT8FxQS.webp> "phone")
+![Paper sketch of the Recent Activity screen with All, Transfer and Payment tabs at the top and a list grouped by date.](</work/bmo/hRIvKfP39TT8FxQS.webp> "sketch")
 
 *My first sketch split Activity into tabs. I later removed them.*
 

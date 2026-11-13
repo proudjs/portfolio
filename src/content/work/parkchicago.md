@@ -105,25 +105,25 @@ Not a formal study. I asked 12 friends and family who park in and around Chicago
 
 I sketched on paper before opening Figma. Two ideas didn’t make it.
 
-- ![Sketch of a full-screen map](</work/parkchicago/sketch-map-rejected-8abe5522-86e5-4f1b-a5a8-5fe496db8d88.webp> "phone")
+- ![Sketch of a full-screen map](</work/parkchicago/sketch-map-rejected-8abe5522-86e5-4f1b-a5a8-5fe496db8d88.webp> "sketch")
 
   **Scrapped**
 
   My first map took up the whole screen.
 
-- ![Sketch of a smaller map with nearby zones listed](</work/parkchicago/sketch-map-chosen-13ba4ce4-c997-4b17-8e1b-60cf6803a108.webp> "phone")
+- ![Sketch of a smaller map with nearby zones listed](</work/parkchicago/sketch-map-chosen-13ba4ce4-c997-4b17-8e1b-60cf6803a108.webp> "sketch")
 
   **Kept**
 
   A smaller map, with nearby zones listed underneath.
 
-- ![Sketch of a step-by-step form](</work/parkchicago/sketch-form-scrapped-2d8cbbcd-b713-455e-bd3d-2e33af9b3254.webp> "phone")
+- ![Sketch of a step-by-step form](</work/parkchicago/sketch-form-scrapped-2d8cbbcd-b713-455e-bd3d-2e33af9b3254.webp> "sketch")
 
   **Scrapped**
 
   A step-by-step form. The old flow all over again.
 
-- ![Sketch of one screen with zone, time, car and payment](</work/parkchicago/sketch-onescreen-chosen-ff7218c3-5856-4656-9ddc-51ecfa056aba.webp> "phone")
+- ![Sketch of one screen with zone, time, car and payment](</work/parkchicago/sketch-onescreen-chosen-ff7218c3-5856-4656-9ddc-51ecfa056aba.webp> "sketch")
 
   **Kept**
 

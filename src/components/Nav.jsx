@@ -1,9 +1,18 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { site } from '../data/site.js'
 
+// The header stays at the top while scrolling. Once the page moves it tightens and gets a thin line.
 export default function Nav({ fullName = false }) {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 8)
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    return () => window.removeEventListener('scroll', on)
+  }, [])
   return (
-    <nav className="nav" aria-label="Main">
+    <nav className={`nav${scrolled ? ' is-scrolled' : ''}`} aria-label="Main">
       <Link to="/" className="name"><img className="name__logo" src="/favicon-flower.svg" alt="" width="30" height="30" />{fullName ? 'Jutamat (Proud) Samnakbankok' : 'Proud Samnakbankok'}</Link>
       <ul>
         <li><Link to="/#work">Work</Link></li>
