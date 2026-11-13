@@ -20,7 +20,7 @@ principles:
 experience:
   - when: 2020 - Present
     title: Freelance Visual Designer
-    where: Independent clients, including a stone company
+    where: Independent clients
   - when: May - Sep 2016
     title: Project Coordinator and Design Intern
     where: Apostrophys Group, Bangkok
