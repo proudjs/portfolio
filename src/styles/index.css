@@ -303,6 +303,6 @@ img { max-width: 100%; display: block; }
 .iphone.is-scroll .iphone__scroll::-webkit-scrollbar { display: none; }
 .iphone.is-scroll .iphone__scroll:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
 /* Hint sits on the screen, so nothing below moves when a screen turns out to be scrollable */
-.iphone__hint { position: absolute; left: 50%; bottom: 7cqw; transform: translateX(-50%); padding: 1.6cqw 4cqw; border-radius: 999px; background: rgba(20, 20, 20, .72); color: #fff; font-size: clamp(9px, 4cqw, 12px); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
+.iphone__hint { position: absolute; left: 50%; bottom: 27cqw; transform: translateX(-50%); padding: 1.6cqw 4cqw; border-radius: 999px; background: rgba(20, 20, 20, .72); color: #fff; font-size: clamp(9px, 4cqw, 12px); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
 .iphone.is-scroll:hover .iphone__hint, .iphone.is-scroll:focus-within .iphone__hint { opacity: 0; }
 .iphone__hint::after { content: " ↕"; }
