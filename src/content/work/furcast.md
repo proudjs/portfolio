@@ -163,6 +163,8 @@ The course ended at the prototype. I wanted to know if it actually worked, so I 
 
 ## Reflection
 
+### What I learned
+
 **Words make promises.** “Symptoms Detected” promised a diagnosis the app couldn’t give. Now I check every label against what the product can back up.
 
 **AI has to show its work.** Next time I’d design the explanation in from day one.
