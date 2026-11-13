@@ -40,6 +40,7 @@ export default function CaseStudy() {
     <div className="wrap">
       <Nav />
       <main style={{ display: 'grid', gap: 48 }}>
+        <div className={`cs-top ${project.hero ? 'has-hero' : ''}`}>
         <header className="cs-head">
           <span className="tag">{project.tag}</span>
           <h1>{project.headline || project.title}</h1>
@@ -61,6 +62,7 @@ export default function CaseStudy() {
             <Figure src={project.hero.src} alt={project.hero.alt || project.hero.caption} title={project.hero.kind || 'wide'} />
           </div>
         )}
+        </div>
 
         {project.stats?.length > 0 && <Stats items={project.stats} />}
 
