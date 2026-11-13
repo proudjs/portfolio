@@ -175,7 +175,9 @@ Three took about a minute. The slowest took 1 minute 20 seconds.
 
 ## Reflection
 
-**Living with a problem helped me find it. Asking others told me it was worth fixing.** Every problem in this case study has happened to me. Asking 12 drivers showed me it wasn’t just me.
+### Living with a problem helped me find it. Asking others told me it was worth fixing.
+
+Every problem in this case study has happened to me. Asking 12 drivers showed me it wasn’t just me.
 
 **What’s next:** search by destination, sharing where you parked, parking history as proof if you get a ticket anyway and testing with visitors who don’t know Chicago zones.
 

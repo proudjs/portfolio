@@ -147,6 +147,9 @@ img { max-width: 100%; display: block; }
 .cs-top.has-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: stretch; }
 .cs-top .cs-hero.phone { display: grid; place-items: center; padding: 8px 0; }
 .cs-top .cs-hero.phone .iphone { max-width: 300px; }
+.cs-top .cs-hero.pair { display: flex; justify-content: center; align-items: flex-start; gap: 24px; }
+.cs-top .cs-hero.pair .iphone { width: 46%; max-width: 270px; margin: 0; }
+.cs-top .cs-hero.pair .iphone + .iphone { margin-top: 48px; }
 .cs-head h1 { font: 400 clamp(34px, 4.2vw, 58px)/1.08 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
 .cs-head p { color: var(--muted); margin: 0; font-size: 17px; }
 .cs-head .cs-lede { font-size: clamp(18px, 1.5vw, 20px); line-height: 1.55; color: var(--ink); max-width: 46ch; }
@@ -239,8 +242,8 @@ img { max-width: 100%; display: block; }
 /* About page */
 .ab-head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: start; }
 .ab-intro { display: grid; gap: 16px; }
-.ab-intro h1 { font: 400 clamp(32px, 5vw, 52px)/1.1 var(--display); margin: 0; color: var(--red); }
-.ab-intro p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 60ch; }
+.ab-intro h1 { font: 400 clamp(34px, 4.2vw, 58px)/1.08 var(--display); margin: 0; color: var(--red); }
+.ab-intro p { margin: 0; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; max-width: 52ch; color: var(--ink); }
 .ab-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
 .ab-head .cs-img.square { border-radius: 16px; }
 .cs-img.square { width: 100%; border-radius: 12px; }

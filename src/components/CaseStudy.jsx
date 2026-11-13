@@ -6,9 +6,15 @@ import Footer from './Footer.jsx'
 import ProjectCards from './ProjectCards.jsx'
 import NotFound from './NotFound.jsx'
 import { getProject } from '../data/projects.js'
-import { Figure, Stats, makeComponents, splitSections } from './markdown.jsx'
+import { Phone, Stats, makeComponents, splitSections } from './markdown.jsx'
 
 /* Markdown syntax for case studies is documented in markdown.jsx. */
+
+// "phone 108 86" -> keep the top 108 and bottom 86 points still when the screen scrolls
+const fixed = (kind = '') => {
+  const [, top, bottom] = String(kind).split(/\s+/)
+  return { fixedTop: Number(top) || 0, fixedBottom: Number(bottom) || 0 }
+}
 
 export default function CaseStudy() {
   const { slug } = useParams()
@@ -78,8 +84,10 @@ export default function CaseStudy() {
         </header>
 
         {project.hero && (
-          <div className={`cs-hero ${project.hero.kind === 'phone' ? 'phone' : ''}`}>
-            <Figure src={project.hero.src} alt={project.hero.alt || project.hero.caption} title={project.hero.kind || 'wide'} />
+          <div className={`cs-hero ${String(project.hero.kind).startsWith('phone') ? 'phone' : ''}${project.hero.also ? ' pair' : ''}`}>
+            {/* hero.also adds a second phone beside the first (BMO: Home and the transfer record, as on UXfolio) */}
+            <Phone src={project.hero.src} alt={project.hero.alt || project.hero.caption} {...fixed(project.hero.kind)} />
+            {project.hero.also && <Phone src={project.hero.also.src} alt={project.hero.also.alt} {...fixed(project.hero.also.kind)} />}
           </div>
         )}
         </div>
