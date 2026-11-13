@@ -19,11 +19,25 @@ export default function CaseStudy() {
   useEffect(() => {
     if (!project || !project.ready) return undefined
     document.title = `${project.title} · Proud Samnakbankok`
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) })
-    }, { rootMargin: '-20% 0px -65% 0px' })
-    document.querySelectorAll('.cs-sec').forEach((s) => io.observe(s))
-    return () => io.disconnect()
+    // Highlight the section being read: the last one whose top has passed 35% of the screen.
+    // At the bottom of the page the last section wins, so the dot never sticks or jumps back.
+    const secs = [...document.querySelectorAll('.cs-sec')]
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const line = window.innerHeight * 0.35
+      const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      let id = secs[0]?.id
+      for (const s of secs) if (s.getBoundingClientRect().top <= line) id = s.id
+      const last = secs[secs.length - 1]
+      if (atEnd || (last && last.getBoundingClientRect().bottom < window.innerHeight * 0.9)) id = last?.id
+      setActive((prev) => (prev === id ? prev : id))
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf) }
   }, [project])
 
   if (!project || !project.ready) return <NotFound />

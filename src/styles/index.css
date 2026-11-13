@@ -94,14 +94,16 @@ img { max-width: 100%; display: block; }
 /* Selected work: big picture cards, the whole card is the link */
 .work-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .work-card { display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 2px rgba(42, 20, 18, .04), 0 8px 24px -12px rgba(42, 20, 18, .12); transition: transform .45s var(--ease-smooth), box-shadow .45s var(--ease-smooth), border-color .45s; }
-.work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(42, 20, 18, .05), 0 28px 48px -20px rgba(156, 28, 23, .28); }
 .work-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .work-card__art { position: relative; aspect-ratio: 4 / 3.3; overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--red) 10%, var(--surface)) 0%, color-mix(in srgb, var(--red) 4%, var(--surface)) 70%); border-bottom: 1px solid var(--line); }
 .iphone.work-card__screen { position: absolute; width: 40%; max-width: none; margin: 0; transition: transform .6s var(--ease-smooth); }
 .work-card__screen.s1 { left: 9%; top: 11%; transform: rotate(-5deg); }
 .work-card__screen.s2 { right: 9%; top: 19%; transform: rotate(5deg); }
-.work-card:hover .work-card__screen.s1 { transform: rotate(-8deg) translate(-6px, -10px); }
-.work-card:hover .work-card__screen.s2 { transform: rotate(8deg) translate(6px, -14px); }
+@media (hover: hover) {
+  .work-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); box-shadow: 0 2px 4px rgba(42, 20, 18, .05), 0 28px 48px -20px rgba(156, 28, 23, .28); }
+  .work-card:hover .work-card__screen.s1 { transform: rotate(-8deg) translate(-6px, -10px); }
+  .work-card:hover .work-card__screen.s2 { transform: rotate(8deg) translate(6px, -14px); }
+}
 .work-card__text { display: grid; gap: 10px; align-content: start; padding: 20px 22px 24px; }
 .work-card__tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .work-card__tags li { font-size: 12px; letter-spacing: .01em; color: var(--red); border: 1px solid color-mix(in srgb, var(--red) 25%, var(--line)); border-radius: 999px; padding: 2px 9px; }
@@ -297,7 +299,7 @@ img { max-width: 100%; display: block; }
 .iphone.is-scroll .iphone__screen { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; cursor: ns-resize; }
 .iphone.is-scroll .iphone__screen::-webkit-scrollbar { display: none; }
 .iphone.is-scroll .iphone__screen:focus-visible { outline: 2px solid var(--red); outline-offset: 3cqw; }
-.iphone__hint { position: absolute; left: 50%; bottom: -28px; transform: translateX(-50%); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+/* Hint sits on the screen, so nothing below moves when a screen turns out to be scrollable */
+.iphone__hint { position: absolute; left: 50%; bottom: 7cqw; transform: translateX(-50%); padding: 1.6cqw 4cqw; border-radius: 999px; background: rgba(20, 20, 20, .72); color: #fff; font-size: clamp(9px, 4cqw, 12px); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
+.iphone.is-scroll:hover .iphone__hint, .iphone.is-scroll .iphone__screen:focus + .iphone__island + .iphone__hint { opacity: 0; }
 .iphone__hint::after { content: " ↕"; }
-.gallery:has(.iphone.is-scroll) { padding-bottom: 28px; }
-.cs-sec > .iphone.is-scroll { margin-bottom: 40px; }

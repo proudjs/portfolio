@@ -59,8 +59,8 @@ export function Phone({ src, alt, still = false, className = '' }) {
         <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
       </div>
       <span className="iphone__island" aria-hidden="true" />
-      </div>
       {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
+      </div>
     </div>
   )
 }
