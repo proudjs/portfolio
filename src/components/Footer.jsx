@@ -23,7 +23,6 @@ export default function Footer() {
           <span className="eyebrow">Contact</span>
           <h2>Open to UX/UI roles.</h2>
           <p>Hiring or just want to talk design? My inbox is open.</p>
-          <p className="contact__where">Based in Milwaukee, WI. Open to Chicago and remote.</p>
         </div>
         <div className="contact__actions">
           <span className="contact__email">{site.email}</span>
