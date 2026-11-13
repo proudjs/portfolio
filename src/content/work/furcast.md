@@ -123,7 +123,7 @@ Each question takes one tap, in plain words like “Less” or “Didn’t eat.�
 
 If a health app tells a worried owner their dog is fine and it isn’t, that’s a real problem. So the AI only suggests and leaves the diagnosis to the vet. **Symptom Check** rates each result Monitor, Watch or Act now, and shows why. **Vet Visit Prep** turns a week of logs into questions for the vet.
 
-![AI Health Insights](</work/furcast/31-ai-health-insights-v8-18370c74-f773-45bf-9539-ec535b3950a6.webp> "phone") ![Vet Visit Prep](</work/furcast/32-vet-visit-prep-6392ae2f-ac1d-4627-a467-c67557030a9c.webp> "phone") ![Symptom Check](</work/furcast/33-symptom-check-072031a3-e99f-4c4a-9736-cad11d521908.webp> "phone")
+![AI Health Insights](</work/furcast/31-ai-health-insights-v8-18370c74-f773-45bf-9539-ec535b3950a6.webp> "phone 90 72") ![Vet Visit Prep](</work/furcast/32-vet-visit-prep-6392ae2f-ac1d-4627-a467-c67557030a9c.webp> "phone 90 72") ![Symptom Check](</work/furcast/33-symptom-check-072031a3-e99f-4c4a-9736-cad11d521908.webp> "phone 90 72")
 
 ### Decision 3 of 3: How warm can a health app look?
 

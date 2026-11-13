@@ -7,6 +7,9 @@
   - [[stats: 98 :: label || 15 of 15 :: label]] is a row of big numbers.
   - [[chips: UI design || visual design]] is a row of small skill tags.
   - [[claims]] and [[prototype]] use fields from the page's frontmatter.
+  - "phone 114 86" keeps the top 114 and bottom 86 points (402-wide frame) still while a tall screen scrolls.
+  - "mockup" is an image that already has its own phone mockup: shown as is, no extra frame.
+  - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
 import { useState } from 'react'
@@ -26,41 +29,56 @@ function plainText(node) {
 }
 
 export function Figure({ src, alt, title }) {
-  const kind = title === 'phone' ? 'phone' : title === 'square' ? 'square' : 'wide'
+  // title is the kind, optionally followed by numbers for phones: "phone 114 86"
+  // = keep the top 114 and bottom 86 points still while the screen scrolls (in a 402-wide frame).
+  const [first, ...nums] = (title || '').split(/\s+/)
+  const kind = ['phone', 'sketch', 'square', 'mockup'].includes(first) ? first : 'wide'
   if (src?.startsWith('slot:')) {
     return (
       <figure>
-        <div className={`shot ${kind}`}>Image slot<br />{decodeURIComponent(src.slice(5))}</div>
+        <div className={`shot ${kind === 'phone' ? 'phone' : kind}`}>Image slot<br />{decodeURIComponent(src.slice(5))}</div>
         {alt && <figcaption>{alt}</figcaption>}
       </figure>
     )
   }
-  if (kind === 'phone') return <Phone src={src} alt={alt} />
+  if (kind === 'phone') return <Phone src={src} alt={alt} fixedTop={Number(nums[0]) || 0} fixedBottom={Number(nums[1]) || 0} />
   return <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
 }
 
 // iPhone frame drawn in CSS. Screens taller than the phone (full-page captures) scroll inside it.
-// Pass still to show the top of the screen only (used inside links and cards).
+// fixedTop / fixedBottom (points in a 402-wide frame) stay put while scrolling, like the
+// status bar, header and tab bar in the real app. Pass still to show the top of the screen only.
 const SCREEN_RATIO = 852 / 393
-export function Phone({ src, alt, still = false, className = '' }) {
+export function Phone({ src, alt, still = false, className = '', fixedTop = 0, fixedBottom = 0 }) {
   const [tall, setTall] = useState(false)
   const onLoad = (e) => {
     const { naturalWidth: w, naturalHeight: h } = e.currentTarget
     if (w && h / w > SCREEN_RATIO + 0.04) setTall(true)
   }
   const scroll = tall && !still
+  const strip = (pts, edge) => (
+    <div
+      className={`iphone__fixed ${edge}`}
+      aria-hidden="true"
+      style={{ aspectRatio: `402 / ${pts}`, backgroundImage: `url("${src}")` }}
+    />
+  )
   return (
     <div className={`iphone ${scroll ? 'is-scroll' : ''} ${className}`}>
       <div className="iphone__body">
-      <div
-        className="iphone__screen"
-        {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
-      >
-        <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
+        <div className="iphone__screen">
+          <div
+            className="iphone__scroll"
+            {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Scroll to see the full screen.` } : {})}
+          >
+            <img src={src} alt={still ? '' : alt || ''} loading="lazy" decoding="async" onLoad={onLoad} />
+          </div>
+          {scroll && fixedTop > 0 && strip(fixedTop, 'top')}
+          {scroll && fixedBottom > 0 && strip(fixedBottom, 'bottom')}
+        </div>
+        <span className="iphone__island" aria-hidden="true" />
+        {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
       </div>
-      <span className="iphone__island" aria-hidden="true" />
-      </div>
-      {scroll && <span className="iphone__hint" aria-hidden="true">Scroll</span>}
     </div>
   )
 }

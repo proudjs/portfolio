@@ -26,7 +26,7 @@ export default function Home() {
             </div>
             <HeroFlower reduce={reduce} />
           </section>
-          <section id="work" aria-labelledby="work-title" style={{ display: 'grid', gap: 22, scrollMarginTop: 24 }}>
+          <section id="work" aria-labelledby="work-title" style={{ display: 'grid', gap: 22, scrollMarginTop: 96 }}>
             <h2 id="work-title" className="eyebrow" style={{ margin: 0, fontWeight: 400 }}>Selected work</h2>
             <ProjectCards />
           </section>

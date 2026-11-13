@@ -105,25 +105,25 @@ Not a formal study. I asked 12 friends and family who park in and around Chicago
 
 I sketched on paper before opening Figma. Two ideas didn’t make it.
 
-- ![Sketch of a full-screen map](</work/parkchicago/sketch-map-rejected-8abe5522-86e5-4f1b-a5a8-5fe496db8d88.webp> "phone")
+- ![Sketch of a full-screen map](</work/parkchicago/sketch-map-rejected-8abe5522-86e5-4f1b-a5a8-5fe496db8d88.webp> "sketch")
 
   **Scrapped**
 
   My first map took up the whole screen.
 
-- ![Sketch of a smaller map with nearby zones listed](</work/parkchicago/sketch-map-chosen-13ba4ce4-c997-4b17-8e1b-60cf6803a108.webp> "phone")
+- ![Sketch of a smaller map with nearby zones listed](</work/parkchicago/sketch-map-chosen-13ba4ce4-c997-4b17-8e1b-60cf6803a108.webp> "sketch")
 
   **Kept**
 
   A smaller map, with nearby zones listed underneath.
 
-- ![Sketch of a step-by-step form](</work/parkchicago/sketch-form-scrapped-2d8cbbcd-b713-455e-bd3d-2e33af9b3254.webp> "phone")
+- ![Sketch of a step-by-step form](</work/parkchicago/sketch-form-scrapped-2d8cbbcd-b713-455e-bd3d-2e33af9b3254.webp> "sketch")
 
   **Scrapped**
 
   A step-by-step form. The old flow all over again.
 
-- ![Sketch of one screen with zone, time, car and payment](</work/parkchicago/sketch-onescreen-chosen-ff7218c3-5856-4656-9ddc-51ecfa056aba.webp> "phone")
+- ![Sketch of one screen with zone, time, car and payment](</work/parkchicago/sketch-onescreen-chosen-ff7218c3-5856-4656-9ddc-51ecfa056aba.webp> "sketch")
 
   **Kept**
 
@@ -153,7 +153,7 @@ Nobody keeps a parking app open. So the countdown lives on the lock screen and a
 
 ![Lock screen countdown with a 15 minute reminder](</work/parkchicago/04-lock-screen-15-min-5d54fe92-fc43-413c-80c0-9520678675ca.webp> "phone") ![Active session with 15 minutes left](</work/parkchicago/07-active-session-15-min-left-f4dfdc7b-53fd-4278-9fd3-63725658b5fb.webp> "phone") ![Adding more time to a parking session](</work/parkchicago/05-extending-parking-40578edb-374b-4ed7-9101-4b3b5741bb87.webp> "phone")
 
-![The live lock screen countdown prototype](</work/parkchicago/peYmOQf14n0j0Sy8.gif> "phone")
+![The live lock screen countdown prototype](</work/parkchicago/peYmOQf14n0j0Sy8.gif> "mockup")
 
 **Prototyping the countdown with AI.** A still frame can’t show a timer running out, so I rebuilt the lock screen in Figma Make, in about 5 versions. AI got me to something clickable in minutes. Checking every state was still my job. [Try the live countdown →](https://www.figma.com/make/fAQ83s0XzqPNQR8URbZbHd/Interactive-Parking-Session-Screen?p=f)
 
