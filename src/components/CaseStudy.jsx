@@ -59,7 +59,7 @@ export default function CaseStudy() {
   return (
     <div className="wrap">
       <Nav />
-      <main style={{ display: 'grid', gap: 48 }}>
+      <main style={{ display: 'grid', gap: 'clamp(64px, 8vw, 112px)' }}>
         <div className={`cs-top ${project.hero ? 'has-hero' : ''}`}>
         {/* Top: what it is, the point, where to go, then the quiet project facts. The results get their own band below. */}
         <header className="cs-head">
