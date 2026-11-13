@@ -90,7 +90,17 @@ export default function CaseStudy() {
           <div className="cs-main">
             {sections.map((s) => (
               <section className={`cs-sec${s.id === 'overview' ? ' overview' : ''}`} id={s.id} key={s.id} aria-label={s.label}>
-                <div className="cs-num eyebrow"><i>{s.n}</i>{s.label}</div>
+                {/* Every section opens with a headline. If the Markdown has none, the section name becomes it
+                    and the small label above shows only the number, so the name isn't said twice. */}
+                {(() => {
+                  const promote = !s.body.startsWith('### ') && s.id !== 'overview'
+                  return (
+                    <>
+                      <div className="cs-num eyebrow"><i>{s.n}</i>{promote ? null : s.label}</div>
+                      {promote && <h3>{s.label}</h3>}
+                    </>
+                  )
+                })()}
                 <ReactMarkdown components={components} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
               </section>
             ))}

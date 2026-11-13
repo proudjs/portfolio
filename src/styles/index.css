@@ -168,8 +168,8 @@ img { max-width: 100%; display: block; }
 .cs-toc a:hover { color: var(--ink); }
 .cs-toc a.on { color: var(--red); font-weight: 500; }
 .cs-toc a.on::before { content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--gold); }
-.cs-main { display: grid; gap: 112px; min-width: 0; }
-.cs-sec { display: grid; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
+.cs-main { display: grid; gap: 128px; min-width: 0; }
+.cs-sec { display: grid; gap: 16px; padding-top: 32px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
 .cs-num { display: flex; gap: 10px; align-items: baseline; }
 .cs-num i { font: 400 20px var(--display); font-style: normal; letter-spacing: 0; color: var(--gold); }
 .cs-sec h3 { font: 400 clamp(24px, 3vw, 30px)/1.2 var(--display); margin: 0; color: var(--red); text-wrap: balance; }
@@ -177,11 +177,13 @@ img { max-width: 100%; display: block; }
 .cs-sec p { margin: 0; font-size: 17px; line-height: 1.75; max-width: 64ch; }
 
 /* Rhythm: small gaps between paragraphs, big gaps before new topics, images and notes */
-.cs-sec > .cs-num + h3 { margin-top: 4px; margin-bottom: 6px; }
-.cs-sec > :not(.cs-num) + h3 { margin-top: 56px; margin-bottom: 4px; }
+/* Hierarchy: 1 section headline (big, red), 2 sub-headline (smaller), 3 bold lead-in, 4 body, 5 caption */
+.cs-sec > .cs-num + h3 { font-size: clamp(32px, 3.6vw, 46px); line-height: 1.12; max-width: 22ch; margin-top: 6px; margin-bottom: 10px; }
+.cs-sec > :not(.cs-num) + h3 { font-size: clamp(22px, 2.2vw, 27px); line-height: 1.25; max-width: 34ch; margin-top: 64px; margin-bottom: 4px; }
 .cs-sec > :not(.cs-num) + h4 { margin-top: 32px; }
-.cs-sec > p:has(> strong:first-child) { margin-top: 10px; }
-.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > .iphone, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 20px 12px; }
+.cs-sec > p:has(> strong:first-child) { margin-top: 12px; }
+.cs-sec > p > strong:first-child { color: var(--ink); font-weight: 600; }
+.cs-sec > .gallery, .cs-sec > .cs-img, .cs-sec > .iphone, .cs-sec > ul.tiles, .cs-sec > .cs-stats, .cs-sec > blockquote, .cs-sec > figure, .cs-sec > .claims { margin-block: 36px 12px; }
 .cs-sec > blockquote + blockquote { margin-top: 0; }
 .cs-sec > .gallery + p.caption, .cs-sec > .cs-img + p.caption, .cs-sec > figure + p.caption { margin-top: -20px; margin-bottom: 12px; }
 
@@ -217,7 +219,7 @@ img { max-width: 100%; display: block; }
 .gallery[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .gallery[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .gallery[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.cs-sec p.caption { font-size: 13px; color: var(--muted); max-width: 64ch; margin-top: -4px; }
+.cs-sec p.caption { font-size: 14px; color: var(--muted); max-width: 64ch; margin-top: -4px; }
 .cs-sec a { color: var(--red); text-underline-offset: 3px; }
 .cs-sec ul.tiles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px 20px; max-width: none; }
 .cs-sec ul.tiles li { display: grid; gap: 6px; align-content: start; }
