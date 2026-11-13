@@ -65,6 +65,12 @@ img { max-width: 100%; display: block; }
 .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
 .nav ul a { color: var(--muted); text-decoration: none; }
 .nav ul a:hover { color: var(--ink); }
+.nav ul a.nav__connect { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); transition: background .2s, color .2s; }
+.nav ul a.nav__connect:hover, .nav ul a.nav__connect:focus-visible { background: var(--ink); color: var(--paper); }
+.nav ul { align-items: center; }
+.nav__toast { position: absolute; right: 0; top: calc(100% + 6px); padding: 6px 12px; border-radius: 8px; background: var(--ink); color: var(--paper); font-size: 13px; white-space: nowrap; pointer-events: none; }
+.nav__toast:empty { display: none; }
+.nav__connect-wrap { position: relative; }
 
 /* Eyebrow labels */
 .eyebrow, .tag { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
@@ -291,7 +297,8 @@ img { max-width: 100%; display: block; }
 .iphone__body::before, .iphone__body::after { content: ""; position: absolute; width: 1.4cqw; border-radius: 1cqw; background: #c8c1bf; }
 .iphone__body::before { right: -2.6cqw; top: 26%; height: 15%; }
 .iphone__body::after { left: -2.6cqw; top: 20%; height: 18%; }
-.iphone__screen { position: relative; aspect-ratio: 393 / 852; overflow: hidden; border-radius: 12.6cqw; background: #fff; }
+/* Fixed height (not aspect-ratio) and a mask so Safari clips the rounded screen and never grows it */
+.iphone__screen { position: relative; width: 100%; height: calc(93.2cqw * 852 / 393); overflow: hidden; border-radius: 12.6cqw; background: #fff; isolation: isolate; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0); }
 .iphone__scroll { position: absolute; inset: 0; overflow: hidden; }
 .iphone__scroll img { display: block; width: 100%; height: auto; max-width: none; }
 /* Still strips cut from the same image: status bar, header and tab bar stay in place */
