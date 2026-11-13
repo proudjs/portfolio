@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { site } from '../data/site.js'
+import flower from '../assets/flowers/hero-flower.json'
 
 // Contact section at the bottom of every page. The header's Contact link scrolls here.
 export default function Footer() {
@@ -36,7 +37,7 @@ export default function Footer() {
       </div>
       <div className="contact__bottom">
         <span>
-          <svg className="contact__bud" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20 C7 15 7 9 12 4 C17 9 17 15 12 20 Z" /></svg>
+          <svg className="contact__flower" viewBox={flower.viewBox} aria-hidden="true"><g transform="translate(1176,0) scale(-1,1)"><path d={flower.ink} /></g></svg>
           Product of Thailand. Assembled around the world.
         </span>
         <span>Built with Claude · © 2026 Jutamat (Proud) Samnakbankok</span>
