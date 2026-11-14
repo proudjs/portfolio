@@ -425,3 +425,9 @@ img { max-width: 100%; display: block; }
 .theme-switch { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0; cursor: pointer; transition: color .2s, border-color .2s; }
 .theme-switch:hover, .theme-switch:focus-visible { color: var(--red); border-color: var(--red); }
 .theme-switch svg { width: 17px; height: 17px; }
+.nav ul a.nav__connect { white-space: nowrap; }
+@media (max-width: 440px) {
+  .nav ul { gap: 13px; }
+  .nav ul a.nav__connect { padding: 7px 12px; }
+  .theme-switch { width: 30px; height: 30px; }
+}
