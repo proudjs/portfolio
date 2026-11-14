@@ -48,6 +48,7 @@ function plainText(node) {
 export function Figure({ src, alt, title }) {
   // title is the kind, optionally followed by numbers for phones: "phone 114 86"
   // = keep the top 114 and bottom 86 points still while the screen scrolls (in a 402-wide frame).
+  // For wide pictures one number is a width in % of the column on computers: "wide 60".
   const [first, ...nums] = (title || '').split(/\s+/)
   const kind = ['phone', 'sketch', 'square', 'mockup'].includes(first) ? first : 'wide'
   if (src?.startsWith('slot:')) {
@@ -62,7 +63,9 @@ export function Figure({ src, alt, title }) {
   const [w, h] = SIZES[decodeURI(src)] || []
   // Wide pictures are 2x exports of Figma frames. Show them at 75% of their design size so the
   // text inside reads a little smaller than body text, instead of stretching to the full column.
-  const style = kind === 'wide' && w ? { maxWidth: Math.round((w / 2) * 0.75) } : undefined
+  // "wide 60" sets the picture to 60% of the column on computers instead (full width on phones).
+  const pct = kind === 'wide' ? Number(nums[0]) || 0 : 0
+  const style = pct ? { '--w': `${pct}%` } : kind === 'wide' && w ? { maxWidth: Math.round((w / 2) * 0.75) } : undefined
   return <img src={src} alt={alt || ''} width={w} height={h} style={style} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
 }
 

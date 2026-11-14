@@ -224,6 +224,7 @@ img { max-width: 100%; display: block; }
 .cs-hero .cs-img.wide { width: 100%; }
 .cs-img { display: block; height: auto; }
 .cs-img.wide { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+@media (min-width: 900px) { .cs-img.wide[style*='--w'] { width: var(--w); } }
 .cs-img.mockup { width: 100%; max-width: 340px; justify-self: center; margin: 0 auto; }
 .cs-img.sketch { width: 100%; max-width: 300px; justify-self: center; margin: 0 auto; border-radius: 12px; border: 1px solid var(--line); }
 .gallery { display: grid; gap: 20px; align-items: start; }

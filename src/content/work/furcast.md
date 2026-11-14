@@ -111,7 +111,7 @@ The most-requested features became the MVP. We cut community discussion: only 29
 
 ![Lo-fi wireframes of Home, Log history, Log confirmation, New appointment and Medical Records](</work/furcast/wFmRYsXTgkJlAO8m.webp> "wide")
 
-![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](</work/furcast/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af.webp> "wide")
+![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](</work/furcast/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af.webp> "wide 60")
 
 *In hi-fi, each Daily Log question got its own card with bigger buttons.*
 
@@ -141,7 +141,7 @@ Later, on my own, I tried brown. Chestnut sits too close to Crimson, the error r
 
 ![Furcast in the brown exploration](</work/furcast/furcast-brown-nav-7c5304ba-e7cd-4cb7-b6a6-c03887100db9.webp> "phone")
 
-![Vet Visit Prep in Chestnut and in brown, side by side](</work/furcast/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596.webp> "wide")
+![Vet Visit Prep in Chestnut and in brown, side by side](</work/furcast/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596.webp> "wide 60")
 
 ## Testing and what I changed
 
