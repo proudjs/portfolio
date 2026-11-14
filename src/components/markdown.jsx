@@ -122,6 +122,27 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
     panRef.current = requestAnimationFrame(step)
   }
   useEffect(() => () => cancelAnimationFrame(panRef.current), [])
+  // The page can scroll away under a resting pointer without a leave event (Safari, and Chrome
+  // until the mouse moves). Track the last pointer spot and glide back once it is off the phone.
+  const outRef = useRef(null)
+  useEffect(() => () => outRef.current?.(), [])
+  const watchLeave = () => {
+    outRef.current?.()
+    let px = -1, py = -1
+    const move = (e) => { px = e.clientX; py = e.clientY }
+    const check = () => {
+      const r = scrollRef.current?.getBoundingClientRect()
+      if (!r || px < r.left || px > r.right || py < r.top || py > r.bottom) { stop(); pan(false) }
+    }
+    const stop = () => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('scroll', check)
+      outRef.current = null
+    }
+    window.addEventListener('pointermove', move, { passive: true })
+    window.addEventListener('scroll', check, { passive: true })
+    outRef.current = stop
+    return move
+  }
   const mouseOnly = (fn) => (e) => { if (e.pointerType === 'mouse') fn() }
   const onLoad = (e) => {
     const { naturalWidth: w, naturalHeight: h } = e.currentTarget
@@ -143,8 +164,8 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
             className="iphone__scroll"
             ref={scrollRef}
             onScroll={scroll ? placeBar : undefined}
-            onPointerEnter={scroll ? mouseOnly(() => pan(true)) : undefined}
-            onPointerLeave={scroll ? mouseOnly(() => pan(false)) : undefined}
+            onPointerEnter={scroll ? (e) => { if (e.pointerType === 'mouse') { watchLeave()(e); pan(true) } } : undefined}
+            onPointerLeave={scroll ? mouseOnly(() => { outRef.current?.(); pan(false) }) : undefined}
             onFocus={scroll ? () => pan(true) : undefined}
             onBlur={scroll ? () => pan(false) : undefined}
             {...(scroll ? { tabIndex: 0, role: 'region', 'aria-label': `${alt || 'Screen'}. Shows the full screen when you point at it or focus it.` } : {})}
