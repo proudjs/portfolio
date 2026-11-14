@@ -22,8 +22,8 @@ export default function Home() {
           <section className="hero" aria-labelledby="headline">
             <div>
               <Greeting reduce={reduce} />
-              <h1 id="headline">UX/UI + Visual Designer who makes complex things easy to follow.</h1>
-              <p>Communication Design (BFA) and UX (UT Austin).<br />Based in Milwaukee, WI. Open to Chicago and remote.</p>
+              <h1 id="headline">I design digital products that make everyday tasks harder to get wrong.</h1>
+              <p>UX/UI + Visual Designer.<br />Communication Design (BFA) and UX (UT Austin).<br />Based in Milwaukee, WI. Open to Chicago and remote.</p>
             </div>
             <HeroFlower reduce={reduce} />
           </section>

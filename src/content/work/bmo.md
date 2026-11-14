@@ -51,7 +51,7 @@ The app has 4.8 out of 5 from 137,000 App Store ratings. A high average tells yo
 
 So I set a narrow brief: make transfers and bill pay answer two questions at every step. **Did it work? When?**
 
-![Board of the twelve different status phrases BMO used across two transfers, rebuilt with invented data.](</work/bmo/03-before-status-words-6ebecbf1-10fe-48f4-8103-062caf134c11.webp> "wide")
+![Board of the twelve different status phrases BMO used across two transfers, rebuilt with invented data.](</work/bmo/03-before-status-words-6ebecbf1-10fe-48f4-8103-062caf134c11-clear.webp> "wide")
 
 *Two real transfers, twelve ways to say what happened. Rebuilt in Figma with invented data. Not a screenshot.*
 
@@ -71,7 +71,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 **What I didn't do:** interviews or a usability study on the live app. This is one careful audit of one account, not a sample of customers.
 
-![Audit log excerpt, five of 98 findings: L40 activity rows do not open, L42 the record is five taps away, L43 ten status phrases for one transfer, L72 three unexplained dates, L73 balance ignores a scheduled transfer. All rated high severity.](</work/bmo/3WxSYwq6rdgF8ezt.webp> "wide 60")
+![Audit log excerpt, five of 98 findings: L40 activity rows do not open, L42 the record is five taps away, L43 ten status phrases for one transfer, L72 three unexplained dates, L73 balance ignores a scheduled transfer. All rated high severity.](</work/bmo/3WxSYwq6rdgF8ezt-clear.webp> "wide 60")
 
 ## Insights
 
@@ -85,7 +85,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 **The two money flows disagree.** Bill pay commits on one tap and never shows a fee or the day the money leaves (L49, L51, L56).
 
-![One BMO transfer shown with three unlabeled dates: a send date, a Scheduled For chip and a deliver-by date, rebuilt with invented data.](</work/bmo/1ahCLVdRiZYwptxu.webp> "wide 60")
+![One BMO transfer shown with three unlabeled dates: a send date, a Scheduled For chip and a deliver-by date, rebuilt with invented data.](</work/bmo/1ahCLVdRiZYwptxu-clear.webp> "wide 60")
 
 *Three dates for one transfer, none labeled (L72). Rebuilt in Figma with invented data. Not a screenshot.*
 
@@ -103,13 +103,13 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 4. **Form, review, confirmation, record.** The same four steps for a transfer and a bill.
 5. **Blue has three jobs.** Act, Go and You are here. Nothing else.
 
-![Diagram: Home, the account activity row and the Pay & transfer Scheduled tab all open the same transfer record.](</work/bmo/qgrM0cusKP16Yvv9.webp> "wide 60")
+![Diagram: Home, the account activity row and the Pay & transfer Scheduled tab all open the same transfer record.](</work/bmo/qgrM0cusKP16Yvv9-clear.webp> "wide 60")
 
 *Three ways in, one record.*
 
 ## Four key decisions
 
-![Paper sketches of the BMO redesign: Home, account detail, Recent Activity and Pay & transfer on top, and the transaction record in five states below: Scheduled, Processing, Completed, Canceled, Failed.](</work/bmo/4FKRI30BL3oPHIAm.webp> "wide")
+![Paper sketches of the BMO redesign: Home, account detail, Recent Activity and Pay & transfer on top, and the transaction record in five states below: Scheduled, Processing, Completed, Canceled, Failed.](</work/bmo/4FKRI30BL3oPHIAm-clear.webp> "wide")
 
 *Before Figma, I sketched both flows on paper, including all five states a transfer record can be in.*
 
@@ -131,7 +131,7 @@ BMO's Home shows balances and a promo. Nothing about the $350 leaving tomorrow. 
 
 Every row opens the same record sheet. Instead of three histories, Pay & transfer has Scheduled, History and Search.
 
-![Diagram: before, five taps through a menu to reach a transfer record. After, one tap from the Coming up row.](</work/bmo/u8Z7MDaUgLOGUXk0.webp> "wide")
+![Diagram: before, five taps through a menu to reach a transfer record. After, one tap from the Coming up row.](</work/bmo/u8Z7MDaUgLOGUXk0-clear.webp> "wide")
 
 *Five taps through a menu became one.*
 
@@ -219,7 +219,7 @@ Some were BMO customers. More than half were 40 or older.
 
 17 color styles, 6 effect styles and 14 text styles. Every screen is built from shared components, which is how the rules survived a week of changes. I also fixed contrast: the blue and secondary gray were darkened and the close and copy buttons got 44-point tap targets.
 
-![The design system: type scale, the blue with three jobs, five status chips, four button types, rows, fields, header and nav.](</work/bmo/3GovW3M039ptUtkR.webp> "wide")
+![The design system: type scale, the blue with three jobs, five status chips, four button types, rows, fields, header and nav.](</work/bmo/3GovW3M039ptUtkR-clear.webp> "wide")
 
 ## Reflection
 
