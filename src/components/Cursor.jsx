@@ -30,6 +30,8 @@ export default function Cursor() {
     root.classList.add('has-dot-cursor')
     let x = -100, y = -100, raf = 0
     let pic = null, picTimer = 0, zooming = false
+    const els = [...el.parentNode.querySelectorAll('.dot-cursor')]
+    const set = (c, on) => els.forEach((d) => d.classList.toggle(c, on))
     // The loupe glides after the pointer and grows out of the dot. Both are driven here, frame by
     // frame, so every browser (Safari included) plays the same animation.
     let lx = -100, ly = -100, lt = 0, lraf = 0
