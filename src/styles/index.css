@@ -20,6 +20,7 @@
   --muted: #74514C;
   --line: #EBDAD6;
   --gold: #B08A2E;    /* Khon gold: small accents only, never body text */
+  --cursor-add: #9A1813; /* cursor only: paper + red - white, per channel. Makes the cursor swap blush and red */
   --accent: var(--gold);
   --display: 'Gambetta', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
   --body: 'Geist', 'Noto Sans Thai', 'Noto Sans Lao', system-ui, -apple-system, sans-serif;
@@ -387,7 +388,16 @@ img { max-width: 100%; display: block; }
   }
   .dot-cursor.is-hot span { width: 36px; height: 36px; margin: -18px 0 0 -18px; background: transparent; }
   .dot-cursor.is-down span { transform: scale(.8); }
-  .dot-cursor.is-over-red span { background-color: var(--paper); border-color: var(--paper); }
-  .dot-cursor.is-over-red.is-hot span { background-color: transparent; }
+  .dot-cursor.flip { mix-blend-mode: difference; }
+  .dot-cursor.flip span { background-color: #fff; border-color: #fff; }
+  .dot-cursor.add { mix-blend-mode: plus-lighter; }
+  .dot-cursor.add span { background-color: var(--cursor-add); border-color: var(--cursor-add); }
+  .dot-cursor.is-hot span { background-color: transparent !important; }
 }
 @media (prefers-reduced-motion: reduce) { .dot-cursor span { transition: none; } }
+@media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+  /* The swap math only works on the light palette. In dark mode the cursor is a plain red dot. */
+  .dot-cursor.flip { mix-blend-mode: normal; }
+  .dot-cursor.flip span { background-color: var(--red); border-color: var(--red); }
+  .dot-cursor.add { display: none; }
+}

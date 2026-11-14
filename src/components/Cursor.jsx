@@ -4,7 +4,9 @@ import { useEffect, useRef } from 'react'
   Red dot cursor. Only on computers with a mouse or trackpad (phones keep their normal touch).
   The dot follows the pointer exactly. Over links and buttons it grows into a thin ring.
   It hides when the pointer leaves the window. The native cursor comes back if this ever fails to load.
-  Over anything filled with Thai red (buttons, the logo) it turns blush so it never disappears.
+  It swaps colors with what is under it: the part over blush shows Thai red, the part over Thai red
+  shows blush. Two stacked layers do this: the first flips the colors (difference with white), the
+  second adds --cursor-add back, so blush becomes red and red becomes blush, pixel by pixel.
 */
 const HOT = 'a, button, [role="button"], label, summary, select, .iphone.is-scroll .iphone__scroll'
 
@@ -16,33 +18,19 @@ export default function Cursor() {
     const el = ref.current
     const root = document.documentElement
     root.classList.add('has-dot-cursor')
-    let x = -100, y = -100, raf = 0, target = null
-    const probe = document.createElement('i')
-    probe.style.color = 'var(--red)'
-    document.body.appendChild(probe)
-    const red = getComputedStyle(probe).color
-    probe.remove()
-    const onRed = (t) => {
-      for (let n = t, i = 0; n && n !== document.body && i < 4; n = n.parentElement, i++) {
-        if (n.matches?.('.name__logo')) return true
-        if (getComputedStyle(n).backgroundColor === red) return true
-      }
-      return false
-    }
-    const draw = () => {
-      raf = 0
-      el.style.transform = `translate3d(${x}px, ${y}px, 0)`
-      el.classList.toggle('is-over-red', onRed(target))
-    }
+    let x = -100, y = -100, raf = 0
+    const els = [...el.parentNode.querySelectorAll('.dot-cursor')]
+    const draw = () => { raf = 0; els.forEach((d) => { d.style.transform = `translate3d(${x}px, ${y}px, 0)` }) }
+    const set = (c, on) => els.forEach((d) => d.classList.toggle(c, on))
     const move = (e) => {
-      x = e.clientX; y = e.clientY; target = e.target
-      el.classList.add('is-on')
-      el.classList.toggle('is-hot', !!e.target.closest?.(HOT))
+      x = e.clientX; y = e.clientY
+      set('is-on', true)
+      set('is-hot', !!e.target.closest?.(HOT))
       if (!raf) raf = requestAnimationFrame(draw)
     }
-    const hide = () => el.classList.remove('is-on')
-    const down = () => el.classList.add('is-down')
-    const up = () => el.classList.remove('is-down')
+    const hide = () => set('is-on', false)
+    const down = () => set('is-down', true)
+    const up = () => set('is-down', false)
     window.addEventListener('pointermove', move, { passive: true })
     window.addEventListener('pointerdown', down)
     window.addEventListener('pointerup', up)
@@ -58,5 +46,10 @@ export default function Cursor() {
       cancelAnimationFrame(raf)
     }
   }, [])
-  return <div ref={ref} className="dot-cursor" aria-hidden="true"><span /></div>
+  return (
+    <>
+      <div ref={ref} className="dot-cursor flip" aria-hidden="true"><span /></div>
+      <div className="dot-cursor add" aria-hidden="true"><span /></div>
+    </>
+  )
 }
