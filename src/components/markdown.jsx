@@ -13,6 +13,7 @@
   - "sketch" is a hand sketch of a phone screen: phone-sized, no iPhone frame.
   - Every "phone" image sits in an iPhone frame. A screen taller than the phone scrolls inside it.
 */
+import SIZES from 'virtual:image-sizes'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
 export function isImg(node) {
@@ -58,7 +59,8 @@ export function Figure({ src, alt, title }) {
     )
   }
   if (kind === 'phone') return <Phone src={src} alt={alt} fixedTop={Number(nums[0]) || 0} fixedBottom={Number(nums[1]) || 0} />
-  return <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
+  const [w, h] = SIZES[decodeURI(src)] || []
+  return <img src={src} alt={alt || ''} width={w} height={h} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
 }
 
 // iPhone frame drawn in CSS. Screens taller than the phone (full-page captures) scroll inside it.
