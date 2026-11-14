@@ -8,8 +8,7 @@ title: ParkChicago
 headline: ParkChicago, redesigned
 tag: Unsolicited redesign · iOS · Civic Tech
 card: All 5 test drivers finished a parking session. 4 of 5 found the new countdown on their own.
-summary: "An unsolicited redesign of the app Chicago drivers use to pay for street parking. Built around one problem: people paid and still got tickets."
-note: Unofficial concept. Not affiliated with the City of Chicago or ParkChicago.
+summary: "An unsolicited redesign of the app Chicago drivers use to pay for street parking. Built around one problem: people paid and still got tickets. I'm not affiliated with the City of Chicago or ParkChicago."
 role: Solo UX/UI Designer
 scope: Research · Interaction Design · Visual Design · Prototyping · Usability Testing
 timeline: 7 weeks (about 300 hours) · Unsolicited redesign
