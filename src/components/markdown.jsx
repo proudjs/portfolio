@@ -60,7 +60,10 @@ export function Figure({ src, alt, title }) {
   }
   if (kind === 'phone') return <Phone src={src} alt={alt} fixedTop={Number(nums[0]) || 0} fixedBottom={Number(nums[1]) || 0} />
   const [w, h] = SIZES[decodeURI(src)] || []
-  return <img src={src} alt={alt || ''} width={w} height={h} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
+  // Wide pictures are 2x exports of Figma frames. Show them at 75% of their design size so the
+  // text inside reads a little smaller than body text, instead of stretching to the full column.
+  const style = kind === 'wide' && w ? { maxWidth: Math.round((w / 2) * 0.75) } : undefined
+  return <img src={src} alt={alt || ''} width={w} height={h} style={style} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
 }
 
 // iPhone frame drawn in CSS. Screens taller than the phone (full-page captures) scroll inside it.
