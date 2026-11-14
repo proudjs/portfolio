@@ -269,7 +269,9 @@ export function makeComponents(page = {}) {
     ul: ({ node, children }) => {
       const tiles = node.children.some((li) => li.type === 'element' && hasImg(li))
       const stage = tiles && allScreens(node)
-      return <ul className={tiles ? `tiles${stage ? ' stage' : ''}` : undefined}>{children}</ul>
+      // --n = how many tiles, so a row of screens stays one even row (4 never wraps into 3 + 1)
+      const n = node.children.filter((li) => li.type === 'element' && li.tagName === 'li').length
+      return <ul className={tiles ? `tiles${stage ? ' stage' : ''}` : undefined} style={stage ? { '--n': n } : undefined}>{children}</ul>
     },
     p: ({ node, children }) => {
       const kids = node.children.filter((c) => !(c.type === 'text' && !c.value.trim()))

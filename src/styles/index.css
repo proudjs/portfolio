@@ -447,3 +447,26 @@ img { max-width: 100%; display: block; }
   .loupe::after { content: ""; position: absolute; inset: -1.5px; border-radius: 50%; background: var(--red); opacity: var(--fill); }
   .dot-cursor.is-zoom { opacity: 0 !important; transition: none !important; }
 }
+
+/* Rows of screens with captions (e.g. ParkChicago "The redesign at a glance"):
+   one even row with real breathing room, captions left-aligned with their screen, quieter text. */
+.cs-sec ul.tiles.stage {
+  display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, var(--screen)));
+  gap: 56px clamp(28px, 3.4vw, 48px); justify-content: start;
+}
+.cs-sec ul.tiles.stage > li { width: auto; justify-items: start; text-align: left; gap: 0; }
+.cs-sec ul.tiles.stage > li .gallery { margin-bottom: 20px; }
+.cs-sec ul.tiles.stage li p { font-size: 14px; line-height: 1.5; color: var(--muted); margin: 0; }
+.cs-sec ul.tiles.stage li p strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
+@media (max-width: 900px) { .cs-sec ul.tiles.stage { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 20px; } }
+
+/* Stats inside a section match the results band at the top: more room above, thin lines between */
+.cs-sec > .cs-stats { margin-top: 56px; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; }
+.cs-sec > .cs-stats .stat { padding: 0 32px; border-left: 1px solid var(--line); }
+.cs-sec > .cs-stats .stat:first-child { padding-left: 0; border-left: 0; }
+.cs-sec > .cs-stats .stat span { line-height: 1.5; max-width: 30ch; }
+@media (max-width: 760px) {
+  .cs-sec > .cs-stats { grid-auto-flow: row; grid-template-columns: 1fr; gap: 20px; }
+  .cs-sec > .cs-stats .stat { padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .cs-sec > .cs-stats .stat:first-child { padding-top: 0; border-top: 0; }
+}
