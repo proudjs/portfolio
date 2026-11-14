@@ -383,9 +383,11 @@ img { max-width: 100%; display: block; }
   .dot-cursor span {
     position: absolute; left: 0; top: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
     background: var(--red); border: 1.5px solid var(--red); box-sizing: border-box;
-    transition: width .25s var(--ease-smooth), height .25s var(--ease-smooth), margin .25s var(--ease-smooth), background-color .25s, transform .15s;
+    transition: width .25s var(--ease-smooth), height .25s var(--ease-smooth), margin .25s var(--ease-smooth), background-color .25s, border-color .25s, transform .15s;
   }
   .dot-cursor.is-hot span { width: 36px; height: 36px; margin: -18px 0 0 -18px; background: transparent; }
   .dot-cursor.is-down span { transform: scale(.8); }
+  .dot-cursor.is-over-red span { background-color: var(--paper); border-color: var(--paper); }
+  .dot-cursor.is-over-red.is-hot span { background-color: transparent; }
 }
 @media (prefers-reduced-motion: reduce) { .dot-cursor span { transition: none; } }

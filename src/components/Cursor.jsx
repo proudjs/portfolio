@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
   Red dot cursor. Only on computers with a mouse or trackpad (phones keep their normal touch).
   The dot follows the pointer exactly. Over links and buttons it grows into a thin ring.
   It hides when the pointer leaves the window. The native cursor comes back if this ever fails to load.
+  Over anything filled with Thai red (buttons, the logo) it turns blush so it never disappears.
 */
 const HOT = 'a, button, [role="button"], label, summary, select, .iphone.is-scroll .iphone__scroll'
 
@@ -15,10 +16,26 @@ export default function Cursor() {
     const el = ref.current
     const root = document.documentElement
     root.classList.add('has-dot-cursor')
-    let x = -100, y = -100, raf = 0
-    const draw = () => { raf = 0; el.style.transform = `translate3d(${x}px, ${y}px, 0)` }
+    let x = -100, y = -100, raf = 0, target = null
+    const probe = document.createElement('i')
+    probe.style.color = 'var(--red)'
+    document.body.appendChild(probe)
+    const red = getComputedStyle(probe).color
+    probe.remove()
+    const onRed = (t) => {
+      for (let n = t, i = 0; n && n !== document.body && i < 4; n = n.parentElement, i++) {
+        if (n.matches?.('.name__logo')) return true
+        if (getComputedStyle(n).backgroundColor === red) return true
+      }
+      return false
+    }
+    const draw = () => {
+      raf = 0
+      el.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      el.classList.toggle('is-over-red', onRed(target))
+    }
     const move = (e) => {
-      x = e.clientX; y = e.clientY
+      x = e.clientX; y = e.clientY; target = e.target
       el.classList.add('is-on')
       el.classList.toggle('is-hot', !!e.target.closest?.(HOT))
       if (!raf) raf = requestAnimationFrame(draw)
