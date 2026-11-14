@@ -356,7 +356,10 @@ img { max-width: 100%; display: block; }
 @media (max-width: 760px) { .skills { grid-template-columns: 1fr; gap: 16px; } }
 
 /* With a mouse, phone screens never catch the wheel: they pan on hover instead (see Phone in markdown.jsx) */
-@media (hover: hover) and (pointer: fine) { .iphone.is-scroll .iphone__scroll { overflow-y: hidden; } }
+@media (hover: hover) and (pointer: fine) {
+  .iphone.is-scroll .iphone__scroll { overflow: hidden; overflow: clip; }
+  .iphone.is-scroll .iphone__scroll img { will-change: transform; }
+}
 
 /* Results band: the three numbers grouped in one row under the top, split by thin lines */
 .cs-results { border-top: 1px solid var(--line); padding: 40px 0 0; }
