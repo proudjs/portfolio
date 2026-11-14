@@ -30,39 +30,58 @@ export default function Cursor() {
     root.classList.add('has-dot-cursor')
     let x = -100, y = -100, raf = 0
     let pic = null, picTimer = 0, zooming = false
-    // The loupe glides after the pointer (eased, time-based so 60 Hz and 120 Hz feel the same)
+    // The loupe glides after the pointer and grows out of the dot. Both are driven here, frame by
+    // frame, so every browser (Safari included) plays the same animation.
     let lx = -100, ly = -100, lt = 0, lraf = 0
+    let g = 0 // 0 = a red dot, 1 = the full loupe
+    let rect = null
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const els = [...el.parentNode.querySelectorAll('.dot-cursor')]
-    const set = (c, on) => els.forEach((d) => d.classList.toggle(c, on))
+    const DOT = 10 / SIZE
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
     const paintLoupe = () => {
-      if (!zooming || !pic) return
-      const r = pic.getBoundingClientRect()
-      if (x < r.left || x > r.right || y < r.top || y > r.bottom) { stopZoom(); return }
-      // keep the loupe's center on the picture while it glides
+      const r = rect
+      if (!r) return
       const cx = Math.min(r.right, Math.max(r.left, lx)), cy = Math.min(r.bottom, Math.max(r.top, ly))
-      loupe.style.transform = `translate3d(${cx}px, ${cy}px, 0)`
+      const e = ease(g)
+      const sc = DOT + (1 - DOT) * e
+      loupe.style.transform = `translate3d(${cx}px, ${cy}px, 0) scale(${sc})`
+      loupe.style.opacity = g > 0.001 ? '1' : '0'
+      loupe.style.setProperty('--fill', String(1 - Math.min(1, e * 1.25)))
       loupe.style.backgroundSize = `${r.width * ZOOM}px ${r.height * ZOOM}px`
       loupe.style.backgroundPosition = `${-(cx - r.left) * ZOOM + SIZE / 2}px ${-(cy - r.top) * ZOOM + SIZE / 2}px`
     }
-    const glide = (t) => {
+    const frame = (t) => {
       lraf = 0
-      if (!zooming) return
       const dt = lt ? Math.min(64, t - lt) : 16.7
       lt = t
+      // follow the pointer while zooming; when shrinking, travel back to the pointer like the dot
       const k = still ? 1 : 1 - Math.pow(1 - 0.18, dt / 16.7)
       lx += (x - lx) * k
       ly += (y - ly) * k
+      if (zooming && pic) rect = pic.getBoundingClientRect()
+      const target = zooming ? 1 : 0
+      const step = still ? 1 : dt / (zooming ? 420 : 300)
+      g = target > g ? Math.min(1, g + step) : Math.max(0, g - step)
+      if (!zooming && rect) {
+        // while shrinking, let the loupe move freely to the pointer
+        rect = { left: -1e6, top: -1e6, right: 1e6, bottom: 1e6, width: rect.width, height: rect.height }
+      }
       paintLoupe()
-      if (Math.abs(x - lx) > 0.2 || Math.abs(y - ly) > 0.2) lraf = requestAnimationFrame(glide)
+      if (!zooming && g === 0) { set('is-zoom', false); lt = 0; rect = null; return }
+      const moving = Math.abs(x - lx) > 0.2 || Math.abs(y - ly) > 0.2
+      if (g !== target || moving) lraf = requestAnimationFrame(frame)
       else lt = 0
     }
-    const kick = () => { if (zooming && !lraf) lraf = requestAnimationFrame(glide) }
+    const kick = () => { if (!lraf && (zooming || g > 0)) lraf = requestAnimationFrame(frame) }
     const draw = () => {
       raf = 0
       const t = `translate3d(${x}px, ${y}px, 0)`
       els.forEach((d) => { d.style.transform = t })
+      if (zooming && pic) {
+        const r = pic.getBoundingClientRect()
+        if (x < r.left || x > r.right || y < r.top || y > r.bottom) stopZoom()
+      }
       kick()
     }
     const startZoom = (img) => {
@@ -70,24 +89,16 @@ export default function Cursor() {
       const bg = getComputedStyle(img).backgroundColor
       loupe.style.backgroundColor = bg && bg !== 'rgba(0, 0, 0, 0)' ? bg : 'var(--paper)'
       loupe.style.backgroundImage = `url("${img.currentSrc || img.src}")`
-      lx = x; ly = y; lt = 0
-      clearTimeout(backTimer)
-      loupe.classList.add('is-on')
+      if (g === 0) { lx = x; ly = y }
+      rect = img.getBoundingClientRect()
       set('is-zoom', true)
-      paintLoupe()
+      kick()
     }
-    let backTimer = 0
     function stopZoom() {
       clearTimeout(picTimer)
-      const was = zooming
       zooming = false
       pic = null
-      cancelAnimationFrame(lraf); lraf = 0; lt = 0
-      loupe.classList.remove('is-on')
-      // let the loupe shrink back into a dot before the real dot returns
-      clearTimeout(backTimer)
-      if (was && !still) backTimer = setTimeout(() => set('is-zoom', false), 280)
-      else set('is-zoom', false)
+      kick()
     }
     const track = (target) => {
       const img = target?.closest?.(ZOOMABLE) || null
@@ -131,7 +142,6 @@ export default function Cursor() {
       cancelAnimationFrame(raf)
       cancelAnimationFrame(lraf)
       clearTimeout(picTimer)
-      clearTimeout(backTimer)
     }
   }, [])
   return (
