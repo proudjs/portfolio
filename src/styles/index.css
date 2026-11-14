@@ -211,7 +211,15 @@ img { max-width: 100%; display: block; }
 .cs-sec ol li::before { content: counter(r); position: absolute; left: 0; top: -1px; font: 400 18px var(--display); color: var(--red); }
 .cs-sec ol li strong { color: var(--ink); font-weight: 600; }
 .cs-sec ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 68ch; }
-.cs-sec blockquote { margin: 0; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--surface)); border-radius: 0 10px 10px 0; padding: 16px 18px; display: grid; gap: 8px; }
+.cs-sec blockquote { margin: 0; display: grid; gap: 8px; }
+/* Notes: a thin line, a Gambetta title, plain text. Like the results band. */
+.cs-sec blockquote.note { border-top: 1px solid var(--line); padding-top: 20px; }
+.cs-sec > blockquote.note + blockquote.note { margin-top: 28px; }
+.cs-sec blockquote.note h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.3; color: var(--red); letter-spacing: 0; }
+/* Pull lines: quotes and the How might we question, large and in Thai red, with a small source line */
+.cs-sec blockquote.pull { gap: 12px; max-width: 30em; padding-block: 8px; }
+.cs-sec blockquote.pull h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.25; color: var(--red); letter-spacing: -0.005em; }
+.cs-sec blockquote.pull p { color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 0; }
 .claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .claims div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; }
 .cs-btn, .cs-sec a.cs-btn { justify-self: start; display: inline-block; font: 500 15px var(--body); color: #fff; background: var(--red); border-radius: 999px; padding: 10px 20px; text-decoration: none; }

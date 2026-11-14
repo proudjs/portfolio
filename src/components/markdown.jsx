@@ -198,12 +198,25 @@ function token(raw, name) {
   return raw.slice(open.length, -2).split('||').map((s) => s.trim())
 }
 
+function textOf(n) {
+  if (n.type === 'text') return n.value
+  return (n.children || []).map(textOf).join('')
+}
+
 export function makeComponents(page = {}) {
   return {
     img: Figure,
     a: ({ href, children }) => {
       const external = /^https?:/.test(href || '')
       return <a href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>{children}</a>
+    },
+    // Quotes and the "How might we" line become large pull lines. Other callouts become quiet notes
+    // under a thin line. No panels, no gold bar.
+    blockquote: ({ node, children }) => {
+      const head = node.children.find((c) => c.type === 'element' && c.tagName === 'h4')
+      const text = head ? textOf(head).trim() : ''
+      const pull = /^[“"]/.test(text) || /^how might we/i.test(text)
+      return <blockquote className={pull ? 'pull' : 'note'}>{children}</blockquote>
     },
     ul: ({ node, children }) => {
       const tiles = node.children.some((li) => li.type === 'element' && hasImg(li))
