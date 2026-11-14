@@ -23,7 +23,7 @@ export default function Home() {
             <div>
               <Greeting reduce={reduce} />
               <h1 id="headline">I design digital products that make everyday tasks harder to get wrong.</h1>
-              <p>UX/UI + Visual Designer. Communication Design (BFA) and UX (UT Austin).<br />Based in Milwaukee, WI. Open to Chicago and remote.</p>
+              <p>UX/UI + Visual Designer.<br />Communication Design (BFA) and UX (UT Austin).<br />Based in Milwaukee, WI. Open to Chicago and remote.</p>
             </div>
             <HeroFlower reduce={reduce} />
           </section>
