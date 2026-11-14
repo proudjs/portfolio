@@ -107,7 +107,7 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
       cv.width = W * dpr; cv.height = H * dpr
       cv.style.width = W + 'px'; cv.style.height = H + 'px'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      maxLive = Math.max(15, Math.min(50, Math.round(W / 28)))
+      maxLive = Math.max(17, Math.min(58, Math.round((W / 28) * 1.15))) // 15% more than the first version
     }
 
     function reach(f) {
@@ -123,7 +123,7 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
       const dt = lastT ? Math.min(3, (t - lastT) / 16.667) : 1
       lastT = t
       const ease = (r) => 1 - Math.pow(1 - r, dt)
-      if (live.length < maxLive && t - lastSpawn > 350) { live.push(newF(true)); lastSpawn = t }
+      if (live.length < maxLive && t - lastSpawn > 304) { live.push(newF(true)); lastSpawn = t }
       ctx.clearRect(0, 0, W, H)
 
       wvx += (mvx - wvx) * ease(0.09); wvy += (mvy - wvy) * ease(0.09)
