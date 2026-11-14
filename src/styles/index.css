@@ -440,9 +440,12 @@ img { max-width: 100%; display: block; }
     width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%;
     border: 1.5px solid var(--red); background-repeat: no-repeat;
     box-shadow: 0 10px 28px -10px rgba(42, 20, 18, .35);
-    opacity: 0; scale: .6; transition: opacity .2s, scale .25s var(--ease-smooth);
+    /* Starts as the red dot (10 px) and grows into the loupe. Leaving shrinks it back into the dot. */
+    opacity: 0; scale: .067; transition: scale .3s var(--ease-smooth), opacity 0s linear .3s;
   }
-  .loupe.is-on { opacity: 1; scale: 1; }
-  .dot-cursor.is-zoom { opacity: 0 !important; }
+  .loupe::after { content: ""; position: absolute; inset: -1.5px; border-radius: 50%; background: var(--red); opacity: 1; transition: opacity .22s ease; }
+  .loupe.is-on { opacity: 1; scale: 1; transition: scale .38s var(--ease-smooth), opacity 0s; }
+  .loupe.is-on::after { opacity: 0; transition: opacity .3s ease .06s; }
+  .dot-cursor.is-zoom { opacity: 0 !important; transition: none !important; }
 }
-@media (prefers-reduced-motion: reduce) { .loupe { transition: opacity .15s; scale: 1; } }
+@media (prefers-reduced-motion: reduce) { .loupe, .loupe.is-on { transition: opacity .15s; scale: 1; } .loupe::after { display: none; } }

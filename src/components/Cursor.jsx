@@ -71,17 +71,23 @@ export default function Cursor() {
       loupe.style.backgroundColor = bg && bg !== 'rgba(0, 0, 0, 0)' ? bg : 'var(--paper)'
       loupe.style.backgroundImage = `url("${img.currentSrc || img.src}")`
       lx = x; ly = y; lt = 0
+      clearTimeout(backTimer)
       loupe.classList.add('is-on')
       set('is-zoom', true)
       paintLoupe()
     }
+    let backTimer = 0
     function stopZoom() {
       clearTimeout(picTimer)
+      const was = zooming
       zooming = false
       pic = null
       cancelAnimationFrame(lraf); lraf = 0; lt = 0
       loupe.classList.remove('is-on')
-      set('is-zoom', false)
+      // let the loupe shrink back into a dot before the real dot returns
+      clearTimeout(backTimer)
+      if (was && !still) backTimer = setTimeout(() => set('is-zoom', false), 280)
+      else set('is-zoom', false)
     }
     const track = (target) => {
       const img = target?.closest?.(ZOOMABLE) || null
@@ -125,6 +131,7 @@ export default function Cursor() {
       cancelAnimationFrame(raf)
       cancelAnimationFrame(lraf)
       clearTimeout(picTimer)
+      clearTimeout(backTimer)
     }
   }, [])
   return (
