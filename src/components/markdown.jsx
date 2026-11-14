@@ -48,6 +48,7 @@ function plainText(node) {
 export function Figure({ src, alt, title }) {
   // title is the kind, optionally followed by numbers for phones: "phone 114 86"
   // = keep the top 114 and bottom 86 points still while the screen scrolls (in a 402-wide frame).
+  // For wide pictures one number is a width in % of the column on computers: "wide 60".
   const [first, ...nums] = (title || '').split(/\s+/)
   const kind = ['phone', 'sketch', 'square', 'mockup'].includes(first) ? first : 'wide'
   if (src?.startsWith('slot:')) {
@@ -60,7 +61,12 @@ export function Figure({ src, alt, title }) {
   }
   if (kind === 'phone') return <Phone src={src} alt={alt} fixedTop={Number(nums[0]) || 0} fixedBottom={Number(nums[1]) || 0} />
   const [w, h] = SIZES[decodeURI(src)] || []
-  return <img src={src} alt={alt || ''} width={w} height={h} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
+  // Wide pictures are 2x exports of Figma frames. Show them at 75% of their design size so the
+  // text inside reads a little smaller than body text, instead of stretching to the full column.
+  // "wide 60" sets the picture to 60% of the column on computers instead (full width on phones).
+  const pct = kind === 'wide' ? Number(nums[0]) || 0 : 0
+  const style = pct ? { '--w': `${pct}%` } : kind === 'wide' && w ? { maxWidth: Math.round((w / 2) * 0.75) } : undefined
+  return <img src={src} alt={alt || ''} width={w} height={h} style={style} loading="lazy" decoding="async" className={`cs-img ${kind}`} />
 }
 
 // iPhone frame drawn in CSS. Screens taller than the phone (full-page captures) scroll inside it.
@@ -196,6 +202,61 @@ function token(raw, name) {
   const open = `[[${name}:`
   if (!raw.startsWith(open) || !raw.endsWith(']]')) return null
   return raw.slice(open.length, -2).split('||').map((s) => s.trim())
+}
+
+function textOf(n) {
+  if (n.type === 'text') return n.value
+  return (n.children || []).map(textOf).join('')
+}
+
+// Rehype plugin for case studies.
+// - Quotes and the "How might we" line become pull lines (class "pull").
+// - Other callouts are highlights (class "note"). With two or more in a section they get gold numbers.
+// - A highlight and the screens right after it (plus their caption) are wrapped together in one box,
+//   so the note and its proof read as one unit.
+const blank = (n) => n.type === 'text' && !n.value.trim()
+const kidsOf = (n) => (n.children || []).filter((c) => !blank(c))
+const isImgEl = (n) => n.type === 'element' && n.tagName === 'img'
+const isMediaP = (n) => n.type === 'element' && n.tagName === 'p' && kidsOf(n).length > 0 && kidsOf(n).every(isImgEl)
+const isMediaList = (n) => n.type === 'element' && n.tagName === 'ul' && kidsOf(n).some((li) => kidsOf(li).some((c) => isImgEl(c) || (c.tagName === 'p' && kidsOf(c).some(isImgEl))))
+const isCaption = (n) => n.type === 'element' && n.tagName === 'p' && kidsOf(n).length === 1 && kidsOf(n)[0].tagName === 'em'
+export function groupNotes() {
+  return (tree) => {
+    const quotes = tree.children.filter((n) => n.type === 'element' && n.tagName === 'blockquote')
+    const notes = []
+    quotes.forEach((q) => {
+      const head = q.children.find((c) => c.type === 'element' && c.tagName === 'h4')
+      const text = head ? textOf(head).trim() : ''
+      const pull = /^[\u201c"]/.test(text) || /^how might we/i.test(text)
+      q.properties = { ...q.properties, className: [pull ? 'pull' : 'note'] }
+      if (!pull) notes.push([q, head])
+    })
+    if (notes.length > 1) {
+      notes.forEach(([, head], i) => {
+        if (head) head.children.unshift({ type: 'element', tagName: 'span', properties: { className: ['note-n'] }, children: [{ type: 'text', value: String(i + 1).padStart(2, '0') }] })
+      })
+    }
+    const out = []
+    const list = tree.children
+    for (let i = 0; i < list.length; i++) {
+      const n = list[i]
+      if (!(n.type === 'element' && n.tagName === 'blockquote' && n.properties.className[0] === 'note')) { out.push(n); continue }
+      const media = []
+      let j = i + 1
+      let sawMedia = false
+      while (j < list.length) {
+        const m = list[j]
+        if (blank(m)) { j++; continue }
+        if (isMediaP(m) || isMediaList(m)) { media.push(m); sawMedia = true; j++; continue }
+        if (sawMedia && isCaption(m)) { media.push(m); j++; break }
+        break
+      }
+      if (!sawMedia) { out.push(n); continue }
+      out.push({ type: 'element', tagName: 'div', properties: { className: ['note-group'] }, children: [n, ...media] })
+      i = j - 1
+    }
+    tree.children = out
+  }
 }
 
 export function makeComponents(page = {}) {

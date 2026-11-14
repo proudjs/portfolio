@@ -4,6 +4,7 @@ import Home from './components/Home.jsx'
 import CaseStudy from './components/CaseStudy.jsx'
 import NotFound from './components/NotFound.jsx'
 import About from './components/About.jsx'
+import Cursor from './components/Cursor.jsx'
 
 export default function App() {
   const { pathname, hash, key } = useLocation()
@@ -19,11 +20,14 @@ export default function App() {
   }, [pathname, hash, key])
 
   return (
+    <>
+    <Cursor />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/work/:slug" element={<CaseStudy />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   )
 }

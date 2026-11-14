@@ -20,6 +20,7 @@
   --muted: #74514C;
   --line: #EBDAD6;
   --gold: #B08A2E;    /* Khon gold: small accents only, never body text */
+  --cursor-add: #9A1813; /* cursor only: paper + red - white, per channel. Makes the cursor swap blush and red */
   --accent: var(--gold);
   --display: 'Gambetta', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
   --body: 'Geist', 'Noto Sans Thai', 'Noto Sans Lao', system-ui, -apple-system, sans-serif;
@@ -211,7 +212,24 @@ img { max-width: 100%; display: block; }
 .cs-sec ol li::before { content: counter(r); position: absolute; left: 0; top: -1px; font: 400 18px var(--display); color: var(--red); }
 .cs-sec ol li strong { color: var(--ink); font-weight: 600; }
 .cs-sec ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 68ch; }
-.cs-sec blockquote { margin: 0; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--surface)); border-radius: 0 10px 10px 0; padding: 16px 18px; display: grid; gap: 8px; }
+.cs-sec blockquote { margin: 0; display: grid; gap: 8px; }
+/* Highlights: a soft Thai red tint from the palette (no gold, no border), so they stand apart from body text */
+.cs-sec blockquote.note, .cs-sec .note-group { background: color-mix(in srgb, var(--red) 6%, var(--paper)); border-radius: 16px; padding: 24px 28px 26px; }
+.cs-sec blockquote.note { gap: 10px; }
+.cs-sec > blockquote.note, .cs-sec > .note-group { margin-block: 36px 12px; }
+.cs-sec > :is(blockquote.note, .note-group) + :is(blockquote.note, .note-group) { margin-top: 16px; }
+/* A highlight together with its screens: one box, note on top, proof below */
+.cs-sec .note-group { display: grid; gap: 24px; justify-items: start; }
+.cs-sec .note-group > blockquote.note { background: none; padding: 0; border-radius: 0; }
+.cs-sec .note-group > * { margin: 0; }
+.cs-sec .note-group > p.caption { margin-top: -12px; }
+/* Gold numbers when a section has more than one highlight (gold is allowed for section numbers) */
+.cs-sec blockquote.note .note-n { display: block; font: 500 12px/1 var(--body); letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; }
+.cs-sec blockquote.note h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.3; color: var(--red); letter-spacing: 0; }
+/* Pull lines: quotes and the How might we question, large and in Thai red, with a small source line */
+.cs-sec blockquote.pull { gap: 12px; max-width: 30em; padding-block: 8px; }
+.cs-sec blockquote.pull h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.25; color: var(--red); letter-spacing: -0.005em; }
+.cs-sec blockquote.pull p { color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 0; }
 .claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .claims div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; }
 .cs-btn, .cs-sec a.cs-btn { justify-self: start; display: inline-block; font: 500 15px var(--body); color: #fff; background: var(--red); border-radius: 999px; padding: 10px 20px; text-decoration: none; }
@@ -224,6 +242,7 @@ img { max-width: 100%; display: block; }
 .cs-hero .cs-img.wide { width: 100%; }
 .cs-img { display: block; height: auto; }
 .cs-img.wide { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+@media (min-width: 900px) { .cs-img.wide[style*='--w'] { width: var(--w); } }
 .cs-img.mockup { width: 100%; max-width: 340px; justify-self: center; margin: 0 auto; }
 .cs-img.sketch { width: 100%; max-width: 300px; justify-self: center; margin: 0 auto; border-radius: 12px; border: 1px solid var(--line); }
 .gallery { display: grid; gap: 20px; align-items: start; }
@@ -372,4 +391,31 @@ img { max-width: 100%; display: block; }
   .cs-results .cs-stats { grid-template-columns: 1fr; gap: 20px; }
   .cs-results .stat { padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .cs-results .stat:first-child { padding-top: 0; border-top: 0; }
+}
+
+/* Red dot cursor (computers only, see Cursor.jsx). Over links and buttons it grows into a ring. */
+.dot-cursor { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  html.has-dot-cursor, html.has-dot-cursor * { cursor: none !important; }
+  .dot-cursor { display: block; position: fixed; left: 0; top: 0; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  .dot-cursor.is-on { opacity: 1; }
+  .dot-cursor span {
+    position: absolute; left: 0; top: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+    background: var(--red); border: 1.5px solid var(--red); box-sizing: border-box;
+    transition: width .25s var(--ease-smooth), height .25s var(--ease-smooth), margin .25s var(--ease-smooth), background-color .25s, border-color .25s, transform .15s;
+  }
+  .dot-cursor.is-hot span { width: 36px; height: 36px; margin: -18px 0 0 -18px; background: transparent; }
+  .dot-cursor.is-down span { transform: scale(.8); }
+  .dot-cursor.flip { mix-blend-mode: difference; }
+  .dot-cursor.flip span { background-color: #fff; border-color: #fff; }
+  .dot-cursor.add { mix-blend-mode: plus-lighter; }
+  .dot-cursor.add span { background-color: var(--cursor-add); border-color: var(--cursor-add); }
+  .dot-cursor.is-hot span { background-color: transparent !important; }
+}
+@media (prefers-reduced-motion: reduce) { .dot-cursor span { transition: none; } }
+@media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+  /* The swap math only works on the light palette. In dark mode the cursor is a plain red dot. */
+  .dot-cursor.flip { mix-blend-mode: normal; }
+  .dot-cursor.flip span { background-color: var(--red); border-color: var(--red); }
+  .dot-cursor.add { display: none; }
 }
