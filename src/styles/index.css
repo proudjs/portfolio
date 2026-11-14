@@ -29,11 +29,10 @@
   --page: 1440px;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
+/* Dark theme: follows the device until the visitor picks one with the sun/moon switch (see index.html and ThemeSwitch) */
+:root[data-theme="dark"] {
     --paper: #170D0C; --surface: #1F1211; --red: #E8776B; --ink: #F3E8E6;
     --muted: #C2A29D; --line: #3A2421; --gold: #D9B45E; color-scheme: dark;
-  }
 }
 
 * { box-sizing: border-box; }
@@ -234,7 +233,7 @@ img { max-width: 100%; display: block; }
 .claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .claims div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; }
 .cs-btn, .cs-sec a.cs-btn { justify-self: start; display: inline-block; font: 500 15px var(--body); color: #fff; background: var(--red); border-radius: 999px; padding: 10px 20px; text-decoration: none; }
-@media (prefers-color-scheme: dark) { .cs-btn, .cs-sec a.cs-btn { color: var(--paper); } }
+[data-theme="dark"] .cs-btn, [data-theme="dark"] .cs-sec a.cs-btn { color: var(--paper); }
 
 /* Real case study images */
 .cs-head .note { font-size: 14px; font-style: italic; }
@@ -244,7 +243,7 @@ img { max-width: 100%; display: block; }
 .cs-img { display: block; height: auto; }
 .cs-img.wide { width: 100%; } /* backgrounds are transparent, so no frame: the picture sits on the page */
 @media (min-width: 900px) { .cs-img.wide[style*='--w'] { width: var(--w); } }
-@media (prefers-color-scheme: dark) { .cs-img.wide { background: var(--img-paper); border-radius: 12px; } }
+[data-theme="dark"] .cs-img.wide { background: var(--img-paper); border-radius: 12px; }
 .cs-img.mockup { width: 100%; max-width: 340px; justify-self: center; margin: 0 auto; }
 .cs-img.sketch { width: 100%; max-width: 300px; justify-self: center; margin: 0 auto; border-radius: 12px; border: 1px solid var(--line); }
 .gallery { display: grid; gap: 20px; align-items: start; }
@@ -415,9 +414,20 @@ img { max-width: 100%; display: block; }
   .dot-cursor.is-hot span { background-color: transparent !important; }
 }
 @media (prefers-reduced-motion: reduce) { .dot-cursor span { transition: none; } }
-@media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
   /* The swap math only works on the light palette. In dark mode the cursor is a plain red dot. */
-  .dot-cursor.flip { mix-blend-mode: normal; }
-  .dot-cursor.flip span { background-color: var(--red); border-color: var(--red); }
-  .dot-cursor.add { display: none; }
+  [data-theme="dark"] .dot-cursor.flip { mix-blend-mode: normal; }
+  [data-theme="dark"] .dot-cursor.flip span { background-color: var(--red); border-color: var(--red); }
+  [data-theme="dark"] .dot-cursor.add { display: none; }
+}
+
+/* Light/dark switch in the header */
+.theme-switch { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0; cursor: pointer; transition: color .2s, border-color .2s; }
+.theme-switch:hover, .theme-switch:focus-visible { color: var(--red); border-color: var(--red); }
+.theme-switch svg { width: 17px; height: 17px; }
+.nav ul a.nav__connect { white-space: nowrap; }
+@media (max-width: 440px) {
+  .nav ul { gap: 13px; }
+  .nav ul a.nav__connect { padding: 7px 12px; }
+  .theme-switch { width: 30px; height: 30px; }
 }

@@ -1,3 +1,4 @@
+import ThemeSwitch from './ThemeSwitch.jsx'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { site } from '../data/site.js'
@@ -26,6 +27,7 @@ export default function Nav({ fullName = false }) {
         <li><Link to="/#work">Work</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><a href={site.resumeUrl} target="_blank" rel="noreferrer">Résumé</a></li>
+        <li><ThemeSwitch /></li>
         <li className="nav__connect-wrap">
           <a className="nav__connect" href={`mailto:${site.email}`} onClick={copyEmail}>Let’s connect <span aria-hidden="true">↗</span></a>
           <span className="nav__toast" role="status" aria-live="polite">{toast}</span>

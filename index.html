@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // Pick the theme before the page paints: the visitor's saved choice, otherwise the device setting.
+      (function () {
+        var saved = null
+        try { saved = localStorage.getItem('theme') } catch (e) {}
+        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.dataset.theme = saved === 'light' || saved === 'dark' ? saved : (dark ? 'dark' : 'light')
+      })()
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jutamat (Proud) Samnakbankok · UX/UI + Visual Designer</title>

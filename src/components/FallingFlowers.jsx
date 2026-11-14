@@ -193,7 +193,6 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
     let rt
     const ro = new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { stop(); boot() }, 300) })
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) play(); else stop() }, { threshold: 0.05 })
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const onScheme = () => { buildSprites(); if (reduce) stillLife() }
 
     // Start the flowers only after the page has loaded and gone idle, so the name and headline show first.
@@ -213,14 +212,14 @@ export default function FallingFlowers({ containerRef, paused, reduce }) {
 
     if (!reduce) { host.addEventListener('pointermove', onMove); host.addEventListener('pointerleave', onLeave) }
     document.addEventListener('visibilitychange', onVis)
-    mq.addEventListener('change', onScheme)
+    window.addEventListener('themechange', onScheme)
 
     return () => {
       disposed = true; stop(); ro.disconnect(); io.disconnect()
       window.removeEventListener('load', start)
       host.removeEventListener('pointermove', onMove); host.removeEventListener('pointerleave', onLeave)
       document.removeEventListener('visibilitychange', onVis)
-      mq.removeEventListener('change', onScheme)
+      window.removeEventListener('themechange', onScheme)
     }
   }, [containerRef, reduce])
 
