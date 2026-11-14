@@ -373,3 +373,19 @@ img { max-width: 100%; display: block; }
   .cs-results .stat { padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .cs-results .stat:first-child { padding-top: 0; border-top: 0; }
 }
+
+/* Red dot cursor (computers only, see Cursor.jsx). Over links and buttons it grows into a ring. */
+.dot-cursor { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  html.has-dot-cursor, html.has-dot-cursor * { cursor: none !important; }
+  .dot-cursor { display: block; position: fixed; left: 0; top: 0; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  .dot-cursor.is-on { opacity: 1; }
+  .dot-cursor span {
+    position: absolute; left: 0; top: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+    background: var(--red); border: 1.5px solid var(--red); box-sizing: border-box;
+    transition: width .25s var(--ease-smooth), height .25s var(--ease-smooth), margin .25s var(--ease-smooth), background-color .25s, transform .15s;
+  }
+  .dot-cursor.is-hot span { width: 36px; height: 36px; margin: -18px 0 0 -18px; background: transparent; }
+  .dot-cursor.is-down span { transform: scale(.8); }
+}
+@media (prefers-reduced-motion: reduce) { .dot-cursor span { transition: none; } }
