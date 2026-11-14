@@ -71,7 +71,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 **What I didn't do:** interviews or a usability study on the live app. This is one careful audit of one account, not a sample of customers.
 
-![Audit log excerpt, five of 98 findings: L40 activity rows do not open, L42 the record is five taps away, L43 ten status phrases for one transfer, L72 three unexplained dates, L73 balance ignores a scheduled transfer. All rated high severity.](</work/bmo/3WxSYwq6rdgF8ezt.webp> "wide")
+![Audit log excerpt, five of 98 findings: L40 activity rows do not open, L42 the record is five taps away, L43 ten status phrases for one transfer, L72 three unexplained dates, L73 balance ignores a scheduled transfer. All rated high severity.](</work/bmo/3WxSYwq6rdgF8ezt.webp> "wide 60")
 
 ## Insights
 
@@ -85,7 +85,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 
 **The two money flows disagree.** Bill pay commits on one tap and never shows a fee or the day the money leaves (L49, L51, L56).
 
-![One BMO transfer shown with three unlabeled dates: a send date, a Scheduled For chip and a deliver-by date, rebuilt with invented data.](</work/bmo/1ahCLVdRiZYwptxu.webp> "wide")
+![One BMO transfer shown with three unlabeled dates: a send date, a Scheduled For chip and a deliver-by date, rebuilt with invented data.](</work/bmo/1ahCLVdRiZYwptxu.webp> "wide 60")
 
 *Three dates for one transfer, none labeled (L72). Rebuilt in Figma with invented data. Not a screenshot.*
 
@@ -103,7 +103,7 @@ I also read the 31 most recent App Store reviews. Two said bill pay got harder t
 4. **Form, review, confirmation, record.** The same four steps for a transfer and a bill.
 5. **Blue has three jobs.** Act, Go and You are here. Nothing else.
 
-![Diagram: Home, the account activity row and the Pay & transfer Scheduled tab all open the same transfer record.](</work/bmo/qgrM0cusKP16Yvv9.webp> "wide")
+![Diagram: Home, the account activity row and the Pay & transfer Scheduled tab all open the same transfer record.](</work/bmo/qgrM0cusKP16Yvv9.webp> "wide 60")
 
 *Three ways in, one record.*
 
