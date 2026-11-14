@@ -69,6 +69,10 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
   const [tall, setTall] = useState(false)
   const scrollRef = useRef(null)
   const barRef = useRef(null)
+  const offRef = useRef(0)
+  // With a mouse the screen never becomes a scroll area (Safari could catch the page wheel on it).
+  // The picture slides with a transform instead. Touch screens keep normal finger scrolling.
+  const slides = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
   // Slim scroll bar between the still header and tab bar, sized to how much of the screen is visible
   const placeBar = () => {
     const sc = scrollRef.current, bar = barRef.current
@@ -76,11 +80,13 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
     const unit = sc.clientWidth / 402
     const top = fixedTop * unit + 6, bottom = fixedBottom * unit + 6
     const track = sc.clientHeight - top - bottom
-    const max = sc.scrollHeight - sc.clientHeight
+    const full = slides() ? (sc.firstElementChild?.offsetHeight || 0) : sc.scrollHeight
+    const max = full - sc.clientHeight
     if (track <= 0 || max <= 0) { bar.style.opacity = '0'; return }
-    const h = Math.max(24, track * (sc.clientHeight / sc.scrollHeight))
+    const h = Math.max(24, track * (sc.clientHeight / full))
+    const pos = slides() ? offRef.current : sc.scrollTop
     bar.style.height = `${h}px`
-    bar.style.top = `${top + (track - h) * (sc.scrollTop / max)}px`
+    bar.style.top = `${top + (track - h) * (pos / max)}px`
     bar.style.opacity = '1'
   }
   useEffect(() => {
@@ -97,13 +103,20 @@ export function Phone({ src, alt, still = false, className = '', fixedTop = 0, f
     const sc = scrollRef.current
     if (!sc) return
     cancelAnimationFrame(panRef.current)
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { sc.scrollTop = toEnd ? sc.scrollHeight : 0; return }
-    const from = sc.scrollTop, to = toEnd ? sc.scrollHeight - sc.clientHeight : 0
+    const img = sc.firstElementChild
+    const slide = slides()
+    const end = slide ? Math.max(0, (img?.offsetHeight || 0) - sc.clientHeight) : sc.scrollHeight - sc.clientHeight
+    const set = (v) => {
+      if (slide) { offRef.current = v; if (img) img.style.transform = `translateY(${-v}px)`; placeBar() }
+      else sc.scrollTop = v
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { set(toEnd ? end : 0); return }
+    const from = slide ? offRef.current : sc.scrollTop, to = toEnd ? end : 0
     const dur = Math.max(400, Math.abs(to - from) * (toEnd ? 9 : 2.5))
     const t0 = performance.now()
     const step = (t) => {
       const k = Math.min(1, (t - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2
-      sc.scrollTop = from + (to - from) * e
+      set(from + (to - from) * e)
       if (k < 1) panRef.current = requestAnimationFrame(step)
     }
     panRef.current = requestAnimationFrame(step)
