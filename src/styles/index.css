@@ -213,8 +213,17 @@ img { max-width: 100%; display: block; }
 .cs-sec ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 68ch; }
 .cs-sec blockquote { margin: 0; display: grid; gap: 8px; }
 /* Highlights: a soft Thai red tint from the palette (no gold, no border), so they stand apart from body text */
-.cs-sec blockquote.note { background: color-mix(in srgb, var(--red) 5%, var(--paper)); border-radius: 16px; padding: 22px 26px 24px; max-width: 72ch; }
-.cs-sec > blockquote.note + blockquote.note { margin-top: 14px; }
+.cs-sec blockquote.note, .cs-sec .note-group { background: color-mix(in srgb, var(--red) 6%, var(--paper)); border-radius: 16px; padding: 24px 28px 26px; }
+.cs-sec blockquote.note { max-width: 72ch; gap: 10px; }
+.cs-sec > blockquote.note, .cs-sec > .note-group { margin-block: 36px 12px; }
+.cs-sec > :is(blockquote.note, .note-group) + :is(blockquote.note, .note-group) { margin-top: 16px; }
+/* A highlight together with its screens: one box, note on top, proof below */
+.cs-sec .note-group { display: grid; gap: 24px; justify-items: start; }
+.cs-sec .note-group > blockquote.note { background: none; padding: 0; border-radius: 0; }
+.cs-sec .note-group > * { margin: 0; }
+.cs-sec .note-group > p.caption { margin-top: -12px; }
+/* Gold numbers when a section has more than one highlight (gold is allowed for section numbers) */
+.cs-sec blockquote.note .note-n { display: block; font: 500 12px/1 var(--body); letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; }
 .cs-sec blockquote.note h4 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.3; color: var(--red); letter-spacing: 0; }
 /* Pull lines: quotes and the How might we question, large and in Thai red, with a small source line */
 .cs-sec blockquote.pull { gap: 12px; max-width: 30em; padding-block: 8px; }
