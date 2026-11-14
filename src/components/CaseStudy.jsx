@@ -6,7 +6,7 @@ import Footer from './Footer.jsx'
 import ProjectCards from './ProjectCards.jsx'
 import NotFound from './NotFound.jsx'
 import { getProject } from '../data/projects.js'
-import { Phone, Stats, makeComponents, splitSections } from './markdown.jsx'
+import { Phone, Stats, groupNotes, makeComponents, splitSections } from './markdown.jsx'
 
 /* Markdown syntax for case studies is documented in markdown.jsx. */
 
@@ -66,7 +66,7 @@ export default function CaseStudy() {
                       </>
                     )
                   })()}
-                  <ReactMarkdown components={components} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
+                  <ReactMarkdown components={components} rehypePlugins={[groupNotes]} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
                 </section>
               ))}
             </div>

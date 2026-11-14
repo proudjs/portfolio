@@ -198,6 +198,61 @@ function token(raw, name) {
   return raw.slice(open.length, -2).split('||').map((s) => s.trim())
 }
 
+function textOf(n) {
+  if (n.type === 'text') return n.value
+  return (n.children || []).map(textOf).join('')
+}
+
+// Rehype plugin for case studies.
+// - Quotes and the "How might we" line become pull lines (class "pull").
+// - Other callouts are highlights (class "note"). With two or more in a section they get gold numbers.
+// - A highlight and the screens right after it (plus their caption) are wrapped together in one box,
+//   so the note and its proof read as one unit.
+const blank = (n) => n.type === 'text' && !n.value.trim()
+const kidsOf = (n) => (n.children || []).filter((c) => !blank(c))
+const isImgEl = (n) => n.type === 'element' && n.tagName === 'img'
+const isMediaP = (n) => n.type === 'element' && n.tagName === 'p' && kidsOf(n).length > 0 && kidsOf(n).every(isImgEl)
+const isMediaList = (n) => n.type === 'element' && n.tagName === 'ul' && kidsOf(n).some((li) => kidsOf(li).some((c) => isImgEl(c) || (c.tagName === 'p' && kidsOf(c).some(isImgEl))))
+const isCaption = (n) => n.type === 'element' && n.tagName === 'p' && kidsOf(n).length === 1 && kidsOf(n)[0].tagName === 'em'
+export function groupNotes() {
+  return (tree) => {
+    const quotes = tree.children.filter((n) => n.type === 'element' && n.tagName === 'blockquote')
+    const notes = []
+    quotes.forEach((q) => {
+      const head = q.children.find((c) => c.type === 'element' && c.tagName === 'h4')
+      const text = head ? textOf(head).trim() : ''
+      const pull = /^[\u201c"]/.test(text) || /^how might we/i.test(text)
+      q.properties = { ...q.properties, className: [pull ? 'pull' : 'note'] }
+      if (!pull) notes.push([q, head])
+    })
+    if (notes.length > 1) {
+      notes.forEach(([, head], i) => {
+        if (head) head.children.unshift({ type: 'element', tagName: 'span', properties: { className: ['note-n'] }, children: [{ type: 'text', value: String(i + 1).padStart(2, '0') }] })
+      })
+    }
+    const out = []
+    const list = tree.children
+    for (let i = 0; i < list.length; i++) {
+      const n = list[i]
+      if (!(n.type === 'element' && n.tagName === 'blockquote' && n.properties.className[0] === 'note')) { out.push(n); continue }
+      const media = []
+      let j = i + 1
+      let sawMedia = false
+      while (j < list.length) {
+        const m = list[j]
+        if (blank(m)) { j++; continue }
+        if (isMediaP(m) || isMediaList(m)) { media.push(m); sawMedia = true; j++; continue }
+        if (sawMedia && isCaption(m)) { media.push(m); j++; break }
+        break
+      }
+      if (!sawMedia) { out.push(n); continue }
+      out.push({ type: 'element', tagName: 'div', properties: { className: ['note-group'] }, children: [n, ...media] })
+      i = j - 1
+    }
+    tree.children = out
+  }
+}
+
 export function makeComponents(page = {}) {
   return {
     img: Figure,
