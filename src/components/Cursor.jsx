@@ -16,7 +16,7 @@ const HOT = 'a, button, [role="button"], label, summary, select, .iphone.is-scro
 const ZOOMABLE = '.cs-sec img.cs-img'
 const ZOOM = 2
 const SIZE = 150 // loupe diameter in px
-const DWELL = 300 // ms of resting on a picture before the loupe appears
+const DWELL = 280 // ms the pointer must rest on a picture before the loupe appears
 
 export default function Cursor() {
   const ref = useRef(null)
@@ -58,7 +58,8 @@ export default function Cursor() {
       const dt = lt ? Math.min(64, t - lt) : 16.7
       lt = t
       // follow the pointer while zooming; when shrinking, travel back to the pointer like the dot
-      const k = still ? 1 : 1 - Math.pow(1 - 0.18, dt / 16.7)
+      // while it grows (or shrinks) it stays exactly on the pointer, so the dot visibly turns into the loupe
+      const k = still || g < 1 ? 1 : 1 - Math.pow(1 - 0.32, dt / 16.7)
       lx += (x - lx) * k
       ly += (y - ly) * k
       if (zooming && pic) rect = pic.getBoundingClientRect()
@@ -91,7 +92,7 @@ export default function Cursor() {
       const bg = getComputedStyle(img).backgroundColor
       loupe.style.backgroundColor = bg && bg !== 'rgba(0, 0, 0, 0)' ? bg : 'var(--paper)'
       loupe.style.backgroundImage = `url("${img.currentSrc || img.src}")`
-      if (g === 0) { lx = x; ly = y }
+      lx = x; ly = y // grow right where the red dot is
       rect = img.getBoundingClientRect()
       set('is-zoom', true)
       kick()
@@ -102,14 +103,22 @@ export default function Cursor() {
       pic = null
       kick()
     }
+    // The loupe opens only after the pointer has rested on a picture for DWELL ms.
+    // Any real movement before that restarts the wait.
+    let restX = -1, restY = -1
+    const arm = (img) => {
+      clearTimeout(picTimer)
+      restX = x; restY = y
+      picTimer = setTimeout(() => { if (pic === img && !zooming) startZoom(img) }, DWELL)
+    }
     const track = (target) => {
       const img = target?.closest?.(ZOOMABLE) || null
-      if (img === pic) return
-      stopZoom()
-      if (img) {
-        pic = img
-        picTimer = setTimeout(() => { if (pic === img) startZoom(img) }, DWELL)
+      if (img !== pic) {
+        stopZoom()
+        if (img) { pic = img; arm(img) }
+        return
       }
+      if (img && !zooming && Math.hypot(x - restX, y - restY) > 4) arm(img)
     }
     const move = (e) => {
       x = e.clientX; y = e.clientY
