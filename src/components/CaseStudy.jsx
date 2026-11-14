@@ -46,9 +46,35 @@ export default function CaseStudy() {
     return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf) }
   }, [project])
 
+  // Built once per project. Re-creating the Markdown components on every scroll (when the
+  // "On this page" highlight moves) rebuilt every picture and phone, and Safari showed that as a jump.
+  const body = useMemo(() => {
+    if (!project) return null
+    const components = makeComponents(project)
+    return (
+            <div className="cs-main">
+              {sections.map((s) => (
+                <section className={`cs-sec${s.id === 'overview' ? ' overview' : ''}`} id={s.id} key={s.id} aria-label={s.label}>
+                  {/* Every section opens with a headline. If the Markdown has none, the section name becomes it
+                      and the small label above shows only the number, so the name isn't said twice. */}
+                  {(() => {
+                    const promote = !s.body.startsWith('### ') && s.id !== 'overview'
+                    return (
+                      <>
+                        <div className="cs-num eyebrow"><i>{s.n}</i>{promote ? null : s.label}</div>
+                        {promote && <h3>{s.label}</h3>}
+                      </>
+                    )
+                  })()}
+                  <ReactMarkdown components={components} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
+                </section>
+              ))}
+            </div>
+    )
+  }, [project, sections])
+
   if (!project || !project.ready) return <NotFound />
 
-  const components = makeComponents(project)
 
   const jump = (e, id) => {
     e.preventDefault()
@@ -104,24 +130,7 @@ export default function CaseStudy() {
               <a key={s.id} href={`#${s.id}`} className={active === s.id ? 'on' : undefined} onClick={(e) => jump(e, s.id)}>{s.label}</a>
             ))}
           </nav>
-          <div className="cs-main">
-            {sections.map((s) => (
-              <section className={`cs-sec${s.id === 'overview' ? ' overview' : ''}`} id={s.id} key={s.id} aria-label={s.label}>
-                {/* Every section opens with a headline. If the Markdown has none, the section name becomes it
-                    and the small label above shows only the number, so the name isn't said twice. */}
-                {(() => {
-                  const promote = !s.body.startsWith('### ') && s.id !== 'overview'
-                  return (
-                    <>
-                      <div className="cs-num eyebrow"><i>{s.n}</i>{promote ? null : s.label}</div>
-                      {promote && <h3>{s.label}</h3>}
-                    </>
-                  )
-                })()}
-                <ReactMarkdown components={components} urlTransform={(u) => u}>{s.body}</ReactMarkdown>
-              </section>
-            ))}
-          </div>
+          {body}
         </div>
 
         <section style={{ display: 'grid', gap: 18, paddingTop: 24, borderTop: '1px solid var(--line)' }} aria-label="More work">
