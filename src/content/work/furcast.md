@@ -99,19 +99,19 @@ We surveyed 24 owners and reviewed three pet health apps (11pets, Digitail and P
 
 The most-requested features became the MVP. We cut community discussion: only 29.2% of owners wanted it. We built a web app because vets often ask owners to watch something for a few days, and nobody downloads an app for that.
 
-![Bar chart of survey answers, with medical records and reminders at the top at 92%](</work/furcast/kq4yxx179LUBo4Ng.webp> "wide")
+![Bar chart of survey answers, with medical records and reminders at the top at 92%](</work/furcast/kq4yxx179LUBo4Ng-clear.webp> "wide")
 
 ## From structure to screens
 
 ### Site map first, then flows, then wireframes.
 
-![Furcast site map with Home, Daily Log, Reminders, Medical Records, AI Health Insights and Profile](</work/furcast/site-map-top-levels-ca87c03a-f972-4f53-9e19-2227c8056f0f.webp> "wide")
+![Furcast site map with Home, Daily Log, Reminders, Medical Records, AI Health Insights and Profile](</work/furcast/site-map-top-levels-ca87c03a-f972-4f53-9e19-2227c8056f0f-clear.webp> "wide")
 
-![Daily Log user flow from the dashboard to saving a log and logging the next pet](</work/furcast/PamKzzmENkaU00A6.webp> "wide")
+![Daily Log user flow from the dashboard to saving a log and logging the next pet](</work/furcast/PamKzzmENkaU00A6-clear.webp> "wide")
 
-![Lo-fi wireframes of Home, Log history, Log confirmation, New appointment and Medical Records](</work/furcast/wFmRYsXTgkJlAO8m.webp> "wide")
+![Lo-fi wireframes of Home, Log history, Log confirmation, New appointment and Medical Records](</work/furcast/wFmRYsXTgkJlAO8m-clear.webp> "wide")
 
-![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](</work/furcast/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af.webp> "wide 60")
+![Daily Log in lo-fi and hi-fi, with each question moved onto its own card with bigger tap targets](</work/furcast/daily-log-lofi-to-hifi-nav-b4d7c975-25a0-453c-903e-c7a2e92bd4af-clear.webp> "wide 60")
 
 *In hi-fi, each Daily Log question got its own card with bigger buttons.*
 
@@ -131,9 +131,9 @@ If a health app tells a worried owner their dog is fine and it isn’t, that’s
 
 We wanted a pet journal, not a medical chart. So we chose Chestnut with warm neutrals. Crimson, Amber and Olive show up only when something needs attention. I built the color system and components.
 
-![Furcast color roles, from Chestnut brand and button colors to Crimson, Amber and Olive status colors](</work/furcast/ds-colors-preview-67cae82f-6cca-4b30-a472-03873f63c611.webp> "wide")
+![Furcast color roles, from Chestnut brand and button colors to Crimson, Amber and Olive status colors](</work/furcast/ds-colors-preview-67cae82f-6cca-4b30-a472-03873f63c611-clear.webp> "wide")
 
-![Furcast buttons and input fields in every state, from default and hover to pressed, disabled and error](</work/furcast/OykMOo5gtMZAox1O.webp> "wide")
+![Furcast buttons and input fields in every state, from default and hover to pressed, disabled and error](</work/furcast/OykMOo5gtMZAox1O-clear.webp> "wide")
 
 #### The brown exploration
 
@@ -141,7 +141,7 @@ Later, on my own, I tried brown. Chestnut sits too close to Crimson, the error r
 
 ![Furcast in the brown exploration](</work/furcast/furcast-brown-nav-7c5304ba-e7cd-4cb7-b6a6-c03887100db9.webp> "phone")
 
-![Vet Visit Prep in Chestnut and in brown, side by side](</work/furcast/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596.webp> "wide 60")
+![Vet Visit Prep in Chestnut and in brown, side by side](</work/furcast/vet-visit-prep-chestnut-vs-brown-5f9930a3-cdcd-44af-8725-ef4f6e915596-clear.webp> "wide 60")
 
 ## Testing and what I changed
 
